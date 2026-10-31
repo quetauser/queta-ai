@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import type { ReactNode } from "react";
 
 interface NavItem {
@@ -34,7 +34,6 @@ export function SiteHeaderClient({
   const [mobileOpen, setMobileOpen] = useState(false);
   const [solutionsOpen, setSolutionsOpen] = useState(false);
   const [legalOpen, setLegalOpen] = useState(false);
-  const legalOpenedByHover = useRef(false);
 
   useEffect(() => {
     if (!legalOpen) {
@@ -42,7 +41,6 @@ export function SiteHeaderClient({
     }
     function onKeyDown(event: KeyboardEvent) {
       if (event.key === "Escape") {
-        legalOpenedByHover.current = false;
         setLegalOpen(false);
       }
     }
@@ -63,7 +61,6 @@ export function SiteHeaderClient({
             className="relative"
             onMouseEnter={() => {
               setSolutionsOpen(true);
-              legalOpenedByHover.current = false;
               setLegalOpen(false);
             }}
             onMouseLeave={() => setSolutionsOpen(false)}
@@ -107,11 +104,9 @@ export function SiteHeaderClient({
             className="relative"
             onMouseEnter={() => {
               setSolutionsOpen(false);
-              legalOpenedByHover.current = true;
               setLegalOpen(true);
             }}
             onMouseLeave={() => {
-              legalOpenedByHover.current = false;
               setLegalOpen(false);
             }}
           >
@@ -121,9 +116,7 @@ export function SiteHeaderClient({
               aria-expanded={legalOpen}
               onClick={(event) => {
                 setSolutionsOpen(false);
-                // mouseenter already opened the menu, so the click that follows must not close it
-                if (event.detail > 0 && legalOpenedByHover.current) {
-                  legalOpenedByHover.current = false;
+                if (event.detail > 0) {
                   return;
                 }
                 setLegalOpen((open) => !open);
