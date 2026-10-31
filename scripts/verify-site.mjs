@@ -6,6 +6,7 @@ import process from "node:process";
 import { fileURLToPath } from "node:url";
 import { chromium, devices } from "@playwright/test";
 import { verifyContactForm } from "./verify-contact-form.mjs";
+import { legalDocuments, publicRoutes } from "../src/content/site-content.ts";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const root = path.resolve(__dirname, "..");
@@ -15,16 +16,7 @@ const pidFile = path.join(root, ".verification-dev-server.pid");
 const localBase = process.env.VERIFY_BASE_URL ?? "http://127.0.0.1:3005";
 const originalBase = "https://www.queta.ai";
 
-const routes = [
-  "/",
-  "/pricing",
-  "/about",
-  "/contact",
-  "/solutions/lifestyle",
-  "/solutions/realtor",
-  "/solutions/trader",
-  "/solutions/office-manager",
-];
+const legalHrefs = new Set(legalDocuments.map((document) => document.href));
 
 function runStep(label, command, args, options = {}) {
   console.log(`\n== ${label} ==`);
@@ -206,6 +198,11 @@ async function main() {
     ]) {
       const context = await browser.newContext({ ...devices["Desktop Chrome"] });
       const page = await context.newPage();
+      // queta.ai does not publish these documents. Its soft 404 is not a text comparison.
+      const routes =
+        base.label === "original"
+          ? publicRoutes.filter((route) => !legalHrefs.has(route))
+          : publicRoutes;
       for (const route of routes) {
         const result = await auditPage(page, base.url, route, base.label);
         results.push({ ...result, label: base.label, route });
@@ -235,7 +232,7 @@ async function main() {
   const summary = {
     runId,
     evidenceDir,
-    routes,
+    routes: publicRoutes,
     contactFormResults,
     results,
     failures: failures.map(({ label, route, status, consoleErrors, brokenImages, failedRequests }) => ({

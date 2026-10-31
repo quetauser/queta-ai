@@ -41,7 +41,7 @@ Doctor passes when the verify port is free (unless you intentionally run the ver
 
 Primary harness: `scripts/verify-site.mjs` via `npm run verify`.
 
-Routes (must return 200 on replica and original):
+Routes that exist on queta.ai (must return 200 on the replica and the original):
 
 - `/`
 - `/pricing`
@@ -52,11 +52,19 @@ Routes (must return 200 on replica and original):
 - `/solutions/trader`
 - `/solutions/office-manager`
 
-For each route and for both `replica` and `original` bases, the script:
+Legal routes (must return 200 on the replica). Do not request these from https://www.queta.ai. That site does not publish the documents, so there is no body text to compare:
+
+- `/terms-of-use`
+- `/ai-legal-disclosure`
+- `/end-user-license-policy`
+
+For each marketing route, on both the replica and the original, the script:
 
 1. Loads the page with Playwright (`load`, short settle).
 2. Records HTTP status, console errors, failed network requests, and broken images.
 3. Saves full-page PNGs at 1280×720 and 390×844.
+
+Legal routes get the same capture on the replica only.
 
 ### Contact form (mocked FormSubmit)
 
