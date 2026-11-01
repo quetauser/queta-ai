@@ -131,9 +131,9 @@ export const home = {
       label: "Trader",
       headline: "React in milliseconds. Decide in seconds.",
       description:
-        "Real-time market intelligence and automated workflow execution — your AI agent never sleeps, never misses a signal.",
+        "Near real-time market intelligence and automated workflow execution — your AI agent never sleeps, never misses a signal.",
       bullets: [
-        "Real-time market monitoring",
+        "Near real-time market monitoring",
         "Alert & signal automation",
         "Portfolio summary reports",
         "News sentiment analysis",
@@ -179,9 +179,9 @@ export const pricing = {
       name: "Trader",
       prices: [{ amount: "$449", note: "/year" }],
       description:
-        "For active traders who need real-time intelligence and automated execution.",
+        "For active traders who need near real-time intelligence and automated execution.",
       features: [
-        "Real-Time Market Scanner",
+        "Near Real-Time Market Scanner",
         "Options Flow Analyzer",
         "Portfolio Risk Monitor",
         "Earnings Calendar Agent",
@@ -396,7 +396,7 @@ const traderSolution: SolutionPageContent = {
   theme: "emerald",
   features: [
     {
-      title: "Real-Time Market Monitoring",
+      title: "Near Real-Time Market Monitoring",
       description:
         "Your agent watches price action, volume, and volatility across your watchlist 24/7 — alerting you the instant conditions match your criteria.",
       tagline: "Set your parameters once. Your agent never sleeps, never blinks.",
@@ -427,14 +427,14 @@ const traderSolution: SolutionPageContent = {
     },
     {
       title: "Stock Analyst commentary",
-      description: "Real-time updates for stock upgrade and downgrade.",
+      description: "Near real-time updates for stock upgrade and downgrade.",
       tagline: "Your agent keeps you informed on what stock analysts are saying.",
     },
   ],
   scenarios: [
     {
       scenario: "A stock on my watchlist breaks out on volume",
-      outcome: "Alert fired in real time with price, volume, and news context attached",
+      outcome: "Alert fired in near real-time with price, volume, and news context attached",
     },
     {
       scenario: "I want a pre-market briefing every day at 8am",
