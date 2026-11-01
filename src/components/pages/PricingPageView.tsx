@@ -19,6 +19,9 @@ export function PricingPageView() {
 
       <section className="pb-14 bg-white">
         <div className="max-w-7xl mx-auto px-6">
+          <p className="text-center text-sm font-medium text-primary mb-8">
+            {pricing.launchBanner}
+          </p>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch">
             {pricing.tiers.map((tier) => (
               <div
@@ -26,21 +29,30 @@ export function PricingPageView() {
                 className="relative rounded-3xl border flex flex-col border-border bg-white"
               >
                 <div className="p-8 border-b border-border">
-                  <p className="text-xs font-bold uppercase tracking-widest mb-3 text-muted-foreground">
-                    {tier.name}
-                  </p>
-                  <div className="flex flex-col gap-2 mb-3">
-                    {tier.prices.map((price) => (
-                      <div key={price.amount + price.note} className="flex items-end gap-1">
-                        <span className="text-4xl font-bold tracking-tight text-foreground">
-                          {price.amount}
-                        </span>
-                        {price.note ? (
-                          <span className="text-sm mb-1.5 text-muted-foreground">{price.note}</span>
-                        ) : null}
-                      </div>
-                    ))}
+                  <div className="flex items-start justify-between gap-3 mb-3">
+                    <p className="text-xs font-bold uppercase tracking-widest text-muted-foreground">
+                      {tier.name}
+                    </p>
+                    <p className="shrink-0 rounded-full border border-violet-200 bg-violet-50 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-widest text-primary">
+                      {pricing.launchBadge}
+                    </p>
                   </div>
+                  <div className="flex flex-wrap items-end gap-x-3 gap-y-1 mb-2">
+                    <p className="flex items-end gap-1">
+                      <span className="sr-only">Launch price </span>
+                      <span className="text-4xl font-bold tracking-tight text-foreground">
+                        {tier.launchAmount}
+                      </span>
+                      <span className="text-sm mb-1.5 text-muted-foreground">{tier.period}</span>
+                    </p>
+                    <p className="mb-1.5 text-lg text-muted-foreground">
+                      <del className="line-through">
+                        <span className="sr-only">Regular price </span>
+                        {tier.regularAmount}
+                      </del>
+                    </p>
+                  </div>
+                  <p className="text-xs text-muted-foreground leading-relaxed mb-3">{tier.offer}</p>
                   <p className="text-sm text-muted-foreground leading-relaxed">{tier.description}</p>
                 </div>
                 <ul className="p-8 flex flex-col gap-3 flex-1">
