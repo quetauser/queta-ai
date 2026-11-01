@@ -293,7 +293,7 @@ export const about = {
 export const contact = {
   metaTitle: "Contact Us — Queta AI",
   hero: {
-    title: "We would love to hear from you",
+    title: "Thank you for your interest in Queta AI",
     description:
       "Have a question or want to learn more about Queta AI? Send us a message and we'll get back to you within 24 hours.",
   },
