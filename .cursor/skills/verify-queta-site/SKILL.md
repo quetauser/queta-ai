@@ -50,7 +50,6 @@ Routes that exist on queta.ai (must return 200 on the replica and the original):
 - `/solutions/lifestyle`
 - `/solutions/realtor`
 - `/solutions/trader`
-- `/solutions/office-manager`
 
 Legal routes (must return 200 on the replica). Do not request these from https://www.queta.ai. That site does not publish the documents, so there is no body text to compare:
 

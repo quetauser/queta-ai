@@ -4,7 +4,7 @@ Pricing tiers and founder story band.
 
 ## Sub-features
 
-- `pricing-tiers` — three persona pricing cards
+- `pricing-tiers` — Lifestyle User at $399 with the label "all agents", Trader, and Realtor
 - `pricing-why` — dark band with stats
 
 ## How to get to it (user POV)

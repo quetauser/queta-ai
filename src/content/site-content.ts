@@ -1,10 +1,6 @@
-export type PersonaSlug =
-  | "lifestyle"
-  | "realtor"
-  | "trader"
-  | "office-manager";
+export type PersonaSlug = "lifestyle" | "realtor" | "trader";
 
-export type PersonaTheme = "violet" | "blue" | "emerald" | "orange";
+export type PersonaTheme = "violet" | "blue" | "emerald";
 
 export interface PersonaCard {
   slug: PersonaSlug;
@@ -66,7 +62,7 @@ export const site = {
   domain: "https://www.queta.ai",
   defaultTitle: "Queta AI — Your AI. Your Persona. Your Edge.",
   defaultDescription:
-    "Queta AI delivers persona-based agentic AI solutions for Lifestyle Users, Realtors, Traders, and Office Managers — eliminating operational overhead so you can focus on what matters.",
+    "Queta AI delivers persona-based agentic AI solutions for Lifestyle Users, Realtors, and Traders — eliminating operational overhead so you can focus on what matters.",
   footerBlurb:
     "Agentic AI solutions built around you. Choose your persona. Eliminate the overhead.",
   copyright: "© 2026 Queta AI. All rights reserved.",
@@ -84,7 +80,7 @@ export const home = {
   personasSection: {
     eyebrow: "Choose Your Persona",
     title: "One platform.",
-    titleLine2: "Four superpowers.",
+    titleLine2: "Three superpowers.",
   },
   statsSection: {
     eyebrow: "The Numbers",
@@ -96,7 +92,7 @@ export const home = {
       { value: "10x", label: "Faster task completion" },
       { value: "80%", label: "Reduction in manual overhead" },
       { value: "24/7", label: "Always-on AI agents" },
-      { value: "4", label: "Persona-tailored solutions" },
+      { value: "3", label: "Persona-tailored solutions" },
     ],
   },
   personaCards: [
@@ -145,21 +141,6 @@ export const home = {
       href: "/solutions/trader",
       theme: "emerald",
     },
-    {
-      slug: "office-manager",
-      label: "Office Manager",
-      headline: "Run the office. Not the other way around.",
-      description:
-        "Streamline operations, vendor coordination, and team communications with an AI agent that keeps everything on track.",
-      bullets: [
-        "Meeting scheduling & notes",
-        "Vendor & supply management",
-        "Team task coordination",
-        "Expense & budget tracking",
-      ],
-      href: "/solutions/office-manager",
-      theme: "orange",
-    },
   ] satisfies PersonaCard[],
 } as const;
 
@@ -174,10 +155,7 @@ export const pricing = {
   tiers: [
     {
       name: "Lifestyle User",
-      prices: [
-        { amount: "$299", note: "up to 5 agents" },
-        { amount: "$399", note: "all agents" },
-      ],
+      prices: [{ amount: "$399", note: "all agents" }],
       description:
         "For individuals ready to reclaim their time and automate the basics.",
       features: [
@@ -214,10 +192,10 @@ export const pricing = {
       interestKey: "get-started-trader",
     },
     {
-      name: "Realtor / Office Manager",
+      name: "Realtor",
       prices: [{ amount: "$399", note: "" }],
       description:
-        "For real estate professionals and office managers automating client and workflow tasks.",
+        "For real estate professionals automating client and workflow tasks.",
       features: [
         "Listing Description Writer",
         "Client Follow-Up Agent",
@@ -227,7 +205,7 @@ export const pricing = {
         "Email & Calendar Manager",
       ],
       cta: "Get Started",
-      interestKey: "get-started-realtor-office-manager",
+      interestKey: "get-started-realtor",
     },
   ],
   why: {
@@ -471,70 +449,6 @@ const traderSolution: SolutionPageContent = {
   ctaDescription: "Request a demo and see your Trader AI agent in action.",
 };
 
-const officeManagerSolution: SolutionPageContent = {
-  slug: "office-manager",
-  metaTitle: "Office Manager AI Agent — Queta AI",
-  personaLabel: "Office Manager",
-  heroHeadline: "Run the office. Not the other way around.",
-  heroDescription:
-    "Your AI agent coordinates meetings, vendors, team tasks, and budgets — keeping operations running smoothly so you can focus on the work that actually moves the needle.",
-  theme: "orange",
-  features: [
-    {
-      title: "Meeting Scheduling & Notes",
-      description:
-        "Your agent finds the right time, sends invites, preps agendas, and captures action items — so every meeting has a clear outcome.",
-      tagline: "No more scheduling back-and-forth. No more lost follow-ups.",
-    },
-    {
-      title: "Vendor & Supply Management",
-      description:
-        "Track vendor contracts, reorder supplies before they run out, and manage service schedules — all automated.",
-      tagline: "Your agent keeps the office stocked and vendors accountable.",
-    },
-    {
-      title: "Team Task Coordination",
-      description:
-        "Assign, track, and follow up on team tasks without micromanaging — your agent surfaces blockers and keeps projects on schedule.",
-      tagline: "Everyone knows what they own. Nothing slips through.",
-    },
-    {
-      title: "Expense & Budget Tracking",
-      description:
-        "Log expenses, flag overruns, and generate spend summaries — your agent keeps the budget visible and under control.",
-      tagline: "No more end-of-month surprises.",
-    },
-    {
-      title: "Onboarding Automation",
-      description:
-        "New hire? Your agent triggers the full onboarding checklist — IT setup, paperwork, introductions, and first-week schedule.",
-      tagline: "Consistent, professional onboarding every time.",
-    },
-    {
-      title: "Compliance & Deadline Tracking",
-      description:
-        "Monitor renewal dates, compliance deadlines, and regulatory requirements — with alerts well before anything lapses.",
-      tagline: "Your agent is the institutional memory the office always needed.",
-    },
-  ],
-  scenarios: [
-    {
-      scenario: "Schedule a quarterly review with 8 stakeholders across 3 time zones",
-      outcome: "Optimal time found, invites sent, agenda drafted — in under 60 seconds",
-    },
-    {
-      scenario: "Office supplies are running low",
-      outcome: "Reorder triggered automatically based on usage thresholds",
-    },
-    {
-      scenario: "New employee starts Monday",
-      outcome: "Full onboarding checklist triggered Friday — IT, HR, and manager all notified",
-    },
-  ],
-  ctaHeadline: "Ready to run a tighter operation?",
-  ctaDescription: "Request a demo and see your Office Manager AI agent in action.",
-};
-
 const lifestyleSolution: SolutionPageContent = {
   slug: "lifestyle",
   metaTitle: "Lifestyle User AI Agent — Queta AI",
@@ -645,7 +559,6 @@ export const solutions: Record<PersonaSlug, SolutionPageContent> = {
   lifestyle: lifestyleSolution,
   realtor: realtorSolution,
   trader: traderSolution,
-  "office-manager": officeManagerSolution,
 };
 
 export const legalDocuments = [
@@ -1924,7 +1837,6 @@ export const navigation = {
     { label: "Lifestyle User", href: "/solutions/lifestyle" },
     { label: "Realtor", href: "/solutions/realtor" },
     { label: "Trader", href: "/solutions/trader" },
-    { label: "Office Manager", href: "/solutions/office-manager" },
   ] as const,
   links: [
     { label: "Pricing", href: "/pricing" },
@@ -1949,6 +1861,5 @@ export const publicRoutes = [
   "/solutions/lifestyle",
   "/solutions/realtor",
   "/solutions/trader",
-  "/solutions/office-manager",
   ...legalDocuments.map((document) => document.href),
 ] as const;

@@ -4,7 +4,7 @@ import { SiteShell } from "@/components/layout/SiteShell";
 import { SolutionPage } from "@/components/pages/SolutionPage";
 import { solutions, type PersonaSlug } from "@/content/site-content";
 
-const slugs: PersonaSlug[] = ["lifestyle", "realtor", "trader", "office-manager"];
+const slugs: PersonaSlug[] = ["lifestyle", "realtor", "trader"];
 
 export function generateStaticParams() {
   return slugs.map((slug) => ({ slug }));

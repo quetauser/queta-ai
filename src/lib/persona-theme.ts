@@ -47,22 +47,10 @@ export const personaThemeClasses: Record<
     bullet: "text-emerald-700",
     check: "text-emerald-700",
   },
-  orange: {
-    badge: "text-orange-700 bg-white/70",
-    dot: "bg-orange-500",
-    card: "bg-orange-50 border-orange-200 hover:border-orange-400",
-    cardBorder: "from-orange-500 to-amber-400",
-    cardHover: "group-hover:opacity-100",
-    gradient: "from-orange-500 to-amber-400",
-    text: "text-orange-700",
-    bullet: "text-orange-700",
-    check: "text-orange-700",
-  },
 };
 
 export const heroThemeBackground: Record<PersonaTheme, string> = {
   violet: "from-violet-50 via-white to-slate-50",
   blue: "from-blue-50 via-white to-slate-50",
   emerald: "from-emerald-50 via-white to-slate-50",
-  orange: "from-orange-50 via-white to-slate-50",
 };

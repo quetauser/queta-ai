@@ -6,7 +6,8 @@ const INTEREST_LABELS: Record<string, string> = {
   waitlist: "Waitlist",
   "get-started-lifestyle-user": "Get Started — Lifestyle User",
   "get-started-trader": "Get Started — Trader",
-  "get-started-realtor-office-manager": "Get Started — Realtor / Office Manager",
+  "get-started-realtor": "Get Started — Realtor",
+  "get-started-realtor-office-manager": "Get Started — Realtor",
 };
 
 export function contactPageHref(interest?: string): string {

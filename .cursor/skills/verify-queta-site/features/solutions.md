@@ -7,7 +7,6 @@ Persona-specific solution detail pages.
 - `solutions-lifestyle` — `/solutions/lifestyle`
 - `solutions-realtor` — `/solutions/realtor`
 - `solutions-trader` — `/solutions/trader`
-- `solutions-office-manager` — `/solutions/office-manager`
 
 ## How to get to it (user POV)
 
@@ -23,3 +22,4 @@ Persona-specific solution detail pages.
 ## Gotchas
 
 - `/solutions/lifestyle-user` 404 on live site; replica uses `/solutions/lifestyle` like queta.ai home links.
+- `/solutions/office-manager` redirects to `/#solutions`. It is not a public route and is not crawled against queta.ai.
