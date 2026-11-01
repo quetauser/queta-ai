@@ -193,7 +193,7 @@ export const pricing = {
     },
     {
       name: "Realtor",
-      prices: [{ amount: "$399", note: "" }],
+      prices: [{ amount: "$629", note: "" }],
       description:
         "For real estate professionals automating client and workflow tasks.",
       features: [
