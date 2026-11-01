@@ -52,8 +52,8 @@ export function PricingPageView() {
                       </del>
                     </p>
                   </div>
-                  <p className="text-xs text-muted-foreground leading-relaxed mb-3">{tier.offer}</p>
-                  <p className="text-sm text-muted-foreground leading-relaxed">{tier.description}</p>
+                  <p className="text-xs text-muted-foreground leading-relaxed">{tier.offer}</p>
+                  <p className="mt-4 text-base md:text-lg text-foreground/75 leading-relaxed">{tier.description}</p>
                 </div>
                 <ul className="p-8 flex flex-col gap-3 flex-1">
                   {tier.features.map((feature) => (
