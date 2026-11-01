@@ -155,7 +155,7 @@ export const pricing = {
   tiers: [
     {
       name: "Lifestyle User",
-      prices: [{ amount: "$399", note: "all agents" }],
+      prices: [{ amount: "$399", note: "/year" }],
       description:
         "For individuals ready to reclaim their time and automate the basics.",
       features: [
@@ -177,7 +177,7 @@ export const pricing = {
     },
     {
       name: "Trader",
-      prices: [{ amount: "$449", note: "" }],
+      prices: [{ amount: "$449", note: "/year" }],
       description:
         "For active traders who need real-time intelligence and automated execution.",
       features: [
@@ -193,7 +193,7 @@ export const pricing = {
     },
     {
       name: "Realtor",
-      prices: [{ amount: "$629", note: "" }],
+      prices: [{ amount: "$629", note: "/year" }],
       description:
         "For real estate professionals automating client and workflow tasks.",
       features: [
@@ -293,7 +293,7 @@ export const about = {
 export const contact = {
   metaTitle: "Contact Us — Queta AI",
   hero: {
-    title: "We'd love to hear from you",
+    title: "We would love to hear from you",
     description:
       "Have a question or want to learn more about Queta AI? Send us a message and we'll get back to you within 24 hours.",
   },
