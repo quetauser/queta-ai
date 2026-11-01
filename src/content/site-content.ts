@@ -497,7 +497,7 @@ const lifestyleSolution: SolutionPageContent = {
     {
       title: "Stock Analyst",
       description:
-        "Monitors your portfolio, surfaces market news relevant to your holdings, and flags opportunities or risks in real time.",
+        "Monitors your portfolio, surfaces market news relevant to your holdings, and flags opportunities or risks in near real-time.",
       tagline: "Stay informed without being glued to a screen — your agent watches the market for you.",
     },
     {
