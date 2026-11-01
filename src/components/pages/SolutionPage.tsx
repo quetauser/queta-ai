@@ -71,13 +71,13 @@ export function SolutionPage({
             {content.features.map((feature) => (
               <div
                 key={feature.title}
-                className="rounded-2xl border border-border p-7 bg-white shadow-sm"
+                className="flex h-full flex-col rounded-2xl border border-border p-7 bg-white shadow-sm"
               >
                 <h3 className="text-xl font-bold text-foreground mb-3">{feature.title}</h3>
                 <p className="text-sm text-muted-foreground leading-relaxed mb-3">
                   {feature.description}
                 </p>
-                <p className={`text-sm font-medium ${theme.text}`}>{feature.tagline}</p>
+                <p className={`mt-auto text-sm font-medium ${theme.text}`}>{feature.tagline}</p>
               </div>
             ))}
           </div>

@@ -474,31 +474,31 @@ const lifestyleSolution: SolutionPageContent = {
     {
       title: "Health Coach",
       description:
-        "Offers friendly walk-and-stretch coaching with twice-daily nudges, and reminds you about medications and check-ins.",
+        "Offers friendly nudges and coaching for your health and wellness. Reminds you about medications and annual check-ups, provides daily yoga and meditation videos, connects to Oura, and guides you toward a healthy lifestyle.",
       tagline: "The small daily habits, prompted before they slip.",
     },
     {
       title: "Shopper",
       description:
-        "Researches and compares products across major retailers, including Amazon, Costco, Target, Walmart, and Best Buy, to find the best value.",
+        "Researches and compares products across major retailers, including Shop.com, Costco, Target, Walmart, and Best Buy, to find the best value and place the order.",
       tagline: "The right product, at a price that holds up.",
     },
     {
       title: "Travel Agent",
       description:
-        "Finds and compares flights, hotels, parking, and ground transport, and researches destinations for family trips.",
+        "Finds and compares flights, hotels, parking, ground transport, and restaurant reservations, researches destinations for family trips, and books the trip.",
       tagline: "The trip is compared and planned before you pack.",
     },
     {
       title: "Chef",
       description:
-        "Plans the week's dinners, builds the grocery list, and tracks allergies and diets for the household.",
+        "Helps you plan the week's meals around dietary restrictions, coordinates with your family on preferences, finalizes the menu and ingredients, builds the grocery list, and places the order with Walmart, Instacart, and other stores.",
       tagline: "Dinner is decided, and the list is ready.",
     },
     {
       title: "Spending Coach",
       description:
-        "A read-only money watcher that sends a short daily brief of spending against your weekly and monthly budgets.",
+        "Helps you track the household's spending trends and coaches you on opportunities to save.",
       tagline: "A clear look at the week, without moving your money.",
     },
     {
