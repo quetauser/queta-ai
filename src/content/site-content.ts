@@ -67,7 +67,6 @@ export const site = {
   defaultTitle: "Queta AI — Your AI. Your Persona. Your Edge.",
   defaultDescription:
     "Queta AI delivers persona-based agentic AI solutions for Lifestyle Users, Realtors, Traders, and Office Managers — eliminating operational overhead so you can focus on what matters.",
-  footerTagline: "Redefining how the world works — one persona at a time.",
   footerBlurb:
     "Agentic AI solutions built around you. Choose your persona. Eliminate the overhead.",
   copyright: "© 2026 Queta AI. All rights reserved.",

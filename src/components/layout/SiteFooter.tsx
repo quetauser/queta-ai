@@ -75,7 +75,6 @@ export function SiteFooter() {
         </div>
         <div className="mt-12 pt-8 border-t border-border flex flex-col sm:flex-row items-center justify-between gap-4">
           <p className="text-xs text-muted-foreground">{site.copyright}</p>
-          <p className="text-xs text-muted-foreground">{site.footerTagline}</p>
         </div>
       </div>
     </footer>
