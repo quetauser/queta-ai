@@ -36,7 +36,18 @@ export default async function SolutionRoutePage({
 
   return (
     <SiteShell>
-      <SolutionPage content={content} />
+      <SolutionPage
+        content={content}
+        productVideo={
+          slug === "trader"
+            ? {
+                src: "/videos/queta-trader.mp4",
+                poster: "/videos/queta-trader-poster.jpg",
+                label: "Queta Trader",
+              }
+            : undefined
+        }
+      />
     </SiteShell>
   );
 }

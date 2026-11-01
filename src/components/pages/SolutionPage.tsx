@@ -3,40 +3,63 @@ import { ArrowRight, CircleCheckBig } from "lucide-react";
 import type { SolutionPageContent } from "@/content/site-content";
 import { navigation } from "@/content/site-content";
 import { heroThemeBackground, personaThemeClasses } from "@/lib/persona-theme";
+import { ProductVideo } from "@/components/pages/ProductVideo";
 
-export function SolutionPage({ content }: { content: SolutionPageContent }) {
+export function SolutionPage({
+  content,
+  productVideo,
+}: {
+  content: SolutionPageContent;
+  productVideo?: { src: string; poster: string; label: string };
+}) {
   const theme = personaThemeClasses[content.theme];
   const heroBg = heroThemeBackground[content.theme];
+  const sectionY = productVideo ? "py-16" : "py-12";
 
   return (
     <>
-      <section className={`pt-24 pb-12 bg-gradient-to-br ${heroBg}`}>
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="max-w-3xl">
+      <section className={`pt-24 ${productVideo ? "pb-16" : "pb-12"} bg-gradient-to-br ${heroBg}`}>
+        <div className={`mx-auto px-6 ${productVideo ? "max-w-5xl text-center" : "max-w-7xl"}`}>
+          <div className={productVideo ? "mx-auto max-w-3xl" : "max-w-3xl"}>
             <div
               className={`inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold mb-6 ${theme.badge}`}
             >
               <span className={`w-1.5 h-1.5 rounded-full ${theme.dot}`} />
               {content.personaLabel}
             </div>
-            <h1 className="font-heading text-4xl md:text-6xl font-bold tracking-tight text-foreground mb-6 leading-tight">
+            <h1
+              className={
+                productVideo
+                  ? "font-heading text-3xl md:text-5xl font-bold tracking-tight text-foreground leading-normal mb-4"
+                  : "font-heading text-4xl md:text-6xl font-bold tracking-tight text-foreground mb-6 leading-tight"
+              }
+            >
               {content.heroHeadline}
             </h1>
-            <p className="text-lg text-muted-foreground leading-relaxed mb-8 max-w-2xl">
+            <p
+              className={`text-lg text-muted-foreground leading-relaxed ${productVideo ? "mx-auto max-w-2xl" : "mb-8 max-w-2xl"}`}
+            >
               {content.heroDescription}
             </p>
-            <Link
-              href={navigation.cta.href}
-              className="inline-flex items-center gap-2 px-8 py-4 rounded-full bg-primary text-primary-foreground font-semibold hover:opacity-90 transition-opacity shadow-lg shadow-violet-200"
-            >
-              {navigation.cta.label}
-              <ArrowRight size={18} />
-            </Link>
           </div>
+          {productVideo ? (
+            <ProductVideo
+              src={productVideo.src}
+              poster={productVideo.poster}
+              label={productVideo.label}
+            />
+          ) : null}
+          <Link
+            href={navigation.cta.href}
+            className={`inline-flex items-center gap-2 px-8 py-4 rounded-full bg-primary text-primary-foreground font-semibold hover:opacity-90 transition-opacity shadow-lg shadow-violet-200 ${productVideo ? "mt-8" : ""}`}
+          >
+            {navigation.cta.label}
+            <ArrowRight size={18} />
+          </Link>
         </div>
       </section>
 
-      <section className="py-12 bg-white">
+      <section className={`${sectionY} bg-white`}>
         <div className="max-w-7xl mx-auto px-6">
           <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground mb-2">
             All Personas
@@ -61,7 +84,7 @@ export function SolutionPage({ content }: { content: SolutionPageContent }) {
         </div>
       </section>
 
-      <section className="py-12 bg-slate-50">
+      <section className={`${sectionY} bg-slate-50`}>
         <div className="max-w-7xl mx-auto px-6">
           <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground mb-2">
             In practice
