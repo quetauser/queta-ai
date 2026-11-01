@@ -164,18 +164,20 @@ export const pricing = {
       description:
         "For individuals ready to reclaim their time and automate the basics.",
       features: [
+        "Health Coach",
+        "Shopper",
         "Travel Agent",
-        "Personal Shopper",
-        "Redact Personal Information",
-        "Home/Property Manager",
-        "Personal Chef",
-        "Health Monitor",
-        "College Advisor",
-        "Subscription Tracker",
-        "Teacher Bot",
-        "Inbox Agent",
-        "Retirement Planner",
+        "Chef",
         "Spending Coach",
+        "Privacy Guardian",
+        "Personal Tutor",
+        "Inbox Agent",
+        "College Planner",
+        "Retirement Planner",
+        "Career Coach",
+        "Home Maintenance Advisor",
+        "Stock Analyst",
+        "Queta Value Summary",
       ],
       cta: "Get Started",
       interestKey: "get-started-lifestyle-user",
@@ -470,82 +472,88 @@ const lifestyleSolution: SolutionPageContent = {
   theme: "violet",
   features: [
     {
-      title: "Inbox Agent",
+      title: "Health Coach",
       description:
-        "Reads, sorts, and drafts replies to your emails and messages — so your inbox stays at zero without the effort.",
-      tagline: "Never miss an important message or spend another hour triaging your inbox.",
+        "Offers friendly walk-and-stretch coaching with twice-daily nudges, and reminds you about medications and check-ins.",
+      tagline: "The small daily habits, prompted before they slip.",
     },
     {
-      title: "Home / Property Manager",
+      title: "Shopper",
       description:
-        "Tracks maintenance schedules, coordinates vendors, manages warranties, and keeps your home running smoothly.",
-      tagline: "From HVAC servicing to lease renewals, your agent stays on top of every property task.",
-    },
-    {
-      title: "Personal Chef",
-      description:
-        "Plans weekly menus based on your dietary preferences, generates shopping lists, and suggests recipes for any occasion.",
-      tagline: "Eat better without the planning overhead — your agent handles the full meal prep loop.",
+        "Researches and compares products across major retailers, including Amazon, Costco, Target, Walmart, and Best Buy, to find the best value.",
+      tagline: "The right product, at a price that holds up.",
     },
     {
       title: "Travel Agent",
       description:
-        "Researches destinations, compares prices, books flights and hotels, and builds complete itineraries tailored to you.",
-      tagline: "Itineraries, packing lists, local recommendations — all prepared before you leave.",
+        "Finds and compares flights, hotels, parking, and ground transport, and researches destinations for family trips.",
+      tagline: "The trip is compared and planned before you pack.",
     },
     {
-      title: "Personal Shopper",
+      title: "Chef",
       description:
-        "Finds the best deals, tracks price drops, manages wishlists, and handles purchases — all on your behalf.",
-      tagline: "Never overpay or miss a sale again — your agent shops smarter so you don't have to.",
-    },
-    {
-      title: "Health Monitor",
-      description:
-        "Tracks vitals, logs fitness activity, schedules check-ups, and surfaces health insights to keep you at your best.",
-      tagline: "Your agent connects the dots between your habits and your long-term wellness goals.",
-    },
-    {
-      title: "Stock Analyst",
-      description:
-        "Monitors your portfolio, surfaces market news relevant to your holdings, and flags opportunities or risks in near real-time.",
-      tagline: "Stay informed without being glued to a screen — your agent watches the market for you.",
-    },
-    {
-      title: "College Advisor",
-      description:
-        "Guides students through college research, application timelines, essay prep, and financial aid — step by step.",
-      tagline: "From school shortlists to submitted applications, your agent keeps the process on track.",
-    },
-    {
-      title: "Teacher Bot",
-      description:
-        "Delivers personalized lessons, answers questions, quizzes you on any subject, and adapts to your learning pace.",
-      tagline: "Learn anything, at your own pace, with an agent that adjusts to how you think.",
-    },
-    {
-      title: "Personal Info Bot",
-      description:
-        "Automatically detects and redacts personally identifiable information from documents, emails, and messages before sharing.",
-      tagline: "Share confidently — your agent scrubs sensitive data before anything leaves your hands.",
-    },
-    {
-      title: "Retirement Planner",
-      description:
-        "Models retirement scenarios, tracks savings progress, analyzes contribution strategies, and keeps your long-term financial goals on course.",
-      tagline: "Your agent runs the numbers so your future self stays on track — no spreadsheets required.",
+        "Plans the week's dinners, builds the grocery list, and tracks allergies and diets for the household.",
+      tagline: "Dinner is decided, and the list is ready.",
     },
     {
       title: "Spending Coach",
       description:
-        "Analyzes your spending patterns, identifies waste, sets budget targets, and nudges you toward smarter financial habits daily.",
-      tagline: "Know exactly where your money goes — and get actionable guidance to keep more of it.",
+        "A read-only money watcher that sends a short daily brief of spending against your weekly and monthly budgets.",
+      tagline: "A clear look at the week, without moving your money.",
     },
     {
-      title: "Subscription Manager",
+      title: "Privacy Guardian",
       description:
-        "Audits all your active subscriptions, flags unused services, tracks renewal dates, and cancels what you no longer need.",
-      tagline: "Stop paying for things you forgot you signed up for — your agent keeps every subscription in check.",
+        "Gets your personal and contact information removed from data brokers and people-search sites, and keeps it removed.",
+      tagline: "Your details stay off the lists that sell them.",
+    },
+    {
+      title: "Personal Tutor",
+      description:
+        "Explains new topics in plain language, with narrated explainer videos you can come back to.",
+      tagline: "A clear explanation, in the time you have.",
+    },
+    {
+      title: "Inbox Agent",
+      description:
+        "Watches Outlook and Gmail, sends a weekday digest of what needs a reply or action, and turns bills and deadlines into to-dos.",
+      tagline: "The messages that need you, before the day gets away.",
+    },
+    {
+      title: "College Planner",
+      description:
+        "Builds the college list and tracks deadlines and application status from the first school to the last submission.",
+      tagline: "Every deadline is on the list, not in memory.",
+    },
+    {
+      title: "Retirement Planner",
+      description:
+        "Models whether and how you can retire early on your real numbers, with a base case and a conservative case.",
+      tagline: "The same plan, run both ways, so the choice is yours.",
+    },
+    {
+      title: "Career Coach",
+      description:
+        "Polishes your resume and LinkedIn, watches for matching jobs, and helps you apply.",
+      tagline: "A stronger profile, and a nudge when a role fits.",
+    },
+    {
+      title: "Home Maintenance Advisor",
+      description:
+        "Keeps home maintenance on schedule, from seasonal checklists and air filters to supplies, vent cleaning, and furnace service.",
+      tagline: "The house stays ahead of the season.",
+    },
+    {
+      title: "Stock Analyst",
+      description:
+        "A research-only markets desk for your watchlist, with morning and close briefs, charts, and a weekly macro recap. It flags opportunities or risks in near real-time.",
+      tagline: "Research only. The list is watched so you are not glued to a screen.",
+    },
+    {
+      title: "Queta Value Summary",
+      description:
+        "Recaps what your Queta agents got done each week and shows the value they provided, including money and time saved.",
+      tagline: "A weekly account of what your agents did for you.",
     },
   ],
   scenarios: [
