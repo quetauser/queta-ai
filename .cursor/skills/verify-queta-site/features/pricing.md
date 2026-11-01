@@ -4,7 +4,7 @@ Pricing tiers and founder story band.
 
 ## Sub-features
 
-- `pricing-tiers` — monthly equivalents lead each card (Lifestyle $23.25/mo, Trader $37.42/mo, Realtor $47.42/mo), billed yearly at the first-year prices
+- `pricing-tiers` — yearly launch price leads each card, with a violet note for the monthly equivalent
 - `pricing-why` — dark band with stats
 
 ## How to get to it (user POV)

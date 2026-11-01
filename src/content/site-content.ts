@@ -160,7 +160,6 @@ export const pricing = {
       launchAmount: "$279",
       regularAmount: "$399",
       launchMonthly: "$23.25",
-      regularMonthly: "$33.25",
       offer: "First year when you sign up by Nov 30, 2026. Renews at $399/year.",
       description:
         "For individuals ready to reclaim their time and automate the basics.",
@@ -189,7 +188,6 @@ export const pricing = {
       launchAmount: "$449",
       regularAmount: "$549",
       launchMonthly: "$37.42",
-      regularMonthly: "$45.75",
       offer: "First year when you sign up by Nov 30, 2026. Renews at $549/year.",
       description:
         "For active traders who need near real-time intelligence and automated execution.",
@@ -209,7 +207,6 @@ export const pricing = {
       launchAmount: "$569",
       regularAmount: "$669",
       launchMonthly: "$47.42",
-      regularMonthly: "$55.75",
       offer: "First year when you sign up by Nov 30, 2026. Renews at $669/year.",
       description:
         "For real estate professionals automating client and workflow tasks.",

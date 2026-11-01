@@ -40,22 +40,16 @@ export function PricingPageView() {
                   <p className="flex flex-wrap items-end gap-x-2 gap-y-1">
                     <del className="mb-1 text-xl text-muted-foreground line-through">
                       <span className="sr-only">Regular price </span>
-                      {tier.regularMonthly}
+                      {tier.regularAmount}
                     </del>
                     <span className="text-4xl font-bold tracking-tight text-foreground">
                       <span className="sr-only">Launch price </span>
-                      {tier.launchMonthly}
+                      {tier.launchAmount}
                     </span>
-                    <span className="mb-1.5 text-sm text-muted-foreground">/mo</span>
+                    <span className="mb-1.5 text-sm text-muted-foreground">/year</span>
                   </p>
-                  <p className="mt-2 text-base leading-relaxed text-foreground/80">
-                    Billed yearly:{" "}
-                    <del className="text-muted-foreground line-through">
-                      <span className="sr-only">Regular price </span>
-                      {tier.regularAmount}
-                    </del>{" "}
-                    <span className="font-semibold text-foreground">{tier.launchAmount}</span> for the
-                    first year
+                  <p className="mt-3 inline-flex rounded-full border border-violet-200 bg-violet-50 px-3 py-1 text-sm font-medium text-primary">
+                    Just {tier.launchMonthly}/mo, billed yearly
                   </p>
                   <p className="mt-2 text-xs text-muted-foreground leading-relaxed">{tier.offer}</p>
                   <p className="mt-4 text-base md:text-lg text-foreground/75 leading-relaxed">{tier.description}</p>
