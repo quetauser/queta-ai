@@ -152,10 +152,15 @@ export const pricing = {
       "Simple, transparent pricing built around your persona. No hidden fees, just your edge.",
   },
   disclaimer: "Prices are subject to change without prior notice",
+  launchBanner: "Launch pricing. Save on your first year through Nov 30.",
+  launchBadge: "Launch offer",
   tiers: [
     {
       name: "Lifestyle User",
-      prices: [{ amount: "$399", note: "/year" }],
+      launchAmount: "$279",
+      regularAmount: "$399",
+      period: "/year",
+      offer: "First year when you sign up by Nov 30, 2026. Renews at $399/year.",
       description:
         "For individuals ready to reclaim their time and automate the basics.",
       features: [
@@ -177,7 +182,10 @@ export const pricing = {
     },
     {
       name: "Trader",
-      prices: [{ amount: "$449", note: "/year" }],
+      launchAmount: "$449",
+      regularAmount: "$549",
+      period: "/year",
+      offer: "First year when you sign up by Nov 30, 2026. Renews at $549/year.",
       description:
         "For active traders who need near real-time intelligence and automated execution.",
       features: [
@@ -193,7 +201,10 @@ export const pricing = {
     },
     {
       name: "Realtor",
-      prices: [{ amount: "$629", note: "/year" }],
+      launchAmount: "$569",
+      regularAmount: "$669",
+      period: "/year",
+      offer: "First year when you sign up by Nov 30, 2026. Renews at $669/year.",
       description:
         "For real estate professionals automating client and workflow tasks.",
       features: [

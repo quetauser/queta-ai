@@ -4,7 +4,7 @@ Pricing tiers and founder story band.
 
 ## Sub-features
 
-- `pricing-tiers` — Lifestyle User $399/year, Trader $449/year, Realtor $629/year
+- `pricing-tiers` — first-year launch prices Lifestyle $279, Trader $449, Realtor $569, with struck regular prices $399, $549, and $669
 - `pricing-why` — dark band with stats
 
 ## How to get to it (user POV)
