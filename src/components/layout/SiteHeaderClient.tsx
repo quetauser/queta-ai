@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import type { ReactNode } from "react";
 
@@ -31,6 +32,8 @@ export function SiteHeaderClient({
   closeIcon,
   chevronIcon,
 }: SiteHeaderClientProps) {
+  const pathname = usePathname();
+  const showDemoCta = pathname !== "/contact";
   const [mobileOpen, setMobileOpen] = useState(false);
   const [solutionsOpen, setSolutionsOpen] = useState(false);
   const [legalOpen, setLegalOpen] = useState(false);
@@ -145,14 +148,16 @@ export function SiteHeaderClient({
           </div>
         </nav>
 
-        <div className="hidden md:flex items-center gap-3 shrink-0">
-          <Link
-            href={navigation.cta.href}
-            className="whitespace-nowrap px-5 py-2 rounded-full text-sm font-semibold bg-primary text-primary-foreground hover:opacity-90 transition-opacity"
-          >
-            {navigation.cta.label}
-          </Link>
-        </div>
+        {showDemoCta ? (
+          <div className="hidden md:flex items-center gap-3 shrink-0">
+            <Link
+              href={navigation.cta.href}
+              className="whitespace-nowrap px-5 py-2 rounded-full text-sm font-semibold bg-primary text-primary-foreground hover:opacity-90 transition-opacity"
+            >
+              {navigation.cta.label}
+            </Link>
+          </div>
+        ) : null}
 
         <button
           type="button"
@@ -206,13 +211,15 @@ export function SiteHeaderClient({
               </Link>
             ))}
           </div>
-          <Link
-            href={navigation.cta.href}
-            className="inline-flex px-5 py-2 rounded-full text-sm font-semibold bg-primary text-primary-foreground"
-            onClick={() => setMobileOpen(false)}
-          >
-            {navigation.cta.label}
-          </Link>
+          {showDemoCta ? (
+            <Link
+              href={navigation.cta.href}
+              className="inline-flex px-5 py-2 rounded-full text-sm font-semibold bg-primary text-primary-foreground"
+              onClick={() => setMobileOpen(false)}
+            >
+              {navigation.cta.label}
+            </Link>
+          ) : null}
         </div>
       ) : null}
     </header>

@@ -4,7 +4,7 @@ Pricing tiers and founder story band.
 
 ## Sub-features
 
-- `pricing-tiers` — three persona pricing cards
+- `pricing-tiers` — Lifestyle User $399/year, Trader $449/year, Realtor $629/year
 - `pricing-why` — dark band with stats
 
 ## How to get to it (user POV)

@@ -10,7 +10,8 @@ Contact hero and FormSubmit-backed demo request form.
 
 ## How to get to it (user POV)
 
-- Header **Contact** or **Request a Demo**
+- Header **Contact**, or **Request a Demo** on any page except Contact
+- On `/contact` the header does not show **Request a Demo**
 - Pricing **Get Started** or **Join the waitlist** (prefilled interest query)
 - `/contact` and `/contact?interest=waitlist` (or other interest keys)
 
