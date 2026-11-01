@@ -4,7 +4,7 @@ Pricing tiers and founder story band.
 
 ## Sub-features
 
-- `pricing-tiers` — first-year launch prices Lifestyle $279, Trader $449, Realtor $569, with struck regular prices $399, $549, and $669
+- `pricing-tiers` — yearly launch price leads each card, with a violet note for the monthly equivalent
 - `pricing-why` — dark band with stats
 
 ## How to get to it (user POV)

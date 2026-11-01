@@ -37,22 +37,21 @@ export function PricingPageView() {
                       {pricing.launchBadge}
                     </p>
                   </div>
-                  <div className="flex flex-wrap items-end gap-x-3 gap-y-1 mb-2">
-                    <p className="flex items-end gap-1">
+                  <p className="flex flex-wrap items-end gap-x-2 gap-y-1">
+                    <del className="mb-1 text-xl text-muted-foreground line-through">
+                      <span className="sr-only">Regular price </span>
+                      {tier.regularAmount}
+                    </del>
+                    <span className="text-4xl font-bold tracking-tight text-foreground">
                       <span className="sr-only">Launch price </span>
-                      <span className="text-4xl font-bold tracking-tight text-foreground">
-                        {tier.launchAmount}
-                      </span>
-                      <span className="text-sm mb-1.5 text-muted-foreground">{tier.period}</span>
-                    </p>
-                    <p className="mb-1.5 text-lg text-muted-foreground">
-                      <del className="line-through">
-                        <span className="sr-only">Regular price </span>
-                        {tier.regularAmount}
-                      </del>
-                    </p>
-                  </div>
-                  <p className="text-xs text-muted-foreground leading-relaxed">{tier.offer}</p>
+                      {tier.launchAmount}
+                    </span>
+                    <span className="mb-1.5 text-sm text-muted-foreground">/year</span>
+                  </p>
+                  <p className="mt-3 inline-flex rounded-full border border-violet-200 bg-violet-50 px-3 py-1 text-sm font-medium text-primary">
+                    Just {tier.launchMonthly}/mo, billed yearly
+                  </p>
+                  <p className="mt-2 text-xs text-muted-foreground leading-relaxed">{tier.offer}</p>
                   <p className="mt-4 text-base md:text-lg text-foreground/75 leading-relaxed">{tier.description}</p>
                 </div>
                 <ul className="p-8 flex flex-col gap-3 flex-1">

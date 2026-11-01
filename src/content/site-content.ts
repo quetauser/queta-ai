@@ -159,7 +159,7 @@ export const pricing = {
       name: "Lifestyle User",
       launchAmount: "$279",
       regularAmount: "$399",
-      period: "/year",
+      launchMonthly: "$23.25",
       offer: "First year when you sign up by Nov 30, 2026. Renews at $399/year.",
       description:
         "For individuals ready to reclaim their time and automate the basics.",
@@ -187,7 +187,7 @@ export const pricing = {
       name: "Trader",
       launchAmount: "$449",
       regularAmount: "$549",
-      period: "/year",
+      launchMonthly: "$37.42",
       offer: "First year when you sign up by Nov 30, 2026. Renews at $549/year.",
       description:
         "For active traders who need near real-time intelligence and automated execution.",
@@ -206,7 +206,7 @@ export const pricing = {
       name: "Realtor",
       launchAmount: "$569",
       regularAmount: "$669",
-      period: "/year",
+      launchMonthly: "$47.42",
       offer: "First year when you sign up by Nov 30, 2026. Renews at $669/year.",
       description:
         "For real estate professionals automating client and workflow tasks.",
