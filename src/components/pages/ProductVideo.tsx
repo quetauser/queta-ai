@@ -7,9 +7,10 @@ interface ProductVideoProps {
   src: string;
   poster: string;
   label: string;
+  className?: string;
 }
 
-export function ProductVideo({ src, poster, label }: ProductVideoProps) {
+export function ProductVideo({ src, poster, label, className }: ProductVideoProps) {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [playing, setPlaying] = useState(false);
 
@@ -23,7 +24,9 @@ export function ProductVideo({ src, poster, label }: ProductVideoProps) {
   }
 
   return (
-    <div className="relative mx-auto mt-8 aspect-video w-full overflow-hidden rounded-2xl border border-border bg-slate-950 shadow-2xl shadow-violet-200/70">
+    <div
+      className={`relative aspect-video w-full overflow-hidden rounded-2xl border border-border bg-slate-950 shadow-2xl shadow-violet-200/70 ${className ?? "mx-auto mt-8"}`}
+    >
       <video
         ref={videoRef}
         className="h-full w-full object-contain"
