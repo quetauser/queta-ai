@@ -164,12 +164,13 @@ export const pricing = {
       description:
         "For individuals ready to reclaim their time and automate the basics.",
       features: [
-        "Health Coach",
+        "Subscription Manager",
         "Shopper",
         "Travel Agent",
         "Chef",
         "Spending Coach",
         "Privacy Guardian",
+        "Health Coach",
         "Personal Tutor",
         "Inbox Agent",
         "College Planner",
@@ -472,10 +473,10 @@ const lifestyleSolution: SolutionPageContent = {
   theme: "violet",
   features: [
     {
-      title: "Health Coach",
+      title: "Subscription Manager",
       description:
-        "Offers friendly nudges and coaching for your health and wellness. Reminds you about medications and annual check-ups, provides daily yoga and meditation videos, connects to Oura, and guides you toward a healthy lifestyle.",
-      tagline: "The small daily habits, prompted before they slip.",
+        "Analyzes your subscriptions and suggests ways to remove duplicates and optimize the household's spending. Runs a monthly check to avoid unnecessary spending.",
+      tagline: "A monthly check so duplicate subscriptions don't linger.",
     },
     {
       title: "Shopper",
@@ -506,6 +507,12 @@ const lifestyleSolution: SolutionPageContent = {
       description:
         "Gets your personal and contact information removed from data brokers and people-search sites, and keeps it removed.",
       tagline: "Your details stay off the lists that sell them.",
+    },
+    {
+      title: "Health Coach",
+      description:
+        "Offers friendly nudges and coaching for your health and wellness. Reminds you about medications and annual check-ups, provides daily yoga and meditation videos, connects to Oura, and guides you toward a healthy lifestyle.",
+      tagline: "The small daily habits, prompted before they slip.",
     },
     {
       title: "Personal Tutor",

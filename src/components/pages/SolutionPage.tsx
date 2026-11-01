@@ -88,7 +88,7 @@ export function SolutionPage({
           <h2 className="font-heading text-3xl md:text-4xl font-bold text-foreground mb-10">
             What your agent does
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {content.features.map((feature) => (
               <div
                 key={feature.title}
