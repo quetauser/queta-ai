@@ -510,13 +510,13 @@ const lifestyleSolution: SolutionPageContent = {
     {
       title: "Personal Tutor",
       description:
-        "Explains new topics in plain language, with narrated explainer videos you can come back to.",
+        "Helps you and your household understand complex topics, including with short generated videos. Get help explaining concepts to kids for their homework, or learn advanced topics to grow your career.",
       tagline: "A clear explanation, in the time you have.",
     },
     {
       title: "Inbox Agent",
       description:
-        "Watches Outlook and Gmail, sends a weekday digest of what needs a reply or action, and turns bills and deadlines into to-dos.",
+        "Watches Outlook and Gmail, sends a daily digest of what needs a reply or action, helps draft and send responses as needed, and turns bills and deadlines into to-dos.",
       tagline: "The messages that need you, before the day gets away.",
     },
     {
