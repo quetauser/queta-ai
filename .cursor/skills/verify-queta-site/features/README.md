@@ -22,3 +22,4 @@ Maintained source for user-visible routes on the Queta AI replica. Read this ind
 - [About](./about.md)
 - [Contact](./contact.md)
 - [Solution pages](./solutions.md)
+- [Legal](./legal.md)
