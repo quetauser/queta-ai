@@ -45,7 +45,14 @@ export default async function SolutionRoutePage({
                 poster: "/videos/queta-trader-poster.jpg",
                 label: "Queta Trader",
               }
-            : undefined
+            : slug === "lifestyle"
+              ? {
+                  src: "/videos/queta-lifestyle.mp4",
+                  poster: "/videos/queta-lifestyle-poster.jpg",
+                  label: "Queta Lifestyle",
+                  placement: "beside",
+                }
+              : undefined
         }
       />
     </SiteShell>
