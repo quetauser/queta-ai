@@ -534,7 +534,7 @@ const lifestyleSolution: SolutionPageContent = {
     {
       title: "Career Coach",
       description:
-        "Polishes your resume and LinkedIn, watches for matching jobs, and helps you apply.",
+        "Polishes your resume and LinkedIn, watches for matching jobs, and helps you apply with a simple command.",
       tagline: "A stronger profile, and a nudge when a role fits.",
     },
     {
