@@ -1,10 +1,18 @@
+import Image from "next/image";
 import { compare } from "@/content/site-content";
 
-function ComparableApp({ app, href }: { app: string; href?: string }) {
-  if (!href) {
-    return app;
-  }
-  return (
+function ComparableApp({
+  app,
+  href,
+  logo,
+  logoAlt,
+}: {
+  app: string;
+  href?: string;
+  logo: string;
+  logoAlt: string;
+}) {
+  const name = href ? (
     <a
       href={href}
       target="_blank"
@@ -13,6 +21,14 @@ function ComparableApp({ app, href }: { app: string; href?: string }) {
     >
       {app}
     </a>
+  ) : (
+    app
+  );
+  return (
+    <span className="inline-flex items-center gap-1.5">
+      <Image src={logo} alt={logoAlt} width={24} height={24} className="h-6 w-6 shrink-0 rounded-md" />
+      {name}
+    </span>
   );
 }
 
@@ -48,7 +64,12 @@ export function ComparePageView() {
                     {row.agent}
                   </th>
                   <td className="px-3 py-2 text-foreground/80 sm:px-4">
-                    <ComparableApp app={row.app} href={"href" in row ? row.href : undefined} />
+                    <ComparableApp
+                      app={row.app}
+                      href={"href" in row ? row.href : undefined}
+                      logo={row.logo}
+                      logoAlt={row.logoAlt}
+                    />
                   </td>
                   <td className="whitespace-nowrap px-3 py-2 text-right tabular-nums text-foreground sm:px-4">
                     {row.cost}
