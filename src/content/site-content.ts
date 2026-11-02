@@ -34,6 +34,7 @@ export interface SolutionPageContent {
   scenarios: Scenario[];
   ctaHeadline: string;
   ctaDescription: string;
+  featuresHeading?: string;
 }
 
 export type LegalRun =
@@ -467,6 +468,7 @@ const lifestyleSolution: SolutionPageContent = {
   heroHeadline: "Live more. Manage less.",
   heroDescription:
     "Your digital companion that handles the logistics of daily life — scheduling, errands, travel, finances, shopping, others and gets the work done — so you can spend your time on what actually matters.",
+  featuresHeading: "Queta Lifestyle solutions",
   theme: "violet",
   features: [
     {

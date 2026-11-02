@@ -16,10 +16,11 @@ export function SolutionPage({
   const heroBg = heroThemeBackground[content.theme];
   const sectionY = productVideo ? "py-16" : "py-12";
   const beside = productVideo?.placement === "beside";
+  const lifestyle = content.slug === "lifestyle";
 
   return (
     <>
-      <section className={`pt-24 ${productVideo ? "pb-16" : "pb-12"} bg-gradient-to-br ${heroBg}`}>
+      <section className={`pt-24 ${lifestyle ? "pb-8" : productVideo ? "pb-16" : "pb-12"} bg-gradient-to-br ${heroBg}`}>
         <div
           className={
             beside
@@ -80,13 +81,15 @@ export function SolutionPage({
         </div>
       </section>
 
-      <section className={`${sectionY} bg-white`}>
+      <section className={`${lifestyle ? "pt-8 pb-16" : sectionY} bg-white`}>
         <div className="max-w-7xl mx-auto px-6">
-          <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground mb-2">
-            All Personas
-          </p>
+          {lifestyle ? null : (
+            <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground mb-2">
+              All Personas
+            </p>
+          )}
           <h2 className="font-heading text-3xl md:text-4xl font-bold text-foreground mb-10">
-            What your agent does
+            {content.featuresHeading ?? "What your agent does"}
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {content.features.map((feature) => (
