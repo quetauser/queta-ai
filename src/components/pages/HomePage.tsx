@@ -6,7 +6,7 @@ import { personaThemeClasses } from "@/lib/persona-theme";
 export function HomePage() {
   return (
     <>
-      <section className="relative min-h-screen flex items-center overflow-hidden pt-16">
+      <section className="relative min-h-screen flex items-start overflow-hidden pt-32 md:pt-36">
         <div className="absolute inset-0 -z-10">
           <div className="absolute inset-0 bg-gradient-to-br from-white via-violet-50 to-white" />
           <div className="absolute top-0 right-0 w-[700px] h-[700px] rounded-full bg-gradient-radial from-violet-200/60 via-violet-100/20 to-transparent blur-3xl" />
@@ -29,7 +29,7 @@ export function HomePage() {
             <rect width="100%" height="100%" fill="url(#grid)" />
           </svg>
         </div>
-        <div className="max-w-7xl mx-auto px-6 py-6 w-full">
+        <div className="max-w-7xl mx-auto px-6 pb-6 w-full">
           <div className="max-w-4xl">
             <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-violet-200 bg-violet-50 text-violet-700 text-xs font-semibold mb-8 tracking-wide">
               <span className="w-1.5 h-1.5 rounded-full bg-violet-500 animate-pulse" />
