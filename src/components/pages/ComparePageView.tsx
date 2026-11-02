@@ -89,7 +89,8 @@ export function ComparePageView() {
           </table>
         </div>
         <p className="mt-4 rounded-2xl border border-violet-200 bg-violet-50 px-4 py-3 text-center font-heading text-xl md:text-2xl font-bold tracking-tight text-foreground">
-          Against Queta price of <span className="whitespace-nowrap text-primary">$29 / month</span>
+          {compare.calloutLead}
+          <span className="whitespace-nowrap text-primary">{compare.calloutPrice}</span>
         </p>
       </div>
     </section>

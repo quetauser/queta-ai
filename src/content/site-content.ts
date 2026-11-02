@@ -150,7 +150,7 @@ export const pricing = {
     subtitle:
       "Simple, transparent pricing built around your persona. No hidden fees, just your edge.",
   },
-  disclaimer: "Prices are subject to change without prior notice",
+  compareLink: { label: "Compare Pricing", href: "/compare" },
   launchBanner: "Launch pricing. Save on your first year through Nov 30.",
   launchBadge: "Launch offer",
   tiers: [
@@ -1984,7 +1984,8 @@ export const compare = {
   ],
   totalLabel: "Total",
   totalCost: "$181.35/mo",
-  callout: "Against Queta price of $29 / month",
+  calloutLead: "Queta Lifestyle - ",
+  calloutPrice: "$29.08 / month",
 } as const;
 
 export const publicRoutes = [

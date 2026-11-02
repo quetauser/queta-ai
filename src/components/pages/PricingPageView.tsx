@@ -73,7 +73,14 @@ export function PricingPageView() {
               </div>
             ))}
           </div>
-          <p className="text-center text-xs text-muted-foreground mt-8">{pricing.disclaimer}</p>
+          <p className="mt-8 text-center">
+            <Link
+              href={pricing.compareLink.href}
+              className="text-sm font-medium text-foreground/70 transition-colors hover:text-foreground"
+            >
+              {pricing.compareLink.label}
+            </Link>
+          </p>
         </div>
       </section>
 
