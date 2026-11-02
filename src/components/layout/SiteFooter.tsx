@@ -8,7 +8,7 @@ export function SiteFooter() {
       <div className="max-w-7xl mx-auto px-6 py-16">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12">
           <div className="md:col-span-1">
-            <Link href="/" className="mb-4 inline-flex flex-col items-start">
+            <Link href="/" className="inline-block mb-4">
               <Image
                 src="/logo-horizontal.png"
                 alt={site.name}
@@ -16,9 +16,6 @@ export function SiteFooter() {
                 height={32}
                 className="block h-auto max-h-8 w-auto object-contain"
               />
-              <span className="mt-1 text-[11px] font-medium tracking-wide text-muted-foreground">
-                {site.logoTagline}
-              </span>
             </Link>
             <p className="text-sm text-muted-foreground leading-relaxed max-w-xs">
               {site.footerBlurb}
