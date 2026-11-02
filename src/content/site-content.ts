@@ -63,7 +63,6 @@ export const site = {
   defaultTitle: "Queta AI — Your AI. Your Persona. Your Edge.",
   defaultDescription:
     "Queta AI delivers persona-based agentic AI solutions for Lifestyle Users, Realtors, and Traders — eliminating operational overhead so you can focus on what matters.",
-  logoTagline: "Think It. Queta It.",
   footerBlurb:
     "Agentic AI solutions built around you. Choose your persona. Eliminate the overhead.",
   copyright: "© 2026 Queta AI. All rights reserved.",
@@ -71,8 +70,8 @@ export const site = {
 
 export const home = {
   hero: {
-    badge: "Agentic AI Bots tailor made for you ..",
-    title: "Your AI. Your Persona. Your Edge.",
+    badge: "Think It. Queta It.",
+    title: "Queta Companion - Gets your Work Done !",
     description:
       "Queta AI delivers agentic solutions built around who you are — eliminating mundane tasks so you can focus on what actually matters.",
     primaryCta: { label: "Request a Demo", href: "/contact" },
@@ -172,9 +171,8 @@ export const pricing = {
         "Spending Coach",
         "Privacy Guardian",
         "Health Coach",
-        "Personal Tutor",
+        "Student Planner",
         "Inbox Agent",
-        "College Planner",
         "Retirement Planner",
         "Career Coach",
         "Home Maintenance Advisor",
@@ -516,22 +514,16 @@ const lifestyleSolution: SolutionPageContent = {
       tagline: "The small daily habits, prompted before they slip.",
     },
     {
-      title: "Personal Tutor",
+      title: "Student Planner",
       description:
-        "Helps you and your household understand complex topics, including with short generated videos. Get help explaining concepts to kids for their homework, or learn advanced topics to grow your career.",
-      tagline: "A clear explanation, in the time you have.",
+        "Helps you and your household understand complex topics with short generated videos, from kids' homework to advanced topics for a career. It also guides families through college applications, building the college list and tracking deadlines and application status.",
+      tagline: "Homework, career learning, and the college list, kept on track.",
     },
     {
       title: "Inbox Agent",
       description:
         "Watches Outlook and Gmail, sends a daily digest of what needs a reply or action, helps draft and send responses as needed, and turns bills and deadlines into to-dos.",
       tagline: "The messages that need you, before the day gets away.",
-    },
-    {
-      title: "College Planner",
-      description:
-        "Builds the college list and tracks deadlines and application status from the first school to the last submission.",
-      tagline: "Every deadline is on the list, not in memory.",
     },
     {
       title: "Retirement Planner",
