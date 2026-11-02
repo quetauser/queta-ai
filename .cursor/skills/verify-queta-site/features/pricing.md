@@ -26,4 +26,5 @@ Steps:
 
 ## Gotchas
 
-- **Get Started** links route to `/contact` with a prefilled `interest` query for each tier.
+- Each card’s primary action is a PayPal Subscribe button. When `NEXT_PUBLIC_PAYPAL_CLIENT_ID` or that card’s plan ID is unset, the card shows a disabled gold **PayPal — Subscribe** placeholder.
+- **Questions? Contact us** under the button routes to `/contact` with a prefilled `interest` query for that tier.
