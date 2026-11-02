@@ -150,7 +150,7 @@ export const pricing = {
     subtitle:
       "Simple, transparent pricing built around your persona. No hidden fees, just your edge.",
   },
-  disclaimer: "Prices are subject to change without prior notice",
+  compareLink: { label: "Compare Pricing", href: "/compare" },
   launchBanner: "Launch pricing. Save on your first year through Nov 30.",
   launchBadge: "Launch offer",
   tiers: [
@@ -1872,13 +1872,135 @@ export const navigation = {
   cta: { label: "Request a Demo", href: "/contact" },
 } as const;
 
+export const compare = {
+  metaTitle: "What an average user spends per month on services — Queta AI",
+  title: "What an average user spends per month on services",
+  columns: {
+    agent: "Queta Lifestyle agent",
+    app: "Comparable app",
+    cost: "Monthly cost",
+  },
+  rows: [
+    {
+      agent: "Shopper",
+      app: "ShopSavvy Pro",
+      href: "https://shopsavvy.com/pricing",
+      cost: "$2.99",
+      logo: "/logos/shopsavvy.png",
+      logoAlt: "ShopSavvy logo",
+    },
+    {
+      agent: "Travel Agent",
+      app: "TripIt Pro",
+      href: "https://www.tripit.com/web/pro",
+      cost: "$4.08*",
+      logo: "/logos/tripit.png",
+      logoAlt: "TripIt logo",
+    },
+    {
+      agent: "Health Coach",
+      app: "MyFitnessPal Premium",
+      href: "https://www.myfitnesspal.com/premium",
+      cost: "$19.99",
+      logo: "/logos/myfitnesspal.png",
+      logoAlt: "MyFitnessPal logo",
+    },
+    {
+      agent: "Chef",
+      app: "Samsung Food+",
+      cost: "$6.99",
+      logo: "/logos/samsung-food.png",
+      logoAlt: "Samsung Food logo",
+    },
+    {
+      agent: "Personal Tutor",
+      app: "Khanmigo",
+      href: "https://www.khanmigo.ai/pricing",
+      cost: "$4.00",
+      logo: "/logos/khanmigo.png",
+      logoAlt: "Khanmigo logo",
+    },
+    {
+      agent: "Retirement Planner",
+      app: "Boldin PlannerPlus",
+      cost: "$14.00*",
+      logo: "/logos/boldin.png",
+      logoAlt: "Boldin logo",
+    },
+    {
+      agent: "Spending Coach",
+      app: "Monarch Money",
+      href: "https://www.monarchmoney.com/pricing",
+      cost: "$14.99",
+      logo: "/logos/monarch.png",
+      logoAlt: "Monarch Money logo",
+    },
+    {
+      agent: "Subscription Manager",
+      app: "Rocket Money Premium+",
+      cost: "$15.00",
+      logo: "/logos/rocket-money.png",
+      logoAlt: "Rocket Money logo",
+    },
+    {
+      agent: "Inbox Agent",
+      app: "Superhuman",
+      href: "https://superhuman.com/plans/mail",
+      cost: "$30.00",
+      logo: "/logos/superhuman.png",
+      logoAlt: "Superhuman logo",
+    },
+    {
+      agent: "Home Maintenance",
+      app: "HomeZada Premium",
+      href: "https://www.homezada.com/buyers-sellers/pricing",
+      cost: "$21.98",
+      logo: "/logos/homezada.png",
+      logoAlt: "HomeZada logo",
+    },
+    {
+      agent: "College Planner",
+      app: "AdmitOdds",
+      href: "https://admitodds.com/pricing",
+      cost: "$20.00",
+      logo: "/logos/admitodds.png",
+      logoAlt: "AdmitOdds logo",
+    },
+    {
+      agent: "Stock Analyst",
+      app: "Motley Fool Stock Advisor",
+      href: "https://www.fool.com/services/compare/",
+      cost: "$16.58*",
+      logo: "/logos/motley-fool.png",
+      logoAlt: "Motley Fool logo",
+    },
+    {
+      agent: "Privacy Guardian",
+      app: "DeleteMe",
+      cost: "$10.75*",
+      logo: "/logos/deleteme.png",
+      logoAlt: "DeleteMe logo",
+    },
+  ],
+  totalLabel: "Total",
+  totalCost: "$181.35/mo",
+  calloutLead: "Queta Lifestyle - ",
+  calloutPrice: "$29.08 / month",
+} as const;
+
 export const publicRoutes = [
   "/",
   "/pricing",
   "/about",
   "/contact",
+  "/compare",
   "/solutions/lifestyle",
   "/solutions/realtor",
   "/solutions/trader",
+  ...legalDocuments.map((document) => document.href),
+] as const;
+
+export const replicaOnlyRoutes = [
+  "/compare",
   ...legalDocuments.map((document) => document.href),
 ] as const;

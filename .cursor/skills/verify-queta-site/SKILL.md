@@ -51,8 +51,9 @@ Routes that exist on queta.ai (must return 200 on the replica and the original):
 - `/solutions/realtor`
 - `/solutions/trader`
 
-Legal routes (must return 200 on the replica). Do not request these from https://www.queta.ai. That site does not publish the documents, so there is no body text to compare:
+Replica-only routes (must return 200 on the replica). Do not request these from https://www.queta.ai. Legal documents are not published there, and `/compare` exists only on this replica:
 
+- `/compare`
 - `/terms-of-use`
 - `/ai-legal-disclosure`
 - `/end-user-license-policy`
@@ -63,7 +64,7 @@ For each marketing route, on both the replica and the original, the script:
 2. Records HTTP status, console errors, failed network requests, and broken images.
 3. Saves full-page PNGs at 1280×720 and 390×844.
 
-Legal routes get the same capture on the replica only.
+Replica-only routes get the same capture on the replica only.
 
 ### Contact form (mocked FormSubmit)
 
