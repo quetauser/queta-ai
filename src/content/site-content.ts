@@ -316,6 +316,8 @@ export const contact = {
       "Thanks for reaching out. We received your message and will get back to you within 24 hours.",
     errorMessage:
       "Something went wrong while sending your message. Please try again in a moment.",
+    nextSteps:
+      "Once you submit your request, our team will email you instructions on the next steps to get started with your Queta solution.",
     fields: {
       name: { label: "Name", placeholder: "Your full name", type: "text" as const },
       email: { label: "Email", placeholder: "you@example.com", type: "email" as const },
@@ -330,6 +332,31 @@ export const contact = {
         placeholder: "Tell us how we can help...",
         type: "textarea" as const,
       },
+    },
+  },
+} as const;
+
+export const feedback = {
+  metaTitle: "Feedback — Queta AI",
+  headline: "We love to hear from our customers.",
+  description:
+    "Whether there is an issue or you would like to get a few more systems connected, just fill out the form below and the Queta team will get back to you.",
+  form: {
+    submitLabel: "Submit",
+    sendingLabel: "Sending…",
+    successMessage: "Thank you. We received your message and the Queta team will get back to you.",
+    errorMessage: "Something went wrong while sending your message. Please try again in a moment.",
+    errors: {
+      name: "Enter your name.",
+      email: "Enter your email.",
+      emailFormat: "Enter an email address like you@example.com.",
+      comments: "Enter a comment.",
+    },
+    fields: {
+      name: { label: "Name", placeholder: "Your full name" },
+      email: { label: "Email", placeholder: "you@example.com" },
+      phone: { label: "Phone number", placeholder: "Your phone number" },
+      comments: { label: "Comments", placeholder: "Tell us what is going on..." },
     },
   },
 } as const;
@@ -1869,7 +1896,8 @@ export const navigation = {
       href: document.href,
     })),
   },
-  cta: { label: "Request a Demo", href: "/contact" },
+  feedback: { label: "Feedback", href: "/feedback" },
+  cta: { label: "Subscribe", href: "/contact" },
 } as const;
 
 export const compare = {
@@ -1994,6 +2022,7 @@ export const publicRoutes = [
   "/about",
   "/contact",
   "/compare",
+  "/feedback",
   "/solutions/lifestyle",
   "/solutions/realtor",
   "/solutions/trader",
@@ -2002,5 +2031,6 @@ export const publicRoutes = [
 
 export const replicaOnlyRoutes = [
   "/compare",
+  "/feedback",
   ...legalDocuments.map((document) => document.href),
 ] as const;
