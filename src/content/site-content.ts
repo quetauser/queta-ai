@@ -1065,8 +1065,8 @@ export const legalDocuments = [
   {
     href: "/ai-legal-disclosure",
     navLabel: "AI and Legal Disclosure",
-    metaTitle: "AI and Legal Disclosure — Queta AI",
-    subtitle: "AI DISCLAIMER AND LEGAL DISCLOSURE",
+    metaTitle: "AI Disclaimer and Legal Disclosure — Queta AI",
+    title: "AI Disclaimer and Legal Disclosure",
     blocks: [
       {
         kind: "paragraph",
@@ -1090,7 +1090,7 @@ export const legalDocuments = [
         runs: [
           {
             kind: "text",
-            text: "Queta AI LLC provides artificial intelligence-powered software, assistants, agents, and related services intended to help users organize information, automate tasks, explore options, and make more informed decisions."
+            text: "Queta AI LLC provides a solution that runs on top of Grok Bot platform which leverages many Grok Bot capabilities including artificial intelligence-powered software, assistants, agents, and related services intended to help users organize information, automate tasks, explore options, and make more informed decisions."
           }
         ]
       },
@@ -1099,7 +1099,7 @@ export const legalDocuments = [
         runs: [
           {
             kind: "text",
-            text: "Our services use AI technologies that may produce responses based on patterns, available information, user inputs, and third-party data sources."
+            text: "Our services use AI technologies from Grok Bot that may produce responses based on patterns, available information, user inputs, and third-party data sources."
           }
         ]
       },
@@ -1108,7 +1108,7 @@ export const legalDocuments = [
         runs: [
           {
             kind: "text",
-            text: "AI-generated responses are not guaranteed to be accurate, complete, current, unbiased, or appropriate for every situation."
+            text: "AI-generated responses from Grok Bot are not guaranteed to be accurate, complete, current, unbiased, or appropriate for every situation."
           }
         ]
       },
@@ -1139,7 +1139,7 @@ export const legalDocuments = [
         runs: [
           {
             kind: "text",
-            text: "Unless expressly stated in a separate written agreement, Queta AI does not provide legal, medical, tax, accounting, investment, or other regulated professional services."
+            text: "Unless expressly stated in a separate written agreement, Queta AI does not provide legal, financial, medical, tax, accounting, investment, or other regulated professional services."
           }
         ]
       },
@@ -1148,7 +1148,7 @@ export const legalDocuments = [
         runs: [
           {
             kind: "text",
-            text: "Information provided by our AI agents is for general informational and assistance purposes and is not a substitute for advice from a qualified professional who understands your circumstances."
+            text: "Information provided by our Queta AI solutions, powered by Grok Bot, is for general informational and assistance purposes and is not a substitute for advice from a qualified professional who understands your circumstances."
           }
         ]
       },
