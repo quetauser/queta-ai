@@ -9,9 +9,18 @@ interface ProductVideoProps {
   poster: string;
   label: string;
   className?: string;
+  loop?: boolean;
+  fit?: "contain" | "cover";
 }
 
-export function ProductVideo({ src, poster, label, className }: ProductVideoProps) {
+export function ProductVideo({
+  src,
+  poster,
+  label,
+  className,
+  loop = false,
+  fit = "contain",
+}: ProductVideoProps) {
   const rootRef = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
   const srcRef = useRef(src);
@@ -96,10 +105,11 @@ export function ProductVideo({ src, poster, label, className }: ProductVideoProp
       />
       <video
         ref={videoRef}
-        className={`relative z-10 h-full w-full object-contain ${attached ? "" : "pointer-events-none opacity-0"}`}
+        className={`relative z-10 h-full w-full ${fit === "cover" ? "object-cover" : "object-contain"} ${attached ? "" : "pointer-events-none opacity-0"}`}
         controls={attached}
         playsInline
         muted
+        loop={loop}
         preload="none"
         aria-label={label}
         onPlay={() => setPlaying(true)}
