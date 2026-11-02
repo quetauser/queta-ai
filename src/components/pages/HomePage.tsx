@@ -1,12 +1,12 @@
 import Link from "next/link";
-import { ArrowRight, ChevronRight } from "lucide-react";
+import { ArrowRight, ChevronRight, Play } from "lucide-react";
 import { home } from "@/content/site-content";
 import { personaThemeClasses } from "@/lib/persona-theme";
 
 export function HomePage() {
   return (
     <>
-      <section className="relative min-h-screen flex items-start overflow-hidden pt-32 md:pt-36">
+      <section className="relative min-h-screen flex items-start overflow-hidden pt-[103px] md:pt-28">
         <div className="absolute inset-0 -z-10">
           <div className="absolute inset-0 bg-gradient-to-br from-white via-violet-50 to-white" />
           <div className="absolute top-0 right-0 w-[700px] h-[700px] rounded-full bg-gradient-radial from-violet-200/60 via-violet-100/20 to-transparent blur-3xl" />
@@ -29,16 +29,16 @@ export function HomePage() {
             <rect width="100%" height="100%" fill="url(#grid)" />
           </svg>
         </div>
-        <div className="max-w-7xl mx-auto px-6 pb-6 w-full">
-          <div className="max-w-4xl">
-            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-violet-200 bg-violet-50 text-violet-700 text-xs font-semibold mb-8 tracking-wide">
+        <div className="max-w-7xl mx-auto px-6 pb-6 w-full grid grid-cols-1 items-start gap-10 lg:grid-cols-2 lg:gap-14">
+          <div>
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-violet-200 bg-violet-50 text-violet-700 text-xs font-semibold mb-6 tracking-wide">
               <span className="w-1.5 h-1.5 rounded-full bg-violet-500 animate-pulse" />
               {home.hero.badge}
             </div>
-            <h1 className="font-heading text-6xl md:text-8xl font-bold leading-[0.95] tracking-tight text-foreground mb-8 whitespace-pre-line">
+            <h1 className="font-heading text-3xl sm:whitespace-nowrap sm:text-[1.65rem] md:text-[1.9rem] lg:text-[1.38rem] xl:text-[1.75rem] font-bold leading-tight tracking-tight text-foreground mb-6">
               {home.hero.title}
             </h1>
-            <p className="text-lg md:text-xl text-muted-foreground max-w-2xl leading-relaxed mb-5">
+            <p className="text-lg text-muted-foreground max-w-xl leading-relaxed mb-6">
               {home.hero.description}
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
@@ -61,10 +61,14 @@ export function HomePage() {
               </a>
             </div>
           </div>
-        </div>
-        <div className="absolute right-8 top-1/2 -translate-y-1/2 hidden lg:block pointer-events-none">
-          <div className="w-80 h-80 rounded-full bg-gradient-to-br from-violet-500 via-purple-400 to-blue-500 opacity-20 blur-2xl" />
-          <div className="absolute inset-8 rounded-full bg-gradient-to-br from-violet-400 to-purple-600 opacity-30 blur-xl" />
+          <div
+            className="relative aspect-video w-full overflow-hidden rounded-2xl border border-border bg-gradient-to-br from-violet-100 via-white to-violet-50 shadow-2xl shadow-violet-200/70"
+            aria-hidden
+          >
+            <div className="absolute left-1/2 top-1/2 flex h-16 w-16 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-primary text-primary-foreground shadow-lg shadow-violet-300/80">
+              <Play size={28} className="ml-1" fill="currentColor" />
+            </div>
+          </div>
         </div>
       </section>
 

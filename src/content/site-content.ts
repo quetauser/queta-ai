@@ -71,7 +71,7 @@ export const site = {
 export const home = {
   hero: {
     badge: "Think It. Queta It.",
-    title: "Queta Companion that gets the work done.",
+    title: "Queta Companion - Gets your Work Done !",
     description:
       "Queta AI delivers agentic solutions built around who you are — eliminating mundane tasks so you can focus on what actually matters.",
     primaryCta: { label: "Request a Demo", href: "/contact" },
