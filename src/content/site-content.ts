@@ -54,6 +54,7 @@ export type LegalDocument = {
   href: "/terms-of-use" | "/ai-legal-disclosure" | "/end-user-license-policy";
   navLabel: string;
   metaTitle: string;
+  title?: string;
   eyebrow?: string;
   subtitle?: string;
   blocks: readonly LegalBlock[];
@@ -1458,226 +1459,143 @@ export const legalDocuments = [
     href: "/end-user-license-policy",
     navLabel: "End User License Policy",
     metaTitle: "End User License Policy — Queta AI",
-    subtitle: "ACCOUNT SHARING AND LICENSE ENFORCEMENT POLICY",
+    title: "Account Sharing and License Enforcement Policy",
+    subtitle: "One Subscription. One User. One Account.",
     blocks: [
       {
         kind: "paragraph",
         runs: [
           {
-            kind: "bold",
-            text: "One Subscription. One User. One Account."
-          }
-        ]
-      },
-      {
-        kind: "paragraph",
-        runs: [
-          {
             kind: "text",
-            text: "Queta AI LLC provides individually licensed access to its AI-powered products and services."
-          }
-        ]
-      },
-      {
-        kind: "paragraph",
-        runs: [
-          {
-            kind: "text",
-            text: "Each individual subscription authorizes "
+            text: "Queta AI LLC provides solution individually licensed access to which is powered by Grok Bot platform.",
           },
+        ],
+      },
+      {
+        kind: "paragraph",
+        runs: [
           {
-            kind: "bold",
-            text: "one registered user to access and use the applicable Queta AI service through one account"
+            kind: "text",
+            text: "Each individual subscription authorizes one registered user to access and use the applicable Queta AI solution through one account. Account sharing is prohibited unless Queta AI LLC provides prior written authorization.",
           },
+        ],
+      },
+      { kind: "heading", text: "Unauthorized Use Is Prohibited" },
+      {
+        kind: "paragraph",
+        runs: [
           {
             kind: "text",
-            text: ". Account sharing is prohibited unless Queta AI LLC provides prior written authorization."
-          }
-        ]
-      },
-      {
-        kind: "heading",
-        text: "Unauthorized Use Is Prohibited"
+            text: "You may not share your login credentials, bot templates, provide another person with access to your account, sublicense your subscription, or permit another individual to use your licensed AI agents. Additionally all the terms and account sharing rules for Grok Bot platform are also applicable.",
+          },
+        ],
       },
       {
         kind: "paragraph",
         runs: [
           {
             kind: "text",
-            text: "You may not share your login credentials, provide another person with access to your account, sublicense your subscription, or permit another individual to use your licensed AI agents."
-          }
-        ]
+            text: "This restriction applies regardless of whether the unauthorized use is temporary, occasional, recurring, or provided without charge.",
+          },
+        ],
       },
       {
         kind: "paragraph",
         runs: [
           {
             kind: "text",
-            text: "This restriction applies regardless of whether the unauthorized use is temporary, occasional, recurring, or provided without charge."
-          }
-        ]
+            text: "Household members, friends, coworkers, employees, and other individuals must obtain their own authorized access unless Queta AI expressly approves an exception in writing.",
+          },
+        ],
       },
+      { kind: "heading", text: "Consequences of Violations" },
       {
         kind: "paragraph",
         runs: [
-          {
-            kind: "text",
-            text: "Household members, friends, coworkers, employees, and other individuals must obtain their own authorized access unless Queta AI expressly approves an exception in writing."
-          }
-        ]
-      },
-      {
-        kind: "heading",
-        text: "Consequences of Violations"
+          { kind: "text", text: "Queta AI LLC takes unauthorized account sharing and access seriously." },
+        ],
       },
       {
         kind: "paragraph",
-        runs: [
-          {
-            kind: "text",
-            text: "Queta AI LLC takes unauthorized account sharing and access seriously."
-          }
-        ]
+        runs: [{ kind: "text", text: "If we reasonably determine that you have violated this policy, we reserve the right to:" }],
       },
       {
-        kind: "paragraph",
-        runs: [
-          {
-            kind: "text",
-            text: "If we reasonably determine that you have violated this policy, we reserve the right to:"
-          }
-        ]
-      },
-      {
-        kind: "numbers",
+        kind: "bullets",
         items: [
-          [
-            {
-              kind: "text",
-              text: "Suspend or terminate your account or subscription."
-            }
-          ],
-          [
-            {
-              kind: "text",
-              text: "Restrict access to affected services or features."
-            }
-          ],
-          [
-            {
-              kind: "text",
-              text: "Revoke unauthorized access and take reasonable steps to protect our systems."
-            }
-          ],
-          [
-            {
-              kind: "text",
-              text: "Pursue compensation for actual losses and any other damages or remedies available under applicable law."
-            }
-          ],
-          [
-            {
-              kind: "text",
-              text: "Seek appropriate injunctive or other legal relief when warranted."
-            }
-          ]
-        ]
+          [{ kind: "text", text: "Suspend or terminate your account or subscription." }],
+          [{ kind: "text", text: "Restrict access to affected services or features." }],
+          [{ kind: "text", text: "Revoke unauthorized access and take reasonable steps to protect our systems." }],
+          [{ kind: "text", text: "Pursue compensation for actual losses and any other damages or remedies available under applicable law." }],
+          [{ kind: "text", text: "Seek appropriate injunctive or other legal relief when warranted." }],
+        ],
       },
       {
         kind: "paragraph",
         runs: [
           {
             kind: "text",
-            text: "Depending on the circumstances, we may take action without advance notice when necessary to protect the security or integrity of our services or prevent ongoing unauthorized use."
-          }
-        ]
-      },
-      {
-        kind: "heading",
-        text: "Contractual Damages"
-      },
-      {
-        kind: "paragraph",
-        runs: [
-          {
-            kind: "text",
-            text: "Unauthorized sharing may expose Queta AI LLC to losses involving licensing revenue, unauthorized commercial use, technology misuse, and other harm."
-          }
-        ]
-      },
-      {
-        kind: "paragraph",
-        runs: [
-          {
-            kind: "text",
-            text: "Queta AI LLC reserves all rights to pursue available legal remedies arising from unauthorized access or use."
-          }
-        ]
-      },
-      {
-        kind: "paragraph",
-        runs: [
-          {
-            kind: "text",
-            text: "Any fixed amount of contractual damages will apply only if established in a separate, properly drafted agreement or provision that is enforceable under applicable law. Any such amount must satisfy the legal requirements applicable to liquidated damages and must not operate as an unlawful penalty."
-          }
-        ]
-      },
-      {
-        kind: "heading",
-        text: "Requesting Authorization"
-      },
-      {
-        kind: "paragraph",
-        runs: [
-          {
-            kind: "text",
-            text: "If you wish to share access for a legitimate business, family, team, or organizational purpose, please contact Queta AI LLC to discuss an appropriate license."
-          }
-        ]
-      },
-      {
-        kind: "paragraph",
-        runs: [
-          {
-            kind: "text",
-            text: "No exception is effective unless Queta AI LLC provides written authorization through an authorized representative."
-          }
-        ]
-      },
-      {
-        kind: "heading",
-        text: "Acceptance"
-      },
-      {
-        kind: "paragraph",
-        runs: [
-          {
-            kind: "text",
-            text: "By creating an account, purchasing a subscription, or using Queta AI services, you acknowledge that you are responsible for complying with the applicable licensing and account-sharing restrictions."
-          }
-        ]
-      },
-      {
-        kind: "paragraph",
-        runs: [
-          {
-            kind: "bold",
-            text: "Questions about licensing or authorization:"
+            text: "Depending on the circumstances, we may take action without advance notice when necessary to protect the security or integrity of our services or prevent ongoing unauthorized use.",
           },
-          {
-            kind: "break"
-          },
+        ],
+      },
+      { kind: "heading", text: "Contractual Damages" },
+      {
+        kind: "paragraph",
+        runs: [
           {
             kind: "text",
-            text: "Queta AI LLC  | "
+            text: "Unauthorized sharing may expose Queta AI LLC to losses involving licensing revenue, unauthorized commercial use, technology misuse, and other harm.",
           },
+        ],
+      },
+      {
+        kind: "paragraph",
+        runs: [
           {
-            kind: "mail"
-          }
-        ]
-      }
-    ]
+            kind: "text",
+            text: "Queta AI LLC reserves all rights to pursue available legal remedies arising from unauthorized access or use.",
+          },
+        ],
+      },
+      {
+        kind: "paragraph",
+        runs: [
+          {
+            kind: "text",
+            text: "Any fixed amount of contractual damages will apply only if established in a separate, properly drafted agreement or provision that is enforceable under applicable law. Any such amount must satisfy the legal requirements applicable to liquidated damages and must not operate as an unlawful penalty.",
+          },
+        ],
+      },
+      { kind: "heading", text: "Requesting Authorization" },
+      {
+        kind: "paragraph",
+        runs: [
+          {
+            kind: "text",
+            text: "If you wish to share access for a legitimate business, family, team, or organizational purpose, please contact Queta AI or Grok Bot Support to discuss an appropriate license.",
+          },
+        ],
+      },
+      {
+        kind: "paragraph",
+        runs: [
+          {
+            kind: "text",
+            text: "No exception is effective unless Queta AI LLC and Grok Bot Support provide written authorization through an authorized representative.",
+          },
+        ],
+      },
+      { kind: "heading", text: "Acceptance" },
+      {
+        kind: "paragraph",
+        runs: [
+          {
+            kind: "text",
+            text: "By creating an account in Grok Bot platform, purchasing a subscription on Grok Bot platform, or using Queta AI services, you acknowledge that you are responsible for complying with the applicable licensing and account-sharing restrictions for both Queta AI LLC and Grok Bot platform.",
+          },
+        ],
+      },
+    ],
   }
 ] as const satisfies readonly LegalDocument[];
 

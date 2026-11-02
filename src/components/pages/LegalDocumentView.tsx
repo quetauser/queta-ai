@@ -72,8 +72,10 @@ export function LegalDocumentView({ document }: { document: LegalDocument }) {
               {document.eyebrow}
             </p>
           ) : null}
-          <h1 className="font-heading text-4xl md:text-5xl font-bold text-foreground leading-tight">
-            {document.navLabel}
+          <h1
+            className={`font-heading font-bold text-foreground leading-tight ${document.title ? "text-3xl sm:text-4xl md:text-5xl" : "text-4xl md:text-5xl"}`}
+          >
+            {document.title ?? document.navLabel}
           </h1>
           {document.subtitle ? (
             <p className="font-heading text-lg md:text-xl font-semibold text-foreground mt-4">
