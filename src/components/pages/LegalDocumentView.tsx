@@ -17,7 +17,7 @@ function LegalRunView({ run }: { run: LegalRun }) {
         href={run.href}
         target="_blank"
         rel="noopener noreferrer"
-        className="text-primary underline break-all"
+        className="text-primary underline break-words"
       >
         {run.text}
       </a>
