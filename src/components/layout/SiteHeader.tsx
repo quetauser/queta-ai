@@ -8,15 +8,18 @@ export function SiteHeader() {
   return (
     <SiteHeaderClient
       logo={
-        <Link href="/" className="flex items-center shrink-0">
+        <Link href="/" className="flex shrink-0 flex-col items-start leading-none">
           <Image
             src="/logo-horizontal.png"
             alt={site.name}
             width={160}
             height={36}
-            className="block h-auto max-h-9 w-auto max-w-full object-contain"
+            className="block h-auto max-h-7 w-auto max-w-full object-contain"
             priority
           />
+          <span className="mt-0.5 text-[10px] font-medium tracking-wide text-foreground/55">
+            {site.logoTagline}
+          </span>
         </Link>
       }
       navigation={navigation}
