@@ -41,7 +41,8 @@ export type LegalRun =
   | { kind: "text"; text: string }
   | { kind: "bold"; text: string }
   | { kind: "break" }
-  | { kind: "mail" };
+  | { kind: "mail" }
+  | { kind: "link"; href: string; text: string };
 
 export type LegalBlock =
   | { kind: "heading"; text: string }
@@ -607,651 +608,458 @@ export const legalDocuments = [
     href: "/terms-of-use",
     navLabel: "Terms of Use",
     metaTitle: "Terms of Use — Queta AI",
-    eyebrow: "QUETA AI LLC",
+    eyebrow: "Queta AI LLC",
     blocks: [
       {
         kind: "paragraph",
         runs: [
+          { kind: "bold", text: "Effective Date:" },
+          { kind: "text", text: " November 2, 2026" },
+          { kind: "break" },
+          { kind: "bold", text: "Last Updated:" },
+          { kind: "text", text: " November 2, 2026" },
+        ],
+      },
+      { kind: "heading", text: "1. Acceptance of Terms" },
+      {
+        kind: "paragraph",
+        runs: [
           {
-            kind: "bold",
-            text: "Effective Date:"
+            kind: "text",
+            text: "These Terms of Use (\"Terms\") govern your access to and use of the websites, applications, Queta AI agents, solution, software, services, and related products provided by Queta AI LLC (\"Queta AI,\" \"Queta,\" \"we,\" \"us,\" or \"our\"). All Queta AI solutions are powered by Grok Bot.",
           },
+        ],
+      },
+      {
+        kind: "paragraph",
+        runs: [
           {
             kind: "text",
-            text: " October 31, 2026"
+            text: "By accessing or using our services, creating an account, or purchasing a subscription, you acknowledge that you have read and agree to these Terms and also terms from Grok Bot - ",
           },
+          { kind: "link", href: "https://x.ai/legal/grok-bot-terms", text: "https://x.ai/legal/grok-bot-terms" },
+        ],
+      },
+      {
+        kind: "paragraph",
+        runs: [
           {
-            kind: "break"
+            kind: "text",
+            text: "If you do not agree to these Terms, you must not access or use our services.",
           },
+        ],
+      },
+      { kind: "heading", text: "2. License and Authorized Use" },
+      {
+        kind: "paragraph",
+        runs: [
           {
-            kind: "bold",
-            text: "Last Updated:"
+            kind: "text",
+            text: "Queta AI grants each authorized subscriber a limited, personal, non-exclusive, non-transferable, and revocable license to access and use the services for their intended purposes, subject to these Terms and the applicable subscription plan.",
           },
-          {
-            kind: "text",
-            text: " October 31, 2026"
-          }
-        ]
-      },
-      {
-        kind: "heading",
-        text: "1. Acceptance of Terms"
+        ],
       },
       {
         kind: "paragraph",
         runs: [
           {
             kind: "text",
-            text: "These Terms of Use (\"Terms\") govern your access to and use of the websites, applications, AI agents, software, services, and related products provided by Queta AI LLC (\"Queta AI,\" \"Queta,\" \"we,\" \"us,\" or \"our\")."
-          }
-        ]
-      },
-      {
-        kind: "paragraph",
-        runs: [
-          {
-            kind: "text",
-            text: "By accessing or using our services, creating an account, or purchasing a subscription, you acknowledge that you have read and agree to these Terms."
-          }
-        ]
-      },
-      {
-        kind: "paragraph",
-        runs: [
-          {
-            kind: "text",
-            text: "If you do not agree to these Terms, you must not access or use our services."
-          }
-        ]
-      },
-      {
-        kind: "heading",
-        text: "2. License and Authorized Use"
-      },
-      {
-        kind: "paragraph",
-        runs: [
-          {
-            kind: "text",
-            text: "Queta AI grants each authorized subscriber a limited, personal, non-exclusive, non-transferable, and revocable license to access and use the services for their intended purposes, subject to these Terms and the applicable subscription plan."
-          }
-        ]
-      },
-      {
-        kind: "paragraph",
-        runs: [
-          {
-            kind: "text",
-            text: "Unless expressly authorized in a separate written agreement signed by Queta AI, each subscription permits use by "
+            text: "Unless expressly authorized in a separate written agreement signed by Queta AI, each subscription permits use by one individual user through one registered account.",
           },
+        ],
+      },
+      {
+        kind: "paragraph",
+        runs: [
           {
-            kind: "bold",
-            text: "one individual user through one registered account"
+            kind: "text",
+            text: "Your subscription does not grant you ownership of the software, AI agents, underlying models, proprietary technology, or intellectual property associated with the services.",
           },
-          {
-            kind: "text",
-            text: "."
-          }
-        ]
+        ],
       },
+      { kind: "heading", text: "3. Single-User Account Policy" },
       {
         kind: "paragraph",
         runs: [
           {
             kind: "text",
-            text: "Your subscription does not grant you ownership of the software, AI agents, underlying models, proprietary technology, or intellectual property associated with the services."
-          }
-        ]
-      },
-      {
-        kind: "heading",
-        text: "3. Single-User Account Policy"
+            text: "Each account is licensed to one individual and may be used only by that individual.",
+          },
+        ],
       },
       {
         kind: "paragraph",
-        runs: [
-          {
-            kind: "text",
-            text: "Each account is licensed to one individual and may be used only by that individual."
-          }
-        ]
-      },
-      {
-        kind: "paragraph",
-        runs: [
-          {
-            kind: "text",
-            text: "You agree that you will not:"
-          }
-        ]
+        runs: [{ kind: "text", text: "You agree that you will not:" }],
       },
       {
         kind: "bullets",
         items: [
-          [
-            {
-              kind: "text",
-              text: "Share your account credentials, login information, authentication tokens, or access credentials with another person."
-            }
-          ],
-          [
-            {
-              kind: "text",
-              text: "Allow another individual to log in to or use your account."
-            }
-          ],
-          [
-            {
-              kind: "text",
-              text: "Share, sublicense, resell, rent, lease, distribute, or otherwise provide access to Queta AI's services or AI agents to another person without prior written authorization from Queta AI."
-            }
-          ],
-          [
-            {
-              kind: "text",
-              text: "Permit third parties to use your account, directly or indirectly, whether for personal, commercial, or other purposes."
-            }
-          ],
-          [
-            {
-              kind: "text",
-              text: "Circumvent account restrictions, user limits, authentication requirements, or subscription limitations."
-            }
-          ],
-          [
-            {
-              kind: "text",
-              text: "Use a single-user subscription to provide services to multiple individuals."
-            }
-          ]
-        ]
+          [{ kind: "text", text: "Share your account credentials, login information, authentication tokens, or access credentials with another person." }],
+          [{ kind: "text", text: "Allow another individual to log in to or use your account." }],
+          [{ kind: "text", text: "Share, sublicense, resell, rent, lease, distribute, or otherwise provide access to Queta AI's services or AI agents to another person without prior written authorization from Queta AI." }],
+          [{ kind: "text", text: "Permit third parties to use your account, directly or indirectly, whether for personal, commercial, or other purposes." }],
+          [{ kind: "text", text: "Circumvent account restrictions, user limits, authentication requirements, or subscription limitations." }],
+          [{ kind: "text", text: "Use a single-user subscription to provide services to multiple individuals." }],
+        ],
       },
       {
         kind: "paragraph",
         runs: [
           {
             kind: "text",
-            text: "Purchasing a subscription does not authorize you to provide access to other members of your household, colleagues, employees, clients, customers, or other third parties."
-          }
-        ]
-      },
-      {
-        kind: "paragraph",
-        runs: [
-          {
-            kind: "bold",
-            text: "Exceptions require prior written consent from Queta AI LLC."
+            text: "Purchasing a subscription does not authorize you to provide access to other members of your household, colleagues, employees, clients, customers, or other third parties.",
           },
-          {
-            kind: "text",
-            text: " Any approved exception may be subject to additional fees, licensing conditions, or a separate commercial agreement."
-          }
-        ]
-      },
-      {
-        kind: "heading",
-        text: "4. Account Security and Responsibility"
+        ],
       },
       {
         kind: "paragraph",
         runs: [
           {
             kind: "text",
-            text: "You are responsible for maintaining the confidentiality of your account credentials and for activities conducted through your account, to the extent permitted by applicable law."
-          }
-        ]
+            text: "Exceptions require prior written consent from Queta AI LLC. Any approved exception may be subject to additional fees, licensing conditions, or a separate commercial agreement.",
+          },
+        ],
+      },
+      { kind: "heading", text: "4. Account Security and Responsibility" },
+      {
+        kind: "paragraph",
+        runs: [
+          {
+            kind: "text",
+            text: "Queta AI does not store any user data. Users create a direct subscription to Grok Bot platform. You are responsible for maintaining the confidentiality of your account credentials and for activities conducted through your account, to the extent permitted by applicable law.",
+          },
+        ],
       },
       {
         kind: "paragraph",
         runs: [
           {
             kind: "text",
-            text: "You agree to notify Queta AI promptly if you suspect unauthorized access, credential theft, or misuse of your account."
-          }
-        ]
+            text: "You agree to notify Queta AI and Grok Bot promptly if you suspect unauthorized access, credential theft, or misuse of your account.",
+          },
+        ],
       },
       {
         kind: "paragraph",
         runs: [
-          {
-            kind: "text",
-            text: "Queta AI may implement reasonable security measures, access controls, authentication procedures, and usage monitoring to protect its services and enforce subscription restrictions."
-          }
-        ]
+          { kind: "text", text: "Please refer to Grok Bot Security available here - " },
+          { kind: "link", href: "https://docs.x.ai/grok-bot/security", text: "https://docs.x.ai/grok-bot/security" },
+        ],
       },
-      {
-        kind: "heading",
-        text: "5. Prohibited Activities"
-      },
+      { kind: "heading", text: "5. Prohibited Activities" },
       {
         kind: "paragraph",
-        runs: [
-          {
-            kind: "text",
-            text: "You may not use the services to:"
-          }
-        ]
+        runs: [{ kind: "text", text: "You may not use the services to:" }],
       },
       {
         kind: "bullets",
         items: [
-          [
-            {
-              kind: "text",
-              text: "Violate applicable laws or regulations."
-            }
-          ],
-          [
-            {
-              kind: "text",
-              text: "Infringe upon the intellectual property or other legal rights of Queta AI or third parties."
-            }
-          ],
-          [
-            {
-              kind: "text",
-              text: "Reverse engineer, decompile, or attempt to extract source code, model weights, or proprietary components, except to the extent such restrictions are prohibited by applicable law."
-            }
-          ],
-          [
-            {
-              kind: "text",
-              text: "Circumvent security controls, access restrictions, rate limits, or usage restrictions."
-            }
-          ],
-          [
-            {
-              kind: "text",
-              text: "Interfere with the integrity, availability, or security of the services."
-            }
-          ],
-          [
-            {
-              kind: "text",
-              text: "Copy, reproduce, distribute, or commercially exploit proprietary components without authorization."
-            }
-          ],
-          [
-            {
-              kind: "text",
-              text: "Use the services in a manner that constitutes fraud, abuse, unauthorized access, or unlawful conduct."
-            }
-          ]
-        ]
+          [{ kind: "text", text: "Violate applicable laws or regulations." }],
+          [{ kind: "text", text: "Infringe upon the intellectual property or other legal rights of Queta AI or third parties." }],
+          [{ kind: "text", text: "Reverse engineer, decompile, or attempt to extract source code, model weights, or proprietary components, except to the extent such restrictions are prohibited by applicable law." }],
+          [{ kind: "text", text: "Circumvent security controls, access restrictions, rate limits, or usage restrictions." }],
+          [{ kind: "text", text: "Interfere with the integrity, availability, or security of the services." }],
+          [{ kind: "text", text: "Copy, reproduce, distribute, or commercially exploit proprietary components without authorization." }],
+          [{ kind: "text", text: "Use the services in a manner that constitutes fraud, abuse, unauthorized access, or unlawful conduct." }],
+        ],
+      },
+      {
+        kind: "paragraph",
+        runs: [
+          { kind: "text", text: "Additional restrictions may apply to specific products or services." },
+        ],
+      },
+      { kind: "heading", text: "6. Enforcement, Suspension, and Termination" },
+      {
+        kind: "paragraph",
+        runs: [
+          { kind: "text", text: "Queta AI reserves the right to investigate suspected violations of these Terms." },
+        ],
       },
       {
         kind: "paragraph",
         runs: [
           {
             kind: "text",
-            text: "Additional restrictions may apply to specific products or services."
-          }
-        ]
-      },
-      {
-        kind: "heading",
-        text: "6. Enforcement, Suspension, and Termination"
-      },
-      {
-        kind: "paragraph",
-        runs: [
-          {
-            kind: "text",
-            text: "Queta AI reserves the right to investigate suspected violations of these Terms."
-          }
-        ]
-      },
-      {
-        kind: "paragraph",
-        runs: [
-          {
-            kind: "text",
-            text: "Where reasonably necessary to protect users, the company, its technology, or its services, Queta AI may suspend or restrict access while investigating a suspected violation."
-          }
-        ]
-      },
-      {
-        kind: "paragraph",
-        runs: [
-          {
-            kind: "text",
-            text: "If Queta AI determines that you have materially violated these Terms, including by sharing your account or providing unauthorized access to another person, Queta AI may suspend or terminate your account or subscription."
-          }
-        ]
-      },
-      {
-        kind: "paragraph",
-        runs: [
-          {
-            kind: "text",
-            text: "Where appropriate, Queta AI may provide notice and an opportunity to remedy a violation. However, immediate suspension or termination may be appropriate in cases involving serious security risks, deliberate circumvention, repeated violations, or unauthorized commercial distribution."
-          }
-        ]
-      },
-      {
-        kind: "paragraph",
-        runs: [
-          {
-            kind: "text",
-            text: "Termination does not eliminate payment obligations or other rights and remedies that accrued before termination."
-          }
-        ]
-      },
-      {
-        kind: "paragraph",
-        runs: [
-          {
-            kind: "text",
-            text: "Refunds, if any, will be governed by the applicable subscription terms and refund policy, subject to applicable law."
-          }
-        ]
-      },
-      {
-        kind: "heading",
-        text: "7. Intellectual Property"
-      },
-      {
-        kind: "paragraph",
-        runs: [
-          {
-            kind: "text",
-            text: "The services, software, user interfaces, branding, logos, documentation, proprietary AI agents, and related materials are owned by or licensed to Queta AI LLC and are protected by applicable intellectual property laws."
-          }
-        ]
-      },
-      {
-        kind: "paragraph",
-        runs: [
-          {
-            kind: "text",
-            text: "Except for the limited license expressly granted under these Terms, no rights are transferred to you."
-          }
-        ]
-      },
-      {
-        kind: "paragraph",
-        runs: [
-          {
-            kind: "text",
-            text: "You may not use Queta AI's name, trademarks, branding, or proprietary materials in a manner that suggests an affiliation, endorsement, or authorization that does not exist."
-          }
-        ]
-      },
-      {
-        kind: "heading",
-        text: "8. AI-Generated Content"
-      },
-      {
-        kind: "paragraph",
-        runs: [
-          {
-            kind: "text",
-            text: "Queta AI provides AI-powered services that may generate recommendations, summaries, analyses, predictions, communications, and other outputs."
-          }
-        ]
-      },
-      {
-        kind: "paragraph",
-        runs: [
-          {
-            kind: "text",
-            text: "AI-generated content may be inaccurate, incomplete, outdated, misleading, or unsuitable for a particular purpose."
-          }
-        ]
-      },
-      {
-        kind: "paragraph",
-        runs: [
-          {
-            kind: "text",
-            text: "You are responsible for reviewing and evaluating outputs before relying on them or taking action based on them."
-          }
-        ]
-      },
-      {
-        kind: "paragraph",
-        runs: [
-          {
-            kind: "text",
-            text: "Queta AI does not guarantee that any AI-generated output will be accurate, reliable, uninterrupted, or suitable for your specific circumstances."
-          }
-        ]
-      },
-      {
-        kind: "paragraph",
-        runs: [
-          {
-            kind: "text",
-            text: "Additional disclosures and limitations may apply to particular AI agents or features."
-          }
-        ]
-      },
-      {
-        kind: "heading",
-        text: "9. Third-Party Services"
-      },
-      {
-        kind: "paragraph",
-        runs: [
-          {
-            kind: "text",
-            text: "Certain features may rely on third-party software, APIs, AI models, data providers, or other services."
-          }
-        ]
-      },
-      {
-        kind: "paragraph",
-        runs: [
-          {
-            kind: "text",
-            text: "Your use of third-party services may be subject to additional terms and privacy policies."
-          }
-        ]
-      },
-      {
-        kind: "paragraph",
-        runs: [
-          {
-            kind: "text",
-            text: "Queta AI is not responsible for independent third-party services to the extent permitted by applicable law."
-          }
-        ]
-      },
-      {
-        kind: "heading",
-        text: "10. Changes to the Services or Terms"
-      },
-      {
-        kind: "paragraph",
-        runs: [
-          {
-            kind: "text",
-            text: "Queta AI may modify, improve, suspend, or discontinue features of its services."
-          }
-        ]
-      },
-      {
-        kind: "paragraph",
-        runs: [
-          {
-            kind: "text",
-            text: "We may update these Terms from time to time. Material changes will be communicated through reasonable means where required by law."
-          }
-        ]
-      },
-      {
-        kind: "paragraph",
-        runs: [
-          {
-            kind: "text",
-            text: "The revised Terms will identify their effective date. Where affirmative acceptance is legally required, we will obtain that acceptance before applying the relevant changes."
-          }
-        ]
-      },
-      {
-        kind: "paragraph",
-        runs: [
-          {
-            kind: "text",
-            text: "Your continued use of the services after revised Terms become effective constitutes acceptance only to the extent permitted by applicable law."
-          }
-        ]
-      },
-      {
-        kind: "heading",
-        text: "11. Limitation of Liability"
-      },
-      {
-        kind: "paragraph",
-        runs: [
-          {
-            kind: "text",
-            text: "To the maximum extent permitted by applicable law, Queta AI LLC and its officers, employees, affiliates, licensors, and service providers will not be liable for indirect, incidental, special, consequential, exemplary, or punitive damages, including loss of profits, revenue, data, business opportunities, or anticipated savings, arising from or related to your use of the services."
-          }
-        ]
-      },
-      {
-        kind: "paragraph",
-        runs: [
-          {
-            kind: "text",
-            text: "To the maximum extent permitted by applicable law, Queta AI's aggregate liability arising from or related to the services will be limited to the amount you paid to Queta AI for the applicable service during the twelve months preceding the event giving rise to the claim."
-          }
-        ]
-      },
-      {
-        kind: "paragraph",
-        runs: [
-          {
-            kind: "text",
-            text: "These limitations do not apply to liability that cannot lawfully be excluded or limited."
-          }
-        ]
-      },
-      {
-        kind: "heading",
-        text: "12. Indemnification"
-      },
-      {
-        kind: "paragraph",
-        runs: [
-          {
-            kind: "text",
-            text: "To the extent permitted by applicable law, you agree to indemnify and hold harmless Queta AI LLC and its officers, employees, and affiliates against third-party claims, damages, liabilities, and reasonable legal expenses arising from your unlawful use of the services, your infringement of third-party rights, or your material breach of these Terms."
-          }
-        ]
-      },
-      {
-        kind: "paragraph",
-        runs: [
-          {
-            kind: "text",
-            text: "This provision does not apply to the extent a claim results from conduct for which you cannot lawfully be required to indemnify Queta AI."
-          }
-        ]
-      },
-      {
-        kind: "heading",
-        text: "13. Governing Law"
-      },
-      {
-        kind: "paragraph",
-        runs: [
-          {
-            kind: "text",
-            text: "These Terms will be governed by the laws of the State of New Jersey, without regard to its conflict-of-law principles, except where applicable law requires otherwise."
-          }
-        ]
-      },
-      {
-        kind: "paragraph",
-        runs: [
-          {
-            kind: "text",
-            text: "Any legal proceedings will be brought in a court of competent jurisdiction located in New Jersey, subject to applicable jurisdictional requirements and any mandatory rights you may have under applicable law."
-          }
-        ]
-      },
-      {
-        kind: "heading",
-        text: "14. General Provisions"
-      },
-      {
-        kind: "paragraph",
-        runs: [
-          {
-            kind: "text",
-            text: "If any provision of these Terms is found unenforceable, the remaining provisions will remain in effect to the extent permitted by law."
-          }
-        ]
-      },
-      {
-        kind: "paragraph",
-        runs: [
-          {
-            kind: "text",
-            text: "Failure to enforce a provision does not constitute a waiver of the right to enforce it later."
-          }
-        ]
-      },
-      {
-        kind: "paragraph",
-        runs: [
-          {
-            kind: "text",
-            text: "These Terms, together with any applicable subscription terms and other agreements incorporated into them, govern your use of the services."
-          }
-        ]
-      },
-      {
-        kind: "heading",
-        text: "15. Contact Information"
-      },
-      {
-        kind: "paragraph",
-        runs: [
-          {
-            kind: "text",
-            text: "For questions regarding these Terms, account restrictions, licensing, or authorization to share access, please contact:"
-          }
-        ]
-      },
-      {
-        kind: "paragraph",
-        runs: [
-          {
-            kind: "bold",
-            text: "Queta AI LLC"
+            text: "Where reasonably necessary to protect users, the company, its technology, or its services, Queta AI may suspend or restrict access while investigating a suspected violation.",
           },
-          {
-            kind: "break"
-          },
-          {
-            kind: "text",
-            text: "Email: "
-          },
-          {
-            kind: "mail"
-          }
-        ]
+        ],
       },
       {
         kind: "paragraph",
         runs: [
           {
             kind: "text",
-            text: "Website: www.queta.ai"
+            text: "If Queta AI determines that you have materially violated these Terms, including by sharing your account or providing unauthorized access to another person, Queta AI may suspend or terminate your account or subscription.",
           },
-          {
-            kind: "break"
-          },
+        ],
+      },
+      {
+        kind: "paragraph",
+        runs: [
           {
             kind: "text",
-            text: "Business Address: 2 Ascot Ln, Belle Mead, NJ 08502"
-          }
-        ]
-      }
-    ]
+            text: "Where appropriate, Queta AI may provide notice and an opportunity to remedy a violation. However, immediate suspension or termination may be appropriate in cases involving serious security risks, deliberate circumvention, repeated violations, or unauthorized commercial distribution.",
+          },
+        ],
+      },
+      {
+        kind: "paragraph",
+        runs: [
+          {
+            kind: "text",
+            text: "Termination does not eliminate payment obligations or other rights and remedies that accrued before termination.",
+          },
+        ],
+      },
+      {
+        kind: "paragraph",
+        runs: [
+          {
+            kind: "text",
+            text: "Refunds, if any, will be governed by the applicable subscription terms and refund policy, subject to applicable law.",
+          },
+        ],
+      },
+      { kind: "heading", text: "7. Intellectual Property" },
+      {
+        kind: "paragraph",
+        runs: [
+          {
+            kind: "text",
+            text: "The services, software, user interfaces, branding, logos, documentation, and related materials are owned by or licensed to Queta AI LLC and are protected by applicable intellectual property laws.",
+          },
+        ],
+      },
+      {
+        kind: "paragraph",
+        runs: [
+          { kind: "text", text: "Except for the limited license expressly granted under these Terms, no rights are transferred to you." },
+        ],
+      },
+      {
+        kind: "paragraph",
+        runs: [
+          {
+            kind: "text",
+            text: "You may not use Queta AI's name, trademarks, branding, or proprietary materials in a manner that suggests an affiliation, endorsement, or authorization that does not exist.",
+          },
+        ],
+      },
+      { kind: "heading", text: "8. AI-Generated Content" },
+      {
+        kind: "paragraph",
+        runs: [
+          {
+            kind: "text",
+            text: "Queta AI uses Grok Bot platform, AI agents and model, for services that may generate recommendations, summaries, analyses, predictions, communications, and other outputs.",
+          },
+        ],
+      },
+      {
+        kind: "paragraph",
+        runs: [
+          {
+            kind: "text",
+            text: "AI-generated content may be inaccurate, incomplete, outdated, misleading, or unsuitable for a particular purpose.",
+          },
+        ],
+      },
+      {
+        kind: "paragraph",
+        runs: [
+          {
+            kind: "text",
+            text: "You are responsible for reviewing and evaluating outputs before relying on them or taking action based on them.",
+          },
+        ],
+      },
+      {
+        kind: "paragraph",
+        runs: [
+          {
+            kind: "text",
+            text: "Queta AI does not guarantee that any AI-generated output will be accurate, reliable, uninterrupted, or suitable for your specific circumstances.",
+          },
+        ],
+      },
+      {
+        kind: "paragraph",
+        runs: [
+          { kind: "text", text: "Additional disclosures and limitations may apply to particular AI agents or features." },
+        ],
+      },
+      { kind: "heading", text: "9. Third-Party Services" },
+      {
+        kind: "paragraph",
+        runs: [
+          {
+            kind: "text",
+            text: "Certain features may rely on third-party software, APIs, AI models, data providers, or other services.",
+          },
+        ],
+      },
+      {
+        kind: "paragraph",
+        runs: [
+          { kind: "text", text: "Your use of third-party services may be subject to additional terms and privacy policies." },
+        ],
+      },
+      {
+        kind: "paragraph",
+        runs: [
+          {
+            kind: "text",
+            text: "Queta AI is not responsible for independent third-party services to the extent permitted by applicable law.",
+          },
+        ],
+      },
+      { kind: "heading", text: "10. Changes to the Services or Terms" },
+      {
+        kind: "paragraph",
+        runs: [
+          { kind: "text", text: "Queta AI may modify, improve, suspend, or discontinue features of its services." },
+        ],
+      },
+      {
+        kind: "paragraph",
+        runs: [
+          {
+            kind: "text",
+            text: "We may update these Terms from time to time. Material changes will be communicated through reasonable means where required by law.",
+          },
+        ],
+      },
+      {
+        kind: "paragraph",
+        runs: [
+          {
+            kind: "text",
+            text: "The revised Terms will identify their effective date. Where affirmative acceptance is legally required, we will obtain that acceptance before applying the relevant changes.",
+          },
+        ],
+      },
+      {
+        kind: "paragraph",
+        runs: [
+          {
+            kind: "text",
+            text: "Your continued use of the services after revised Terms become effective constitutes acceptance only to the extent permitted by applicable law.",
+          },
+        ],
+      },
+      { kind: "heading", text: "11. Limitation of Liability" },
+      {
+        kind: "paragraph",
+        runs: [
+          {
+            kind: "text",
+            text: "To the maximum extent permitted by applicable law, Queta AI LLC and its officers, employees, affiliates, licensors, and service providers will not be liable for indirect, incidental, special, consequential, exemplary, or punitive damages, including loss of profits, revenue, data, business opportunities, or anticipated savings, arising from or related to your use of the services.",
+          },
+        ],
+      },
+      {
+        kind: "paragraph",
+        runs: [
+          {
+            kind: "text",
+            text: "To the maximum extent permitted by applicable law, Queta AI's aggregate liability arising from or related to the services will be limited to the amount you paid to Queta AI for the applicable service during the twelve months preceding the event giving rise to the claim.",
+          },
+        ],
+      },
+      {
+        kind: "paragraph",
+        runs: [
+          { kind: "text", text: "These limitations do not apply to liability that cannot lawfully be excluded or limited." },
+        ],
+      },
+      { kind: "heading", text: "12. Indemnification" },
+      {
+        kind: "paragraph",
+        runs: [
+          {
+            kind: "text",
+            text: "To the extent permitted by applicable law, you agree to indemnify and hold harmless Queta AI LLC and its officers, employees, and affiliates against third-party claims, damages, liabilities, and reasonable legal expenses arising from your unlawful use of the services, your infringement of third-party rights, or your material breach of these Terms.",
+          },
+        ],
+      },
+      {
+        kind: "paragraph",
+        runs: [
+          {
+            kind: "text",
+            text: "This provision does not apply to the extent a claim results from conduct for which you cannot lawfully be required to indemnify Queta AI.",
+          },
+        ],
+      },
+      { kind: "heading", text: "13. Governing Law" },
+      {
+        kind: "paragraph",
+        runs: [
+          {
+            kind: "text",
+            text: "These Terms will be governed by the laws of the State of New Jersey, without regard to its conflict-of-law principles, except where applicable law requires otherwise.",
+          },
+        ],
+      },
+      {
+        kind: "paragraph",
+        runs: [
+          {
+            kind: "text",
+            text: "Any legal proceedings will be brought in a court of competent jurisdiction located in New Jersey, subject to applicable jurisdictional requirements and any mandatory rights you may have under applicable law.",
+          },
+        ],
+      },
+      { kind: "heading", text: "14. General Provisions" },
+      {
+        kind: "paragraph",
+        runs: [
+          {
+            kind: "text",
+            text: "If any provision of these Terms is found unenforceable, the remaining provisions will remain in effect to the extent permitted by law.",
+          },
+        ],
+      },
+      {
+        kind: "paragraph",
+        runs: [
+          { kind: "text", text: "Failure to enforce a provision does not constitute a waiver of the right to enforce it later." },
+        ],
+      },
+      {
+        kind: "paragraph",
+        runs: [
+          {
+            kind: "text",
+            text: "These Terms, together with any applicable subscription terms and other agreements incorporated into them, govern your use of the services.",
+          },
+        ],
+      },
+      { kind: "heading", text: "15. Contact Information" },
+      {
+        kind: "paragraph",
+        runs: [
+          {
+            kind: "text",
+            text: "For questions regarding these Terms, account restrictions, licensing, or authorization to share access, please contact:",
+          },
+        ],
+      },
+      {
+        kind: "paragraph",
+        runs: [
+          { kind: "text", text: "Queta AI LLC" },
+          { kind: "break" },
+          { kind: "text", text: "Email: " },
+          { kind: "mail" },
+          { kind: "break" },
+          { kind: "text", text: "Website: www.queta.ai" },
+          { kind: "break" },
+          { kind: "text", text: "Business Address: 2 Ascot Ln, Belle Mead, NJ 08502" },
+        ],
+      },
+    ],
   },
   {
     href: "/ai-legal-disclosure",

@@ -11,6 +11,18 @@ function LegalRunView({ run }: { run: LegalRun }) {
       </a>
     );
   }
+  if (run.kind === "link") {
+    return (
+      <a
+        href={run.href}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="text-primary underline break-all"
+      >
+        {run.text}
+      </a>
+    );
+  }
   if (run.kind === "bold") {
     return <strong className="font-semibold text-foreground whitespace-pre-wrap">{run.text}</strong>;
   }
