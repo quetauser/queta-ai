@@ -6,7 +6,7 @@ import { personaThemeClasses } from "@/lib/persona-theme";
 export function HomePage() {
   return (
     <>
-      <section className="relative min-h-screen flex items-start overflow-hidden pt-[103px] md:pt-28">
+      <section className="relative flex items-start overflow-hidden pt-[103px] md:pt-28">
         <div className="absolute inset-0 -z-10">
           <div className="absolute inset-0 bg-gradient-to-br from-white via-violet-50 to-white" />
           <div className="absolute top-0 right-0 w-[700px] h-[700px] rounded-full bg-gradient-radial from-violet-200/60 via-violet-100/20 to-transparent blur-3xl" />
@@ -29,7 +29,7 @@ export function HomePage() {
             <rect width="100%" height="100%" fill="url(#grid)" />
           </svg>
         </div>
-        <div className="max-w-7xl mx-auto px-6 pb-6 w-full grid grid-cols-1 items-start gap-10 lg:grid-cols-2 lg:gap-14">
+        <div className="max-w-7xl mx-auto px-6 w-full grid grid-cols-1 items-start gap-10 lg:grid-cols-2 lg:gap-14">
           <div>
             <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-violet-200 bg-violet-50 text-violet-700 text-xs font-semibold mb-6 tracking-wide">
               <span className="w-1.5 h-1.5 rounded-full bg-violet-500 animate-pulse" />
@@ -72,7 +72,7 @@ export function HomePage() {
         </div>
       </section>
 
-      <section id="solutions" className="py-8 bg-white scroll-mt-20">
+      <section id="solutions" className="pt-[23.325px] md:pt-[61.85px] pb-8 bg-white scroll-mt-20">
         <div className="max-w-7xl mx-auto px-6">
           <div className="mb-8">
             <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground mb-3">
@@ -97,10 +97,10 @@ export function HomePage() {
                     className={`absolute top-0 left-8 right-8 h-1 rounded-b-full bg-gradient-to-r ${theme.cardBorder} opacity-0 group-hover:opacity-100 transition-opacity duration-300`}
                   />
                   <div
-                    className={`inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold mb-5 ${theme.badge}`}
+                    className={`mb-5 inline-flex max-w-full items-start gap-2.5 rounded-full px-4 py-2 text-[30px] font-semibold leading-tight ${theme.badge}`}
                   >
-                    <span className={`w-1.5 h-1.5 rounded-full ${theme.dot}`} />
-                    {persona.label}
+                    <span className={`mt-[14px] size-2.5 shrink-0 rounded-full ${theme.dot}`} />
+                    <span className="min-w-0">{persona.label}</span>
                   </div>
                   <h3 className="text-2xl font-bold text-foreground mb-2 leading-tight">
                     {persona.headline}

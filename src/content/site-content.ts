@@ -98,7 +98,7 @@ export const home = {
   personaCards: [
     {
       slug: "lifestyle",
-      label: "Lifestyle User",
+      label: "Queta Lifestyle",
       headline: "Live more. Manage less.",
       description:
         "Your personal AI agent handles scheduling, reminders, travel planning, and daily task management — so your life runs itself.",
@@ -112,23 +112,8 @@ export const home = {
       theme: "violet",
     },
     {
-      slug: "realtor",
-      label: "Realtor",
-      headline: "Close faster. Work smarter.",
-      description:
-        "From lead follow-up to listing management, your AI agent keeps every deal moving without the manual grind.",
-      bullets: [
-        "Automated lead nurturing",
-        "Listing & CRM sync",
-        "Market analysis reports",
-        "Client communication drafts",
-      ],
-      href: "/solutions/realtor",
-      theme: "blue",
-    },
-    {
       slug: "trader",
-      label: "Trader",
+      label: "Queta Trader",
       headline: "React in milliseconds. Decide in seconds.",
       description:
         "Near real-time market intelligence and automated workflow execution — your AI agent never sleeps, never misses a signal.",
@@ -140,6 +125,21 @@ export const home = {
       ],
       href: "/solutions/trader",
       theme: "emerald",
+    },
+    {
+      slug: "realtor",
+      label: "Queta Realtor",
+      headline: "Close faster. Work smarter.",
+      description:
+        "From lead follow-up to listing management, your AI agent keeps every deal moving without the manual grind.",
+      bullets: [
+        "Automated lead nurturing",
+        "Listing & CRM sync",
+        "Market analysis reports",
+        "Client communication drafts",
+      ],
+      href: "/solutions/realtor",
+      theme: "blue",
     },
   ] satisfies PersonaCard[],
 } as const;
