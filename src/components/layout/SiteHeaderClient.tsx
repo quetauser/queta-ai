@@ -14,6 +14,7 @@ interface Navigation {
   solutions: readonly NavItem[];
   links: readonly NavItem[];
   legal: { label: string; links: readonly NavItem[] };
+  feedback: NavItem;
   cta: NavItem;
 }
 
@@ -148,16 +149,22 @@ export function SiteHeaderClient({
           </div>
         </nav>
 
-        {showDemoCta ? (
-          <div className="hidden md:flex items-center gap-3 shrink-0">
+        <div className="hidden md:flex items-center gap-3 shrink-0">
+          <Link
+            href={navigation.feedback.href}
+            className="whitespace-nowrap text-sm font-medium text-foreground/70 transition-colors hover:text-foreground"
+          >
+            {navigation.feedback.label}
+          </Link>
+          {showDemoCta ? (
             <Link
               href={navigation.cta.href}
               className="whitespace-nowrap px-5 py-2 rounded-full text-sm font-semibold bg-primary text-primary-foreground hover:opacity-90 transition-opacity"
             >
               {navigation.cta.label}
             </Link>
-          </div>
-        ) : null}
+          ) : null}
+        </div>
 
         <button
           type="button"
@@ -211,6 +218,13 @@ export function SiteHeaderClient({
               </Link>
             ))}
           </div>
+          <Link
+            href={navigation.feedback.href}
+            className="block text-sm font-medium text-foreground/80"
+            onClick={() => setMobileOpen(false)}
+          >
+            {navigation.feedback.label}
+          </Link>
           {showDemoCta ? (
             <Link
               href={navigation.cta.href}

@@ -91,6 +91,7 @@ export function ContactForm() {
               </p>
             ) : (
               <>
+                <p className="mb-5 text-sm text-muted-foreground leading-relaxed">{contact.form.nextSteps}</p>
                 {status === "error" ? (
                   <p
                     data-testid="contact-form-status-error"
