@@ -70,8 +70,8 @@ export const site = {
 
 export const home = {
   hero: {
-    badge: "Agentic AI Bots tailor made for you ..",
-    title: "Your AI. Your Persona. Your Edge.",
+    badge: "Think It. Queta It.",
+    title: "Queta Companion that gets the work done.",
     description:
       "Queta AI delivers agentic solutions built around who you are — eliminating mundane tasks so you can focus on what actually matters.",
     primaryCta: { label: "Request a Demo", href: "/contact" },
