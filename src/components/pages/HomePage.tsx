@@ -73,18 +73,8 @@ export function HomePage() {
         </div>
       </section>
 
-      <section id="solutions" className="pt-[23.325px] md:pt-[61.85px] pb-8 bg-white scroll-mt-20">
+      <section id="solutions" className="pt-4 md:pt-6 pb-8 bg-white scroll-mt-20">
         <div className="max-w-7xl mx-auto px-6">
-          <div className="mb-8">
-            <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground mb-3">
-              {home.personasSection.eyebrow}
-            </p>
-            <h2 className="font-heading text-5xl md:text-6xl font-bold tracking-tight text-foreground max-w-2xl leading-tight">
-              {home.personasSection.title}
-              <br />
-              {home.personasSection.titleLine2}
-            </h2>
-          </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
             {home.personaCards.map((persona) => {
               const theme = personaThemeClasses[persona.theme];

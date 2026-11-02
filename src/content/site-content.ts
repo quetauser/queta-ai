@@ -72,14 +72,9 @@ export const home = {
     badge: "Think It. Queta It.",
     title: "Queta Companion - Gets your Work Done !",
     description:
-      "Queta AI delivers agentic solutions built around who you are — eliminating mundane tasks so you can focus on what actually matters.",
-    primaryCta: { label: "Request a Demo", href: "/contact" },
+      "Queta AI solutions, powered by Grok Bot, are built around who you are — eliminating mundane tasks so you can focus on what actually matters.",
+    primaryCta: { label: "Subscribe", href: "/contact" },
     secondaryCta: { label: "Explore Solutions", href: "#solutions" },
-  },
-  personasSection: {
-    eyebrow: "Choose Your Persona",
-    title: "One platform.",
-    titleLine2: "Three superpowers.",
   },
   statsSection: {
     eyebrow: "The Numbers",
