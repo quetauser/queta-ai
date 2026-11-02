@@ -362,7 +362,7 @@ const realtorSolution: SolutionPageContent = {
   personaLabel: "Realtor",
   heroHeadline: "Close faster. Work smarter.",
   heroDescription:
-    "Your AI agent keeps every deal moving — from first lead to final signature — without the manual follow-up, data entry, or missed opportunities.",
+    "Queta Realtor, powered by Grok Bot, keeps every deal moving — from first lead to final signature — without the manual follow-up, data entry, or missed opportunities.",
   theme: "blue",
   features: [
     {
@@ -426,7 +426,7 @@ const traderSolution: SolutionPageContent = {
   personaLabel: "Trader",
   heroHeadline: "React in milliseconds. Decide in seconds.",
   heroDescription:
-    "Your AI agent monitors markets around the clock, surfaces signals the moment they matter, and executes your defined workflows — so you never miss a move.",
+    "Queta Trader, powered by Grok Bot, monitors markets, surfaces signals, and executes trades based on your rules - so you never miss a move.",
   theme: "emerald",
   features: [
     {
@@ -489,7 +489,7 @@ const lifestyleSolution: SolutionPageContent = {
   personaLabel: "Queta Lifestyle",
   heroHeadline: "Live more. Manage less.",
   heroDescription:
-    "Your digital companion that handles the logistics of daily life — scheduling, errands, travel, finances, shopping, others and gets the work done — so you can spend your time on what actually matters.",
+    "Queta Lifestyle, powered by Grok Bot, your Digital Companion that handles the logistics of daily life — scheduling, errands, travel, finances, shopping, others and gets the work done — so you can spend your time on what actually matters.",
   featuresHeading: "Queta Lifestyle solutions",
   theme: "violet",
   features: [
