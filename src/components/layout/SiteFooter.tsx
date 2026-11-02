@@ -8,7 +8,7 @@ export function SiteFooter() {
       <div className="max-w-7xl mx-auto px-6 py-16">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12">
           <div className="md:col-span-1">
-            <Link href="/" className="inline-block mb-4">
+            <Link href="/" className="inline-block">
               <Image
                 src="/logo-horizontal.png"
                 alt={site.name}
@@ -17,9 +17,6 @@ export function SiteFooter() {
                 className="block h-auto max-h-8 w-auto object-contain"
               />
             </Link>
-            <p className="text-sm text-muted-foreground leading-relaxed max-w-xs">
-              {site.footerBlurb}
-            </p>
           </div>
           <div>
             <h3 className="text-xs font-semibold uppercase tracking-widest text-muted-foreground mb-4">
@@ -29,7 +26,7 @@ export function SiteFooter() {
               {navigation.solutions.map((item) => (
                 <li key={item.href}>
                   <Link
-                    href="/#solutions"
+                    href={item.href}
                     className="text-sm text-foreground/70 hover:text-foreground transition-colors"
                   >
                     {item.label}

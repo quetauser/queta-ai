@@ -91,7 +91,7 @@ export function HomePage() {
                 <Link
                   key={persona.slug}
                   href={persona.href}
-                  className={`group relative rounded-3xl border-2 p-8 cursor-pointer transition-all duration-300 ${theme.card}`}
+                  className={`group relative flex h-full flex-col rounded-3xl border-2 p-8 cursor-pointer transition-all duration-300 ${theme.card}`}
                 >
                   <div
                     className={`absolute top-0 left-8 right-8 h-1 rounded-b-full bg-gradient-to-r ${theme.cardBorder} opacity-0 group-hover:opacity-100 transition-opacity duration-300`}
