@@ -63,8 +63,6 @@ export const site = {
   defaultTitle: "Queta AI — Your AI. Your Persona. Your Edge.",
   defaultDescription:
     "Queta AI delivers persona-based agentic AI solutions for Lifestyle Users, Realtors, and Traders — eliminating operational overhead so you can focus on what matters.",
-  footerBlurb:
-    "Agentic AI solutions built around you. Choose your persona. Eliminate the overhead.",
   copyright: "© 2026 Queta AI. All rights reserved.",
 } as const;
 
@@ -101,7 +99,7 @@ export const home = {
       label: "Queta Lifestyle",
       headline: "Live more. Manage less.",
       description:
-        "Your personal AI agent handles scheduling, reminders, travel planning, and daily task management — so your life runs itself.",
+        "Your Digital Companion which helps you complete tasks in every aspect of your lifestyle, including scheduling, shopping, travel, finance, health and many others.",
       bullets: [
         "Smart scheduling & calendar sync",
         "Travel & errand automation",
@@ -465,7 +463,7 @@ const traderSolution: SolutionPageContent = {
 const lifestyleSolution: SolutionPageContent = {
   slug: "lifestyle",
   metaTitle: "Lifestyle User AI Agent — Queta AI",
-  personaLabel: "Lifestyle User",
+  personaLabel: "Queta Lifestyle",
   heroHeadline: "Live more. Manage less.",
   heroDescription:
     "Your personal AI agent handles the logistics of daily life — scheduling, errands, travel, finances — so you can spend your time on what actually matters.",
@@ -1853,9 +1851,9 @@ export const legalDocuments = [
 
 export const navigation = {
   solutions: [
-    { label: "Lifestyle User", href: "/solutions/lifestyle" },
-    { label: "Realtor", href: "/solutions/realtor" },
-    { label: "Trader", href: "/solutions/trader" },
+    { label: "Queta Lifestyle", href: "/solutions/lifestyle" },
+    { label: "Queta Trader", href: "/solutions/trader" },
+    { label: "Queta Realtor", href: "/solutions/realtor" },
   ] as const,
   links: [
     { label: "Pricing", href: "/pricing" },
