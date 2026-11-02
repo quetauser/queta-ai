@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowRight, ChevronRight, Play } from "lucide-react";
+import { ArrowRight, ChevronRight } from "lucide-react";
 import { home } from "@/content/site-content";
 import { personaThemeClasses } from "@/lib/persona-theme";
 
@@ -61,14 +61,19 @@ export function HomePage() {
               </a>
             </div>
           </div>
-          <div
-            className="relative aspect-video w-full overflow-hidden rounded-2xl border border-border bg-gradient-to-br from-violet-100 via-white to-violet-50 shadow-2xl shadow-violet-200/70"
-            aria-hidden
+          <video
+            className="block aspect-video w-full overflow-hidden rounded-2xl border border-border bg-gradient-to-br from-violet-100 via-white to-violet-50 object-cover shadow-2xl shadow-violet-200/70"
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="metadata"
+            controls
+            poster="/videos/hero-poster.jpg"
+            aria-label="Queta Companion"
           >
-            <div className="absolute left-1/2 top-1/2 flex h-16 w-16 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-primary text-primary-foreground shadow-lg shadow-violet-300/80">
-              <Play size={28} className="ml-1" fill="currentColor" />
-            </div>
-          </div>
+            <source src="/videos/hero-video.mp4" type="video/mp4" />
+          </video>
         </div>
       </section>
 
