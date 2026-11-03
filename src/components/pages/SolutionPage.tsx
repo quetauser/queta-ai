@@ -292,19 +292,7 @@ export function SolutionPage({
               </ol>
             </div>
           </section>
-          <section className="py-8 bg-slate-50">
-            <div className="max-w-7xl mx-auto px-6">
-              <SectionHeading title={guide.limits.title} />
-              <ul className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                {guide.limits.items.map((item) => (
-                  <li key={item} className={`rounded-2xl border border-l-4 bg-white p-4 text-sm leading-relaxed text-muted-foreground ${accentFor(guide.limits.title).card}`}>
-                    {item}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </section>
-          <section className="py-8 bg-slate-950 text-white">
+          <section className="pt-0 pb-8 bg-slate-950 text-white">
             <div className="max-w-3xl mx-auto px-6 text-center">
               <h2 className="font-heading text-2xl md:text-3xl font-bold">{guide.closing}</h2>
               <Link
