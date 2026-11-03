@@ -428,17 +428,17 @@ export const faq = {
       title: "Security and Privacy",
       items: [
         {
-          question: "How is my environment isolated?",
-          answer: "Each user receives a dedicated, isolated virtual machine.",
-        },
-        {
           question: "Can a bot do more than I can?",
           answer: "No. A bot acts only on your behalf and never holds more access than you do.",
         },
         {
           question: "How are my passwords, cards, and connector tokens protected?",
           answer:
-            "Connector tokens stay on the platform's backend, and saved passwords and cards are filled in without the AI model ever seeing them.",
+            "Connector tokens stay on the Grok Bot platform's backend, and saved passwords and cards are managed by Grok Bot. For detailed information, review the following resources:",
+          links: [
+            { label: "Grok Bot Vault", href: "https://docs.x.ai/grok-bot/vault" },
+            { label: "Grok Bot FAQs", href: "https://cursor.com/help/grok-bot/faqs" },
+          ],
         },
         {
           question: "What happens before a bot takes a consequential action?",
