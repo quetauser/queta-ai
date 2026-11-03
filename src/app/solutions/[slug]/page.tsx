@@ -52,7 +52,12 @@ export default async function SolutionRoutePage({
                   label: "Queta Lifestyle",
                   placement: "beside",
                 }
-              : undefined
+              : slug === "realtor"
+                ? {
+                    label: "Queta Realtor",
+                    placement: "beside" as const,
+                  }
+                : undefined
         }
       />
     </SiteShell>

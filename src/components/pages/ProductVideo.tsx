@@ -5,8 +5,8 @@ import { Play } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 
 interface ProductVideoProps {
-  src: string;
-  poster: string;
+  src?: string;
+  poster?: string;
   label: string;
   className?: string;
   loop?: boolean;
@@ -31,7 +31,7 @@ export function ProductVideo({
 
   function attach(unmute: boolean) {
     const video = videoRef.current;
-    if (!video) {
+    if (!video || !srcRef.current) {
       return;
     }
     if (!video.getAttribute("src")) {
@@ -45,7 +45,8 @@ export function ProductVideo({
 
   useEffect(() => {
     const root = rootRef.current;
-    if (!root) {
+    const source = srcRef.current;
+    if (!root || !source) {
       return;
     }
     let observer: IntersectionObserver | undefined;
@@ -66,7 +67,7 @@ export function ProductVideo({
             return;
           }
           video.preload = "auto";
-          video.src = srcRef.current;
+          video.src = source;
           video.muted = true;
           setAttached(true);
           void video.play();
@@ -95,14 +96,17 @@ export function ProductVideo({
       className={`relative aspect-video w-full overflow-hidden rounded-2xl border border-border bg-slate-950 shadow-2xl shadow-violet-200/70 ${className ?? "mx-auto mt-8"}`}
       style={{ aspectRatio: "16 / 9" }}
     >
-      <Image
-        src={poster}
-        alt=""
-        width={1280}
-        height={720}
-        priority
-        className={`absolute inset-0 h-full w-full object-cover ${playing ? "invisible" : ""}`}
-      />
+      {poster ? (
+        <Image
+          src={poster}
+          alt=""
+          width={1280}
+          height={720}
+          priority
+          className={`absolute inset-0 h-full w-full object-cover ${playing ? "invisible" : ""}`}
+        />
+      ) : null}
+      {src ? (
       <video
         ref={videoRef}
         className={`relative z-10 h-full w-full ${fit === "cover" ? "object-cover" : "object-contain"} ${attached ? "" : "pointer-events-none opacity-0"}`}
@@ -115,6 +119,7 @@ export function ProductVideo({
         onPlay={() => setPlaying(true)}
         onPause={() => setPlaying(false)}
       />
+      ) : null}
       {playing ? null : (
         <button
           type="button"
