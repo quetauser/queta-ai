@@ -8,11 +8,11 @@ import { ProductVideo } from "@/components/pages/ProductVideo";
 
 function FeatureCard({ feature }: { feature: SolutionFeature }) {
   return (
-    <div className="flex h-full flex-col rounded-2xl border border-border bg-white p-7 shadow-sm">
-      <h3 className="mb-3 text-xl font-bold text-foreground">{feature.title}</h3>
+    <div className="rounded-2xl border border-border bg-white p-4 shadow-sm">
+      <h3 className="mb-1.5 text-lg font-bold text-foreground">{feature.title}</h3>
       <p className="text-sm leading-relaxed text-muted-foreground">{feature.description}</p>
       {feature.points?.length ? (
-        <ul className="mt-3 list-disc space-y-1 pl-5 text-sm leading-relaxed text-muted-foreground">
+        <ul className="mt-2 list-disc space-y-0.5 pl-5 text-sm leading-relaxed text-muted-foreground">
           {feature.points.map((point) => (
             <li key={point}>{point}</li>
           ))}
@@ -26,8 +26,8 @@ function FeatureGroup({ group }: { group: SolutionFeatureGroup }) {
   const stacked = group.span === "half";
   return (
     <div>
-      <h2 className="mb-4 font-heading text-2xl font-bold text-foreground md:text-3xl">{group.title}</h2>
-      <div className={stacked ? "flex flex-col gap-4" : "grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3"}>
+      <h2 className="mb-3 font-heading text-xl font-bold text-foreground md:text-2xl">{group.title}</h2>
+      <div className={stacked ? "flex flex-col gap-3" : "grid grid-cols-1 items-start gap-3 md:grid-cols-2 lg:grid-cols-3"}>
         {group.features.map((feature) => (
           <FeatureCard key={feature.title} feature={feature} />
         ))}
@@ -43,7 +43,7 @@ function FeatureGroups({ groups }: { groups: readonly SolutionFeatureGroup[] }) 
     const next = groups[index + 1];
     if (group.span === "half" && next?.span === "half") {
       blocks.push(
-        <div key={group.title} className="grid grid-cols-1 gap-10 lg:grid-cols-2">
+        <div key={group.title} className="grid grid-cols-1 items-start gap-6 lg:grid-cols-2">
           <FeatureGroup group={group} />
           <FeatureGroup group={next} />
         </div>,
@@ -53,7 +53,7 @@ function FeatureGroups({ groups }: { groups: readonly SolutionFeatureGroup[] }) 
       blocks.push(<FeatureGroup key={group.title} group={group} />);
     }
   }
-  return <div className="space-y-10">{blocks}</div>;
+  return <div className="space-y-6">{blocks}</div>;
 }
 
 export function SolutionPage({
@@ -61,7 +61,7 @@ export function SolutionPage({
   productVideo,
 }: {
   content: SolutionPageContent;
-  productVideo?: { src: string; poster: string; label: string; placement?: "below" | "beside" };
+  productVideo?: { src?: string; poster?: string; label: string; placement?: "below" | "beside" };
 }) {
   const theme = personaThemeClasses[content.theme];
   const heroBg = heroThemeBackground[content.theme];
@@ -131,7 +131,7 @@ export function SolutionPage({
         </div>
       </section>
 
-      <section className={`pt-8 ${productVideo ? "pb-16" : "pb-12"} bg-white`}>
+      <section className={content.featureGroups ? "bg-white pt-4 pb-4" : `pt-8 ${productVideo ? "pb-16" : "pb-12"} bg-white`}>
         <div className="max-w-7xl mx-auto px-6">
           {content.featuresHeading ? (
             <h2 className="font-heading text-3xl md:text-4xl font-bold text-foreground mb-10">
@@ -161,24 +161,24 @@ export function SolutionPage({
 
       {content.guide ? (
         <>
-          <section className="py-12 bg-slate-50">
+          <section className="py-8 bg-slate-50">
             <div className="max-w-7xl mx-auto px-6">
               <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground mb-2">
                 {content.guide.howItWorks.eyebrow}
               </p>
-              <h2 className="font-heading text-3xl md:text-4xl font-bold text-foreground mb-6">
+              <h2 className="font-heading text-2xl md:text-3xl font-bold text-foreground mb-4">
                 {content.guide.howItWorks.title}
               </h2>
-              <ol className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              <ol className="grid grid-cols-1 md:grid-cols-3 gap-3">
                 {content.guide.howItWorks.steps.map((step, index) => (
-                  <li key={step.title} className="rounded-2xl border border-border bg-white p-6">
+                  <li key={step.title} className="rounded-2xl border border-border bg-white p-4">
                     <p className={`text-xs font-semibold ${theme.text}`}>{index + 1}</p>
                     <h3 className="mt-2 text-lg font-bold text-foreground">{step.title}</h3>
                     <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{step.text}</p>
                   </li>
                 ))}
               </ol>
-              <ul className="mt-5 flex flex-wrap gap-2">
+              <ul className="mt-3 flex flex-wrap gap-2">
                 {content.guide.howItWorks.principles.map((principle) => (
                   <li
                     key={principle}
@@ -191,14 +191,14 @@ export function SolutionPage({
               </ul>
             </div>
           </section>
-          <section className="py-12 bg-white">
+          <section className="py-8 bg-white">
             <div className="max-w-7xl mx-auto px-6">
-              <h2 className="font-heading text-3xl md:text-4xl font-bold text-foreground mb-6">
+              <h2 className="font-heading text-2xl md:text-3xl font-bold text-foreground mb-4">
                 {content.guide.gettingStarted.title}
               </h2>
-              <ol className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+              <ol className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3">
                 {content.guide.gettingStarted.steps.map((step, index) => (
-                  <li key={step.title} className="rounded-2xl border border-border bg-white p-6">
+                  <li key={step.title} className="rounded-2xl border border-border bg-white p-4">
                     <p className={`text-xs font-semibold ${theme.text}`}>{index + 1}</p>
                     <h3 className="mt-2 text-lg font-bold text-foreground">{step.title}</h3>
                     <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{step.text}</p>
@@ -207,26 +207,26 @@ export function SolutionPage({
               </ol>
             </div>
           </section>
-          <section className="py-12 bg-slate-50">
+          <section className="py-8 bg-slate-50">
             <div className="max-w-7xl mx-auto px-6">
-              <h2 className="font-heading text-3xl md:text-4xl font-bold text-foreground mb-6">
+              <h2 className="font-heading text-2xl md:text-3xl font-bold text-foreground mb-4">
                 {content.guide.limits.title}
               </h2>
-              <ul className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <ul className="grid grid-cols-1 md:grid-cols-2 gap-3">
                 {content.guide.limits.items.map((item) => (
-                  <li key={item} className="rounded-2xl border border-border bg-white p-6 text-sm leading-relaxed text-muted-foreground">
+                  <li key={item} className="rounded-2xl border border-border bg-white p-4 text-sm leading-relaxed text-muted-foreground">
                     {item}
                   </li>
                 ))}
               </ul>
             </div>
           </section>
-          <section className="py-12 bg-slate-950 text-white">
+          <section className="py-8 bg-slate-950 text-white">
             <div className="max-w-3xl mx-auto px-6 text-center">
-              <h2 className="font-heading text-3xl md:text-4xl font-bold">{content.guide.closing}</h2>
+              <h2 className="font-heading text-2xl md:text-3xl font-bold">{content.guide.closing}</h2>
               <Link
                 href={navigation.cta.href}
-                className="mt-6 inline-flex items-center gap-2 px-8 py-4 rounded-full bg-primary text-primary-foreground font-semibold hover:opacity-90 transition-opacity"
+                className="mt-4 inline-flex items-center gap-2 px-8 py-4 rounded-full bg-primary text-primary-foreground font-semibold hover:opacity-90 transition-opacity"
               >
                 {navigation.cta.label}
                 <ArrowRight size={18} />
