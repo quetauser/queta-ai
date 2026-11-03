@@ -55,6 +55,7 @@ Replica-only routes (must return 200 on the replica). Do not request these from 
 
 - `/compare`
 - `/feedback`
+- `/faq`
 - `/terms-of-use`
 - `/privacy-policy`
 - `/ai-legal-disclosure`

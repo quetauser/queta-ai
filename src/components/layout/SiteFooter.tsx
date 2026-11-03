@@ -58,6 +58,14 @@ export function SiteFooter() {
                   {navigation.feedback.label}
                 </Link>
               </li>
+              <li>
+                <Link
+                  href={navigation.faq.href}
+                  className="text-sm text-foreground/70 hover:text-foreground transition-colors"
+                >
+                  {navigation.faq.label}
+                </Link>
+              </li>
             </ul>
           </div>
           <div>

@@ -358,6 +358,95 @@ export const feedback = {
   },
 } as const;
 
+export const faq = {
+  metaTitle: "FAQ | Queta AI",
+  headline: "Frequently Asked Questions",
+  intro:
+    "Answers to common questions about Queta AI solutions, how they work, and how your data is protected.",
+  grokCta: {
+    label: "Visit the Grok Bot FAQs",
+    href: "https://cursor.com/help/grok-bot/faqs",
+  },
+  groups: [
+    {
+      title: "Getting Started",
+      items: [
+        {
+          question: "How will I get my Queta solution?",
+          answer:
+            "Once you subscribe, you will receive an email with a Getting Started guide and your solution package.",
+        },
+        {
+          question: "What platform do Queta AI solutions run on?",
+          answer:
+            "Queta AI solutions run on the Grok Bot platform. You subscribe to the Grok platform under your own username, and your Queta solution runs inside your individual Grok account.",
+        },
+      ],
+    },
+    {
+      title: "Your Account and Data",
+      items: [
+        {
+          question: "Does the Queta AI team have access to my account?",
+          answer:
+            "No. Your Queta solution runs inside your own Grok account, and the Queta AI team has no access to, or visibility into, your account.",
+        },
+        {
+          question: "Who manages security and privacy?",
+          answer: "All security and privacy measures are managed by the Grok platform.",
+        },
+      ],
+    },
+    {
+      title: "Security and Privacy",
+      items: [
+        {
+          question: "How is my environment isolated?",
+          answer: "Each user receives a dedicated, isolated virtual machine.",
+        },
+        {
+          question: "Can a bot do more than I can?",
+          answer: "No. A bot acts only on your behalf and never holds more access than you do.",
+        },
+        {
+          question: "How are my passwords, cards, and connector tokens protected?",
+          answer:
+            "Connector tokens stay on the platform's backend, and saved passwords and cards are filled in without the AI model ever seeing them.",
+        },
+        {
+          question: "What happens before a bot takes a consequential action?",
+          answer: "Consequential actions go through Auto Review and require your approval.",
+        },
+      ],
+    },
+    {
+      title: "More Resources",
+      items: [
+        {
+          question: "Where can I learn more about Grok Bot?",
+          links: [
+            { label: "Grok Bot FAQs", href: "https://cursor.com/help/grok-bot/faqs" },
+            { label: "Grok Bot Security", href: "https://docs.x.ai/grok-bot/security" },
+            { label: "Grok Bot Security FAQ", href: "https://docs.x.ai/grok-bot/security-faq" },
+            {
+              label: "Approvals, Security and Privacy",
+              href: "https://docs.x.ai/grok-bot/approvals-security-and-privacy",
+            },
+          ],
+        },
+        {
+          question: "Still have a question?",
+          answer: "Send a question from the Feedback page, or read the Privacy Policy.",
+          links: [
+            { label: "Feedback", href: "/feedback" },
+            { label: "Privacy Policy", href: "/privacy-policy" },
+          ],
+        },
+      ],
+    },
+  ],
+} as const;
+
 const realtorSolution: SolutionPageContent = {
   slug: "realtor",
   metaTitle: "Realtor AI Agent — Queta AI",
@@ -1950,6 +2039,7 @@ export const navigation = {
     })),
   },
   feedback: { label: "Feedback", href: "/feedback" },
+  faq: { label: "FAQ", href: "/faq" },
   cta: { label: "Subscribe", href: "/contact" },
 } as const;
 
@@ -2076,6 +2166,7 @@ export const publicRoutes = [
   "/contact",
   "/compare",
   "/feedback",
+  "/faq",
   "/solutions/lifestyle",
   "/solutions/realtor",
   "/solutions/trader",
@@ -2085,5 +2176,6 @@ export const publicRoutes = [
 export const replicaOnlyRoutes = [
   "/compare",
   "/feedback",
+  "/faq",
   ...legalDocuments.map((document) => document.href),
 ] as const;
