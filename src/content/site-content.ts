@@ -51,7 +51,7 @@ export type LegalBlock =
   | { kind: "numbers"; items: readonly (readonly LegalRun[])[] };
 
 export type LegalDocument = {
-  href: "/terms-of-use" | "/ai-legal-disclosure" | "/end-user-license-policy";
+  href: "/terms-of-use" | "/privacy-policy" | "/ai-legal-disclosure" | "/end-user-license-policy";
   navLabel: string;
   metaTitle: string;
   title?: string;
@@ -1063,6 +1063,334 @@ export const legalDocuments = [
     ],
   },
   {
+    href: "/privacy-policy",
+    navLabel: "Privacy Policy",
+    metaTitle: "Privacy Policy — Queta AI",
+    eyebrow: "Queta AI LLC",
+    blocks: [
+      {
+        kind: "paragraph",
+        runs: [
+          { kind: "bold", text: "Effective Date:" },
+          { kind: "text", text: " November 2, 2026" },
+          { kind: "break" },
+          { kind: "bold", text: "Last Updated:" },
+          { kind: "text", text: " November 2, 2026" },
+        ],
+      },
+      { kind: "heading", text: "1. Introduction and Scope" },
+      {
+        kind: "paragraph",
+        runs: [
+          {
+            kind: "text",
+            text: "This Privacy Policy describes how Queta AI LLC (\"Queta AI,\" \"we,\" \"us,\" or \"our\") handles personal information in connection with www.queta.ai and the marketing pages we operate (the \"website\").",
+          },
+        ],
+      },
+      {
+        kind: "paragraph",
+        runs: [
+          {
+            kind: "text",
+            text: "Queta AI LLC provides solutions that run on the Grok Bot platform. This website does not offer user accounts or logins. People subscribe directly to Grok Bot. Information processed by the AI agents, including prompts and conversations, is handled by Grok Bot under its own terms and policies, as described in Section 4.",
+          },
+        ],
+      },
+      {
+        kind: "paragraph",
+        runs: [
+          {
+            kind: "text",
+            text: "This policy covers messages you send through the Contact and Feedback forms on this website. It does not replace the ",
+          },
+          { kind: "link", href: "/terms-of-use", text: "Terms of Use" },
+          {
+            kind: "text",
+            text: " or the terms that apply to your use of the Grok Bot platform.",
+          },
+        ],
+      },
+      { kind: "heading", text: "2. Information We Collect" },
+      {
+        kind: "paragraph",
+        runs: [
+          {
+            kind: "text",
+            text: "Contact form. If you use the Contact page, we collect your name, email address, phone number, the interest you describe, and your comments.",
+          },
+        ],
+      },
+      {
+        kind: "paragraph",
+        runs: [
+          {
+            kind: "text",
+            text: "Feedback form. If you use the Feedback page, we collect your name, email address, phone number, and comments.",
+          },
+        ],
+      },
+      {
+        kind: "paragraph",
+        runs: [
+          {
+            kind: "text",
+            text: "We do not ask you to create an account on this website, and we do not collect payment card information here.",
+          },
+        ],
+      },
+      {
+        kind: "paragraph",
+        runs: [
+          {
+            kind: "text",
+            text: "Technical data. The website does not include analytics, advertising, or other tracking tools, and it does not set analytics or advertising cookies. Our hosting provider may collect essential technical data, such as server logs that can include an IP address, browser type, the page requested, and the date and time of the request, in order to operate and secure the site.",
+          },
+        ],
+      },
+      { kind: "heading", text: "3. How We Use Information" },
+      {
+        kind: "paragraph",
+        runs: [
+          {
+            kind: "text",
+            text: "We use Contact submissions to respond to your request and to email you instructions on the next steps to get started with a Queta solution. We use Feedback submissions to review what you sent and reply. We do not sell this information.",
+          },
+        ],
+      },
+      {
+        kind: "paragraph",
+        runs: [
+          {
+            kind: "text",
+            text: "We rely on essential technical data only as needed to deliver the website, keep it available, and investigate abuse or technical problems.",
+          },
+        ],
+      },
+      { kind: "heading", text: "4. Grok Bot Platform" },
+      {
+        kind: "paragraph",
+        runs: [
+          {
+            kind: "text",
+            text: "Queta AI solutions run on the Grok Bot platform. Users subscribe directly to Grok Bot. Consistent with our Terms of Use, Queta AI does not store user data from the agents or AI conversations. Data processed by those agents is handled by Grok Bot under its own terms and policies.",
+          },
+        ],
+      },
+      {
+        kind: "paragraph",
+        runs: [
+          { kind: "text", text: "Grok Bot terms: " },
+          { kind: "link", href: "https://x.ai/legal/grok-bot-terms", text: "https://x.ai/legal/grok-bot-terms" },
+        ],
+      },
+      {
+        kind: "paragraph",
+        runs: [
+          { kind: "text", text: "Grok Bot security: " },
+          { kind: "link", href: "https://docs.x.ai/grok-bot/security", text: "https://docs.x.ai/grok-bot/security" },
+        ],
+      },
+      {
+        kind: "paragraph",
+        runs: [
+          {
+            kind: "text",
+            text: "Questions about information held in a Grok Bot account, including AI conversations, should be directed to Grok Bot. Queta AI cannot delete records that Grok Bot holds.",
+          },
+        ],
+      },
+      { kind: "heading", text: "5. Sharing and Service Providers" },
+      {
+        kind: "paragraph",
+        runs: [
+          {
+            kind: "text",
+            text: "We do not sell personal information. We share website information only with service providers that host the site or deliver messages you send us:",
+          },
+        ],
+      },
+      {
+        kind: "bullets",
+        items: [
+          [{ kind: "text", text: "Vercel hosts the website." }],
+          [
+            {
+              kind: "text",
+              text: "FormSubmit (formsubmit.co) delivers Contact form submissions by email to info@queta.ai and Feedback form submissions by email to sushant@queta.ai.",
+            },
+          ],
+          [
+            {
+              kind: "text",
+              text: "Microsoft 365 is the email service we use to receive those messages and reply.",
+            },
+          ],
+        ],
+      },
+      {
+        kind: "paragraph",
+        runs: [
+          {
+            kind: "text",
+            text: "These providers process the information to perform those services. We may also disclose information if required by law, to protect the rights or security of Queta AI or others, or as part of a business transfer such as a merger, where applicable law allows it.",
+          },
+        ],
+      },
+      { kind: "heading", text: "6. Cookies" },
+      {
+        kind: "paragraph",
+        runs: [
+          {
+            kind: "text",
+            text: "This website does not use analytics cookies, advertising cookies, or similar tracking technologies. The site code does not load an analytics or advertising script, so there is no cookie banner.",
+          },
+        ],
+      },
+      {
+        kind: "paragraph",
+        runs: [
+          {
+            kind: "text",
+            text: "Essential technical data, such as server logs collected by the hosting provider, is described in Section 2. If we later add non-essential cookies, we will update this policy before using them.",
+          },
+        ],
+      },
+      { kind: "heading", text: "7. Data Retention" },
+      {
+        kind: "paragraph",
+        runs: [
+          {
+            kind: "text",
+            text: "We keep Contact and Feedback messages in our email inboxes for as long as needed to respond, provide next steps, and keep a record of the correspondence. We delete them when they are no longer needed for those purposes, or sooner if you ask us to delete them and the law does not require us to keep them.",
+          },
+        ],
+      },
+      {
+        kind: "paragraph",
+        runs: [
+          {
+            kind: "text",
+            text: "Queta AI does not keep a database of agent conversations or subscription accounts on this website. Server logs kept by the hosting provider are retained under that provider's practices.",
+          },
+        ],
+      },
+      { kind: "heading", text: "8. Security" },
+      {
+        kind: "paragraph",
+        runs: [
+          {
+            kind: "text",
+            text: "We use service providers to host the website and deliver email. No method of transmission or storage is completely secure. Please do not send passwords, payment card numbers, or other highly sensitive records through the Contact or Feedback forms.",
+          },
+        ],
+      },
+      {
+        kind: "paragraph",
+        runs: [
+          { kind: "text", text: "Information submitted to an AI agent is subject to Grok Bot's security practices, described at " },
+          { kind: "link", href: "https://docs.x.ai/grok-bot/security", text: "https://docs.x.ai/grok-bot/security" },
+          { kind: "text", text: "." },
+        ],
+      },
+      { kind: "heading", text: "9. Your Rights and Choices" },
+      {
+        kind: "paragraph",
+        runs: [
+          {
+            kind: "text",
+            text: "Depending on where you live, you may have the right to access, correct, or delete personal information we hold, and to appeal a decision on a request. Residents of California, and of other US states with consumer privacy laws, may also have the right to know the categories of personal information collected and to opt out of the sale or sharing of personal information.",
+          },
+        ],
+      },
+      {
+        kind: "paragraph",
+        runs: [
+          {
+            kind: "text",
+            text: "We do not sell personal information, and we do not share it for cross-context behavioral advertising. To ask for access, correction, or deletion of information we hold from the Contact or Feedback forms, email ",
+          },
+          { kind: "mail" },
+          {
+            kind: "text",
+            text: ". We may need to confirm that the request comes from you. We will not discriminate against you for making a privacy request. If we deny a request, you may reply to that decision to appeal where the law provides an appeal.",
+          },
+        ],
+      },
+      {
+        kind: "paragraph",
+        runs: [
+          {
+            kind: "text",
+            text: "Requests about a Grok Bot subscription or AI conversation must be sent to Grok Bot. Queta AI does not hold those records.",
+          },
+        ],
+      },
+      { kind: "heading", text: "10. Children's Privacy" },
+      {
+        kind: "paragraph",
+        runs: [
+          {
+            kind: "text",
+            text: "This website is not directed to children under 13, and we do not knowingly collect personal information from children under 13. If you believe a child under 13 has sent us personal information through this website, email us and we will delete it.",
+          },
+        ],
+      },
+      { kind: "heading", text: "11. International Users" },
+      {
+        kind: "paragraph",
+        runs: [
+          {
+            kind: "text",
+            text: "Queta AI LLC is located in New Jersey, in the United States. If you use this website from outside the United States, information you submit is processed in the United States. The Grok Bot platform may process information in locations described in its own policies.",
+          },
+        ],
+      },
+      { kind: "heading", text: "12. Changes to This Policy" },
+      {
+        kind: "paragraph",
+        runs: [
+          {
+            kind: "text",
+            text: "We may update this Privacy Policy from time to time. When we do, we will change the Last Updated date above. The updated policy applies when it is posted on this page.",
+          },
+        ],
+      },
+      { kind: "heading", text: "13. Contact Information" },
+      {
+        kind: "paragraph",
+        runs: [
+          {
+            kind: "text",
+            text: "Questions about this Privacy Policy, and requests to access or delete personal information we hold, can be sent to:",
+          },
+        ],
+      },
+      {
+        kind: "paragraph",
+        runs: [
+          { kind: "text", text: "Queta AI LLC" },
+          { kind: "break" },
+          { kind: "text", text: "Email: " },
+          { kind: "mail" },
+          { kind: "break" },
+          { kind: "text", text: "Website: www.queta.ai" },
+          { kind: "break" },
+          { kind: "text", text: "Business Address: 2 Ascot Ln, Belle Mead, NJ 08502" },
+        ],
+      },
+      {
+        kind: "paragraph",
+        runs: [
+          {
+            kind: "text",
+            text: "This Privacy Policy is governed by the laws of the State of New Jersey, except where applicable law requires otherwise.",
+          },
+        ],
+      },
+    ],
+  },
+  {
     href: "/ai-legal-disclosure",
     navLabel: "AI and Legal Disclosure",
     metaTitle: "AI Disclaimer and Legal Disclosure — Queta AI",
@@ -1392,18 +1720,22 @@ export const legalDocuments = [
         runs: [
           {
             kind: "text",
-            text: "Our collection, use, disclosure, retention, and protection of personal information are governed by our Privacy Policy and any applicable product-specific disclosures."
-          }
-        ]
+            text: "Our collection, use, disclosure, retention, and protection of personal information are governed by our ",
+          },
+          { kind: "link", href: "/privacy-policy", text: "Privacy Policy" },
+          { kind: "text", text: " and any applicable product-specific disclosures." },
+        ],
       },
       {
         kind: "paragraph",
         runs: [
+          { kind: "text", text: "Please review the " },
+          { kind: "link", href: "/privacy-policy", text: "Privacy Policy" },
           {
             kind: "text",
-            text: "Please review the Privacy Policy before submitting sensitive personal, financial, medical, or confidential information."
-          }
-        ]
+            text: " before submitting sensitive personal, financial, medical, or confidential information.",
+          },
+        ],
       },
       {
         kind: "paragraph",

@@ -1,10 +1,11 @@
 # Legal
 
-Terms of Use, AI and Legal Disclosure, and End User License Policy.
+Terms of Use, Privacy Policy, AI and Legal Disclosure, and End User License Policy.
 
 ## Sub-features
 
 - `legal-terms` — `/terms-of-use`
+- `legal-privacy` — `/privacy-policy`
 - `legal-ai-disclosure` — `/ai-legal-disclosure`
 - `legal-eula` — `/end-user-license-policy`
 - `legal-header-menu` — desktop header Legal menu
@@ -17,6 +18,7 @@ Terms of Use, AI and Legal Disclosure, and End User License Policy.
 - Mobile menu **Legal**
 - Footer **Legal**
 - `/terms-of-use`
+- `/privacy-policy`
 - `/ai-legal-disclosure`
 - `/end-user-license-policy`
 
@@ -31,5 +33,5 @@ Terms of Use, AI and Legal Disclosure, and End User License Policy.
 ## Gotchas
 
 - These pages are not on queta.ai. Drive them on the replica only.
-- There is no privacy policy route. The words Privacy Policy stay plain text.
+- `/privacy-policy` is replica-only. The AI disclosure page links the words Privacy Policy to that route.
 - Copy lives in `src/content/site-content.ts`.
