@@ -88,10 +88,10 @@ export function HomePage() {
                     className={`absolute top-0 left-8 right-8 h-1 rounded-b-full bg-gradient-to-r ${theme.cardBorder} opacity-0 group-hover:opacity-100 transition-opacity duration-300`}
                   />
                   <div
-                    className={`mb-5 inline-block max-w-full rounded-full px-4 py-2 leading-tight ${theme.badge}`}
+                    className={`mb-5 inline-flex max-w-full flex-wrap items-baseline rounded-full px-4 py-2 leading-tight ${theme.badge}`}
                   >
                     <span className="text-[30px] font-semibold">{persona.label}</span>
-                    <span className="ml-1.5 align-sub text-[10px] font-medium leading-none text-muted-foreground">
+                    <span className="ml-1.5 translate-y-[0.35em] whitespace-nowrap text-[10px] font-medium leading-none text-muted-foreground">
                       {home.personaPoweredBy}
                     </span>
                   </div>
