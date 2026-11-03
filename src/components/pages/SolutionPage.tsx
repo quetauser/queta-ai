@@ -1,14 +1,101 @@
 import type { ReactNode } from "react";
 import Link from "next/link";
-import { ArrowRight, CircleCheckBig } from "lucide-react";
+import {
+  ArrowRight,
+  CircleCheckBig,
+  KeyRound,
+  Link2,
+  ListChecks,
+  Rocket,
+  ShieldAlert,
+  Signpost,
+  Sparkles,
+  Users,
+  type LucideIcon,
+} from "lucide-react";
 import type { SolutionFeature, SolutionFeatureGroup, SolutionPageContent } from "@/content/site-content";
 import { navigation } from "@/content/site-content";
 import { heroThemeBackground, personaThemeClasses } from "@/lib/persona-theme";
 import { ProductVideo } from "@/components/pages/ProductVideo";
 
-function FeatureCard({ feature }: { feature: SolutionFeature }) {
+const groupAccents: Record<string, { icon: LucideIcon; chip: string; bar: string; card: string }> = {
+  "Buyer Side": {
+    icon: KeyRound,
+    chip: "bg-blue-600 text-white",
+    bar: "bg-gradient-to-r from-blue-600 to-blue-400",
+    card: "border-blue-100 border-l-blue-600",
+  },
+  "Seller Side": {
+    icon: Signpost,
+    chip: "bg-violet-600 text-white",
+    bar: "bg-gradient-to-r from-violet-600 to-fuchsia-400",
+    card: "border-violet-100 border-l-violet-600",
+  },
+  "Linked Deals": {
+    icon: Link2,
+    chip: "bg-gradient-to-br from-violet-600 to-blue-600 text-white",
+    bar: "bg-gradient-to-r from-violet-600 to-blue-500",
+    card: "border-violet-100 border-l-violet-500",
+  },
+  "Deal Tracker": {
+    icon: ListChecks,
+    chip: "bg-gradient-to-br from-violet-600 to-blue-600 text-white",
+    bar: "bg-gradient-to-r from-violet-600 to-blue-500",
+    card: "border-violet-100 border-l-blue-600",
+  },
+  "Referral Pages": {
+    icon: Users,
+    chip: "bg-gradient-to-br from-violet-600 to-blue-600 text-white",
+    bar: "bg-gradient-to-r from-violet-600 to-blue-500",
+    card: "border-violet-100 border-l-violet-500",
+  },
+  "How it works": {
+    icon: Sparkles,
+    chip: "bg-gradient-to-br from-violet-600 to-blue-600 text-white",
+    bar: "bg-gradient-to-r from-violet-600 to-blue-500",
+    card: "border-violet-100 border-l-violet-500",
+  },
+  "Getting started": {
+    icon: Rocket,
+    chip: "bg-gradient-to-br from-violet-600 to-blue-600 text-white",
+    bar: "bg-gradient-to-r from-violet-600 to-blue-500",
+    card: "border-violet-100 border-l-blue-600",
+  },
+  "What it doesn't do": {
+    icon: ShieldAlert,
+    chip: "bg-gradient-to-br from-violet-600 to-blue-600 text-white",
+    bar: "bg-gradient-to-r from-violet-600 to-blue-500",
+    card: "border-violet-100 border-l-violet-600",
+  },
+};
+
+const brandAccent = groupAccents["How it works"];
+
+function accentFor(title: string) {
+  return groupAccents[title] ?? brandAccent;
+}
+
+function SectionHeading({ title }: { title: string }) {
+  const accent = accentFor(title);
+  const Icon = accent.icon;
   return (
-    <div className="rounded-2xl border border-border bg-white p-4 shadow-sm">
+    <div className="mb-3">
+      <div className="flex items-center gap-2.5">
+        <span className={`inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-lg ${accent.chip}`}>
+          <Icon size={16} aria-hidden />
+        </span>
+        <h2 className="min-w-0 bg-gradient-to-r from-violet-700 to-blue-700 bg-clip-text font-heading text-2xl font-bold leading-tight tracking-tight text-transparent md:text-3xl">
+          {title}
+        </h2>
+      </div>
+      <div className={`mt-1.5 h-1 w-14 rounded-full ${accent.bar}`} />
+    </div>
+  );
+}
+
+function FeatureCard({ feature, cardClass }: { feature: SolutionFeature; cardClass: string }) {
+  return (
+    <div className={`rounded-2xl border border-l-4 bg-white p-4 shadow-sm ${cardClass}`}>
       <h3 className="mb-1.5 text-lg font-bold text-foreground">{feature.title}</h3>
       <p className="text-sm leading-relaxed text-muted-foreground">{feature.description}</p>
       {feature.points?.length ? (
@@ -24,12 +111,13 @@ function FeatureCard({ feature }: { feature: SolutionFeature }) {
 
 function FeatureGroup({ group }: { group: SolutionFeatureGroup }) {
   const stacked = group.span === "half";
+  const cardClass = accentFor(group.title).card;
   return (
     <div>
-      <h2 className="mb-3 font-heading text-xl font-bold text-foreground md:text-2xl">{group.title}</h2>
+      <SectionHeading title={group.title} />
       <div className={stacked ? "flex flex-col gap-3" : "grid grid-cols-1 items-start gap-3 md:grid-cols-2 lg:grid-cols-3"}>
         {group.features.map((feature) => (
-          <FeatureCard key={feature.title} feature={feature} />
+          <FeatureCard key={feature.title} feature={feature} cardClass={cardClass} />
         ))}
       </div>
     </div>
@@ -67,6 +155,7 @@ export function SolutionPage({
   const heroBg = heroThemeBackground[content.theme];
   const sectionY = productVideo ? "py-16" : "py-12";
   const beside = productVideo?.placement === "beside";
+  const guide = content.guide;
 
   return (
     <>
@@ -159,19 +248,17 @@ export function SolutionPage({
         </div>
       </section>
 
-      {content.guide ? (
+      {guide ? (
         <>
           <section className="py-8 bg-slate-50">
             <div className="max-w-7xl mx-auto px-6">
               <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground mb-2">
-                {content.guide.howItWorks.eyebrow}
+                {guide.howItWorks.eyebrow}
               </p>
-              <h2 className="font-heading text-2xl md:text-3xl font-bold text-foreground mb-4">
-                {content.guide.howItWorks.title}
-              </h2>
+              <SectionHeading title={guide.howItWorks.title} />
               <ol className="grid grid-cols-1 md:grid-cols-3 gap-3">
-                {content.guide.howItWorks.steps.map((step, index) => (
-                  <li key={step.title} className="rounded-2xl border border-border bg-white p-4">
+                {guide.howItWorks.steps.map((step, index) => (
+                  <li key={step.title} className={`rounded-2xl border border-l-4 bg-white p-4 ${accentFor(guide.howItWorks.title).card}`}>
                     <p className={`text-xs font-semibold ${theme.text}`}>{index + 1}</p>
                     <h3 className="mt-2 text-lg font-bold text-foreground">{step.title}</h3>
                     <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{step.text}</p>
@@ -179,7 +266,7 @@ export function SolutionPage({
                 ))}
               </ol>
               <ul className="mt-3 flex flex-wrap gap-2">
-                {content.guide.howItWorks.principles.map((principle) => (
+                {guide.howItWorks.principles.map((principle) => (
                   <li
                     key={principle}
                     className="inline-flex items-center gap-2 rounded-full border border-border bg-white px-3 py-1.5 text-sm text-foreground"
@@ -193,12 +280,10 @@ export function SolutionPage({
           </section>
           <section className="py-8 bg-white">
             <div className="max-w-7xl mx-auto px-6">
-              <h2 className="font-heading text-2xl md:text-3xl font-bold text-foreground mb-4">
-                {content.guide.gettingStarted.title}
-              </h2>
+              <SectionHeading title={guide.gettingStarted.title} />
               <ol className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3">
-                {content.guide.gettingStarted.steps.map((step, index) => (
-                  <li key={step.title} className="rounded-2xl border border-border bg-white p-4">
+                {guide.gettingStarted.steps.map((step, index) => (
+                  <li key={step.title} className={`rounded-2xl border border-l-4 bg-white p-4 ${accentFor(guide.gettingStarted.title).card}`}>
                     <p className={`text-xs font-semibold ${theme.text}`}>{index + 1}</p>
                     <h3 className="mt-2 text-lg font-bold text-foreground">{step.title}</h3>
                     <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{step.text}</p>
@@ -207,23 +292,9 @@ export function SolutionPage({
               </ol>
             </div>
           </section>
-          <section className="py-8 bg-slate-50">
-            <div className="max-w-7xl mx-auto px-6">
-              <h2 className="font-heading text-2xl md:text-3xl font-bold text-foreground mb-4">
-                {content.guide.limits.title}
-              </h2>
-              <ul className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                {content.guide.limits.items.map((item) => (
-                  <li key={item} className="rounded-2xl border border-border bg-white p-4 text-sm leading-relaxed text-muted-foreground">
-                    {item}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </section>
-          <section className="py-8 bg-slate-950 text-white">
+          <section className="pt-0 pb-8 bg-slate-950 text-white">
             <div className="max-w-3xl mx-auto px-6 text-center">
-              <h2 className="font-heading text-2xl md:text-3xl font-bold">{content.guide.closing}</h2>
+              <h2 className="font-heading text-2xl md:text-3xl font-bold">{guide.closing}</h2>
               <Link
                 href={navigation.cta.href}
                 className="mt-4 inline-flex items-center gap-2 px-8 py-4 rounded-full bg-primary text-primary-foreground font-semibold hover:opacity-90 transition-opacity"
