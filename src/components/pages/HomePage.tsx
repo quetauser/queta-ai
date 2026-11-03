@@ -82,16 +82,18 @@ export function HomePage() {
                 <Link
                   key={persona.slug}
                   href={persona.href}
-                  className={`group relative flex h-full flex-col rounded-3xl border-2 p-8 cursor-pointer transition-all duration-300 ${theme.card}`}
+                  className={`group relative flex h-full flex-col rounded-3xl border-2 p-8 cursor-pointer transition-all duration-300 lg:px-3 lg:py-8 ${theme.card}`}
                 >
                   <div
-                    className={`absolute top-0 left-8 right-8 h-1 rounded-b-full bg-gradient-to-r ${theme.cardBorder} opacity-0 group-hover:opacity-100 transition-opacity duration-300`}
+                    className={`absolute top-0 left-8 right-8 h-1 rounded-b-full bg-gradient-to-r lg:left-3 lg:right-3 ${theme.cardBorder} opacity-0 group-hover:opacity-100 transition-opacity duration-300`}
                   />
                   <div
-                    className={`mb-5 inline-flex max-w-full flex-wrap items-baseline rounded-full px-4 py-2 leading-tight ${theme.badge}`}
+                    className={`mb-5 inline-flex w-fit max-w-full flex-wrap items-baseline rounded-full px-4 py-2 leading-tight lg:max-w-none lg:flex-nowrap lg:px-2.5 ${theme.badge}`}
                   >
-                    <span className="text-[30px] font-semibold">{persona.label}</span>
-                    <span className="ml-1.5 translate-y-[0.35em] whitespace-nowrap text-[10px] font-medium leading-none text-muted-foreground">
+                    <span className="whitespace-nowrap text-[30px] font-semibold lg:text-[21px] xl:text-[30px]">
+                      {persona.label}
+                    </span>
+                    <span className="ml-1 translate-y-[0.35em] whitespace-nowrap text-[10px] font-medium leading-none text-muted-foreground max-lg:ml-0 max-lg:mt-0.5 max-lg:basis-full max-lg:translate-y-0">
                       {home.personaPoweredBy}
                     </span>
                   </div>
