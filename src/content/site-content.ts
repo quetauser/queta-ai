@@ -105,6 +105,7 @@ export const home = {
     primaryCta: { label: "Subscribe", href: "/contact" },
     secondaryCta: { label: "Explore Solutions", href: "#solutions" },
   },
+  personaPoweredBy: "powered by Grok Bot",
   statsSection: {
     eyebrow: "The Numbers",
     title: "Work is about to get",
