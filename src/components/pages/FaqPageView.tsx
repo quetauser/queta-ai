@@ -1,5 +1,6 @@
 import { ChevronDown } from "lucide-react";
 import { faq } from "@/content/site-content";
+import { ProductVideo } from "@/components/pages/ProductVideo";
 
 function isExternal(href: string) {
   return /^https?:\/\//.test(href);
@@ -45,6 +46,15 @@ export function FaqPageView() {
                     </summary>
                     <div className="pb-4 text-sm leading-relaxed text-muted-foreground">
                       {"answer" in item ? <p>{item.answer}</p> : null}
+                      {"video" in item ? (
+                        <ProductVideo
+                          src={item.video.src}
+                          poster={item.video.poster}
+                          label={item.video.label}
+                          autoplay={false}
+                          className="mt-3 w-full"
+                        />
+                      ) : null}
                       {"links" in item ? (
                         <ul className={"answer" in item ? "mt-3 flex flex-col gap-2" : "flex flex-col gap-2"}>
                           {item.links.map((link) => (

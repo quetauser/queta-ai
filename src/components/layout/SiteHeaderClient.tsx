@@ -15,6 +15,7 @@ interface Navigation {
   links: readonly NavItem[];
   legal: { label: string; links: readonly NavItem[] };
   feedback: NavItem;
+  faq: NavItem;
   cta: NavItem;
 }
 
@@ -151,6 +152,12 @@ export function SiteHeaderClient({
 
         <div className="hidden md:flex items-center gap-3 shrink-0">
           <Link
+            href={navigation.faq.href}
+            className="whitespace-nowrap text-sm font-medium text-foreground/70 transition-colors hover:text-foreground"
+          >
+            {navigation.faq.label}
+          </Link>
+          <Link
             href={navigation.feedback.href}
             className="whitespace-nowrap text-sm font-medium text-foreground/70 transition-colors hover:text-foreground"
           >
@@ -218,6 +225,13 @@ export function SiteHeaderClient({
               </Link>
             ))}
           </div>
+          <Link
+            href={navigation.faq.href}
+            className="block text-sm font-medium text-foreground/80"
+            onClick={() => setMobileOpen(false)}
+          >
+            {navigation.faq.label}
+          </Link>
           <Link
             href={navigation.feedback.href}
             className="block text-sm font-medium text-foreground/80"
