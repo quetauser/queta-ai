@@ -15,7 +15,32 @@ export interface PersonaCard {
 export interface SolutionFeature {
   title: string;
   description: string;
-  tagline: string;
+  tagline?: string;
+  points?: readonly string[];
+}
+
+export interface SolutionFeatureGroup {
+  title: string;
+  span: "half" | "full";
+  features: readonly SolutionFeature[];
+}
+
+export interface SolutionGuide {
+  howItWorks: {
+    eyebrow: string;
+    title: string;
+    steps: readonly { title: string; text: string }[];
+    principles: readonly string[];
+  };
+  gettingStarted: {
+    title: string;
+    steps: readonly { title: string; text: string }[];
+  };
+  limits: {
+    title: string;
+    items: readonly string[];
+  };
+  closing: string;
 }
 
 export interface Scenario {
@@ -35,6 +60,8 @@ export interface SolutionPageContent {
   ctaHeadline: string;
   ctaDescription: string;
   featuresHeading?: string;
+  featureGroups?: readonly SolutionFeatureGroup[];
+  guide?: SolutionGuide;
 }
 
 export type LegalRun =
@@ -126,13 +153,12 @@ export const home = {
       slug: "realtor",
       label: "Queta Realtor",
       headline: "Close faster. Work smarter.",
-      description:
-        "From lead follow-up to listing management, your AI agent keeps every deal moving without the manual grind.",
+      description: "Your AI back office for every buyer and seller deal.",
       bullets: [
-        "Automated lead nurturing",
-        "Listing & CRM sync",
-        "Market analysis reports",
-        "Client communication drafts",
+        "New-listing alerts and comps",
+        "Net proceeds and offer comparison",
+        "Listing-to-closing deal tracker",
+        "MLS listing prep packet",
       ],
       href: "/solutions/realtor",
       theme: "blue",
@@ -449,66 +475,213 @@ export const faq = {
 
 const realtorSolution: SolutionPageContent = {
   slug: "realtor",
-  metaTitle: "Realtor AI Agent — Queta AI",
-  personaLabel: "Realtor",
+  metaTitle: "Queta Realtor — Queta AI",
+  personaLabel: "Queta Realtor",
   heroHeadline: "Close faster. Work smarter.",
   heroDescription:
     "Queta Realtor, powered by Grok Bot, keeps every deal moving — from first lead to final signature — without the manual follow-up, data entry, or missed opportunities.",
   theme: "blue",
-  features: [
+  features: [],
+  featureGroups: [
     {
-      title: "Automated Lead Nurturing",
-      description:
-        "Your agent follows up with every lead on the right cadence — personalized messages, timely check-ins, and no lead left cold.",
-      tagline: "Respond within minutes of a new inquiry, even when you're showing a property.",
+      title: "Buyer Side",
+      span: "half",
+      features: [
+        {
+          title: "New-listing alerts",
+          description:
+            "A daily check against each client's criteria. It reports only new listings and price drops.",
+        },
+        {
+          title: "Facing direction",
+          description: "Listing text, satellite view, and map math, with a confidence level.",
+        },
+        {
+          title: "Comps",
+          description:
+            "A brokerage-style CMA with comp and adjustment grids and a low / likely / high range.",
+        },
+        {
+          title: "Pre-offer playbook",
+          description: "From affordability and showings through the offer, inspection request, and move-in checklist.",
+          points: [
+            "Affordability, monthly payment math, and a lender shortlist",
+            "Showing tour route and scorecard",
+            "Due diligence: taxes, flood zone, permits, schools, radon, and oil tank",
+            "Offer strategy: aggressive / balanced / conservative",
+            "Inspection repair request draft",
+            "Homeowners insurance options",
+            "NJ closing cost estimate",
+            "Move-in checklist",
+          ],
+        },
+        {
+          title: "NJ offer documents",
+          description: "Buyer checklist, offer form, and seller disclosure links.",
+        },
+        {
+          title: "Under-contract tracker",
+          description: "Dated tasks from attorney review to closing.",
+        },
+      ],
     },
     {
-      title: "Listing & CRM Sync",
-      description:
-        "New listings, price changes, and status updates flow automatically into your CRM and marketing channels.",
-      tagline: "Your agent keeps every record current so you're never working from stale data.",
+      title: "Seller Side",
+      span: "half",
+      features: [
+        {
+          title: "Comps and pricing",
+          description: "A sourced CMA and list-price strategy, labeled an estimate.",
+        },
+        {
+          title: "Net proceeds",
+          description:
+            "Commissions, NJ transfer fee, payoff, and prorations, with a low / likely / high range.",
+        },
+        {
+          title: "MLS listing prep packet",
+          description:
+            "Sourced property facts, a room-by-room breakdown, a public remarks draft, a documents checklist, and a photo shot list.",
+        },
+        {
+          title: "Flat-fee MLS comparison",
+          description: "Sourced prices, inclusions, fees, and trade-offs versus full service.",
+        },
+        {
+          title: "Listing-to-closing tracker",
+          description: "Dated tasks from go-live to closing.",
+        },
+        {
+          title: "Weekly showing and price review",
+          description: "Feedback, new competition, and a hold / adjust / improve recommendation.",
+        },
+        {
+          title: "Offer comparison",
+          description: "Side-by-side net and risk for each offer.",
+        },
+        {
+          title: "Repair request response",
+          description: "Repair, credit, or decline for each item, with the new net.",
+        },
+        {
+          title: "Move-out checklist",
+          description: "Utilities, services, keys, mail, and movers.",
+        },
+      ],
     },
     {
-      title: "Market Analysis Reports",
-      description:
-        "Get instant comps, neighborhood trend summaries, and buyer/seller market insights — ready to share with clients.",
-      tagline: "Walk into every meeting with data that builds trust and closes deals.",
+      title: "Linked Deals",
+      span: "full",
+      features: [
+        {
+          title: "Buy-and-sell timing plan",
+          description: "Sell first, buy first, contingent, or back-to-back closings.",
+        },
+        {
+          title: "Linked client deals",
+          description: "One client's buyer and seller deals stay linked.",
+        },
+        {
+          title: "Sale proceeds and date clashes",
+          description: "Sale proceeds feed the purchase budget, and date clashes are flagged.",
+        },
+      ],
     },
     {
-      title: "Client Communication Drafts",
-      description:
-        "Your agent drafts emails, follow-ups, and offer summaries in your voice — you review and send.",
-      tagline: "Cut hours of writing down to minutes without losing the personal touch.",
+      title: "Deal Tracker",
+      span: "full",
+      features: [
+        {
+          title: "Clients, deals, and tasks",
+          description: "Clients, deals, and tasks in one client and deal tracker.",
+        },
+        {
+          title: "Dependent dates",
+          description: "Dependent dates recalculate when one date moves.",
+        },
+        {
+          title: "Daily reminder",
+          description: "A daily reminder for tasks due soon or overdue.",
+        },
+      ],
     },
     {
-      title: "Showing Coordination",
-      description:
-        "Schedule showings, send confirmations, collect feedback, and log notes — all handled automatically.",
-      tagline: "Your calendar stays organized and clients stay informed without back-and-forth.",
-    },
-    {
-      title: "Transaction Timeline Tracking",
-      description:
-        "Monitor every deal's milestones — inspections, contingencies, closing dates — and get alerts before deadlines slip.",
-      tagline: "Nothing falls through the cracks when your agent is watching every deal.",
+      title: "Referral Pages",
+      span: "full",
+      features: [
+        {
+          title: "Attorneys",
+          description: "5 to 8 local real estate attorneys, with sourced ratings and questions to ask.",
+        },
+        {
+          title: "Inspectors",
+          description: "License lookup, add-on services, and a local risk checklist.",
+        },
+        {
+          title: "Recommended by",
+          description: "A \"Recommended by\" column for your referrals.",
+        },
+      ],
     },
   ],
-  scenarios: [
-    {
-      scenario: "New lead submits a contact form at 11pm",
-      outcome: "Personalized follow-up sent within 5 minutes, meeting booked by morning",
+  scenarios: [],
+  ctaHeadline: "",
+  ctaDescription: "",
+  guide: {
+    howItWorks: {
+      eyebrow: "One assistant, built on Grok Bot",
+      title: "How it works",
+      steps: [
+        {
+          title: "Runs on Grok Bot",
+          text: "Each feature is a tested skill, so work comes out the same way every time.",
+        },
+        {
+          title: "Connects to your tools",
+          text: "Your email, calendar, and client and deal tracker, with your approval.",
+        },
+        {
+          title: "Set up from a template",
+          text: "A ready-made bot template plus a ready-made client and deal tracker.",
+        },
+      ],
+      principles: [
+        "Every figure sourced and dated",
+        "Estimates labeled as estimates",
+        "Nothing sent without your OK",
+        "No task marked done without your confirmation",
+      ],
     },
-    {
-      scenario: "Client asks for comps on a 3BR in Midtown",
-      outcome: "Market analysis report generated and emailed in under 2 minutes",
+    gettingStarted: {
+      title: "Getting started",
+      steps: [
+        {
+          title: "Set up",
+          text: "Install the bot template and add the client and deal tracker.",
+        },
+        {
+          title: "Connect",
+          text: "Link your email, calendar, and tracker.",
+        },
+        {
+          title: "Add a client",
+          text: "Buying, selling, or both. It asks a few questions, one at a time.",
+        },
+        {
+          title: "Ask for a first action",
+          text: "Comps, a listing alert, a listing packet, or a tracker for an accepted offer.",
+        },
+      ],
     },
-    {
-      scenario: "Inspection deadline is in 3 days",
-      outcome: "Proactive alert sent with checklist and vendor contacts ready",
+    limits: {
+      title: "What it doesn't do",
+      items: [
+        "It is not legal, tax, or financial advice. Confirm decisions with attorneys and lenders.",
+        "You, the agent, sign and submit every document. It drafts and organizes; it never posts to the MLS.",
+      ],
     },
-  ],
-  ctaHeadline: "Ready to close more deals?",
-  ctaDescription: "Request a demo and see your Realtor AI agent in action.",
+    closing: "Spend more time with clients, less on paperwork.",
+  },
 };
 
 const traderSolution: SolutionPageContent = {
