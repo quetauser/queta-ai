@@ -12,11 +12,11 @@ function LegalRunView({ run }: { run: LegalRun }) {
     );
   }
   if (run.kind === "link") {
+    const external = /^https?:\/\//.test(run.href);
     return (
       <a
         href={run.href}
-        target="_blank"
-        rel="noopener noreferrer"
+        {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
         className="text-primary underline break-words"
       >
         {run.text}
