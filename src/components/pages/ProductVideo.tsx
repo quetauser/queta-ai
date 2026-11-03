@@ -11,6 +11,7 @@ interface ProductVideoProps {
   className?: string;
   loop?: boolean;
   fit?: "contain" | "cover";
+  autoplay?: boolean;
 }
 
 export function ProductVideo({
@@ -20,6 +21,7 @@ export function ProductVideo({
   className,
   loop = false,
   fit = "contain",
+  autoplay = true,
 }: ProductVideoProps) {
   const rootRef = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -61,13 +63,20 @@ export function ProductVideo({
           if (!entries.some((entry) => entry.isIntersecting)) {
             return;
           }
+          const detailsEl = root.closest("details");
+          if (detailsEl && !detailsEl.open) {
+            return;
+          }
           observer?.disconnect();
           const video = videoRef.current;
           if (!video || video.getAttribute("src")) {
             return;
           }
-          video.preload = "auto";
+          video.preload = autoplay ? "auto" : "metadata";
           video.src = source;
+          if (!autoplay) {
+            return;
+          }
           video.muted = true;
           setAttached(true);
           void video.play();
@@ -83,12 +92,21 @@ export function ProductVideo({
       window.addEventListener("load", watch, { once: true });
     }
 
+    const details = root.closest("details");
+    const onToggle = () => {
+      if (details && !details.open) {
+        videoRef.current?.pause();
+      }
+    };
+    details?.addEventListener("toggle", onToggle);
+
     return () => {
       cancelled = true;
       window.removeEventListener("load", watch);
       observer?.disconnect();
+      details?.removeEventListener("toggle", onToggle);
     };
-  }, []);
+  }, [autoplay]);
 
   return (
     <div

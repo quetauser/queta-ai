@@ -409,6 +409,16 @@ export const faq = {
           answer:
             "Queta AI solutions run on the Grok Bot platform. You subscribe to the Grok platform under your own username, and your Queta solution runs inside your individual Grok account.",
         },
+        {
+          question: "How do I migrate from ChatGPT to Grok Bot while preserving my memories and data?",
+          answer:
+            "You can bring your ChatGPT memories and data into Grok Bot so you do not have to start from scratch. First, copy your saved memories from ChatGPT (Settings > Personalization > Memory > Manage) and request a full data export (Settings > Data controls > Export data). Then open a chat with your Grok Bot, paste in your memories, ask it to remember them, and share files from your export so it can pick out what matters. The video below walks through each step.",
+          video: {
+            src: "/videos/migrate-chatgpt.mp4",
+            poster: "/videos/migrate-chatgpt-poster.jpg",
+            label: "Migrate from ChatGPT to Grok Bot",
+          },
+        },
       ],
     },
     {
