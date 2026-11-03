@@ -153,7 +153,8 @@ export const home = {
       slug: "realtor",
       label: "Queta Realtor",
       headline: "Close faster. Work smarter.",
-      description: "Your AI back office for every buyer and seller deal.",
+      description:
+        "From Lead creation to Deal closure, your Queta Realtor Companion that keeps every deal moving without the manual grind.",
       bullets: [
         "New-listing alerts and comps",
         "Net proceeds and offer comparison",
