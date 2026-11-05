@@ -202,7 +202,7 @@ export function SolutionPage({
             {content.slug === "lifestyle" ? (
               <Link
                 href={pricing.compareLink.href}
-                className="mt-4 inline-flex text-sm font-medium text-foreground/70 transition-colors hover:text-foreground"
+                className="mt-4 block w-fit text-sm font-medium text-foreground/70 transition-colors hover:text-foreground"
               >
                 {pricing.compareLink.label}
               </Link>
