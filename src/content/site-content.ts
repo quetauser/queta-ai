@@ -245,6 +245,14 @@ export const pricing = {
       interestKey: "get-started-realtor",
     },
   ],
+  subscribe: {
+    placeholderLabel: "PayPal — Subscribe",
+    placeholderNote: "PayPal checkout coming soon",
+    questions: "Questions? Contact us",
+    thankYou: "Thank you! Your subscription is confirmed. We'll email you next steps.",
+    error:
+      "PayPal could not complete the subscription. Please try again, or contact us if it keeps happening.",
+  },
   why: {
     eyebrow: "Why We Built This",
     title: "Built by people who ran out of time.",
