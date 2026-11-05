@@ -814,7 +814,7 @@ const lifestyleSolution: SolutionPageContent = {
     {
       title: "Student Guide",
       description:
-        "Helps you and your household understand complex topics with short generated videos, from kids' homework to advanced topics for a career. It also guides families through college applications, building the college list and tracking deadlines and application status.",
+        "Helps you and your household understand complex topics with short generated videos, from kids' homework to advanced topics for a career. It also guides families through college applications, building the college list and tracking deadlines and application status. Student Guide connects to Genesis so school and application information stays current without manual re-entry.",
       tagline: "Homework, career learning, and the college list, kept on track.",
     },
     {
