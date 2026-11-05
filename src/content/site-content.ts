@@ -195,7 +195,7 @@ export const pricing = {
         "Spending Coach",
         "Privacy Guardian",
         "Health Coach",
-        "Student Planner",
+        "Student Guide",
         "Inbox Agent",
         "Retirement Planner",
         "Career Coach",
@@ -812,7 +812,7 @@ const lifestyleSolution: SolutionPageContent = {
       tagline: "The small daily habits, prompted before they slip.",
     },
     {
-      title: "Student Planner",
+      title: "Student Guide",
       description:
         "Helps you and your household understand complex topics with short generated videos, from kids' homework to advanced topics for a career. It also guides families through college applications, building the college list and tracking deadlines and application status.",
       tagline: "Homework, career learning, and the college list, kept on track.",
