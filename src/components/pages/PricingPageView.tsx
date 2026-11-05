@@ -52,6 +52,14 @@ export function PricingPageView() {
                     Just {tier.launchMonthly}/mo, billed yearly
                   </p>
                   <p className="mt-2 text-xs text-muted-foreground leading-relaxed">{tier.offer}</p>
+                  {tier.interestKey === "get-started-lifestyle-user" ? (
+                    <Link
+                      href={pricing.compareLink.href}
+                      className="mt-3 inline-flex rounded-full border border-border bg-white px-3 py-1 text-xs font-medium text-foreground/80 transition-colors hover:border-foreground/30 hover:text-foreground"
+                    >
+                      {pricing.compareLink.label}
+                    </Link>
+                  ) : null}
                   <p className="mt-4 text-base md:text-lg text-foreground/75 leading-relaxed">{tier.description}</p>
                 </div>
                 <ul className="p-8 flex flex-col gap-3 flex-1">

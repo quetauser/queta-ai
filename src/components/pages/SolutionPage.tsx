@@ -14,7 +14,7 @@ import {
   type LucideIcon,
 } from "lucide-react";
 import type { SolutionFeature, SolutionFeatureGroup, SolutionPageContent } from "@/content/site-content";
-import { navigation, pricing } from "@/content/site-content";
+import { navigation } from "@/content/site-content";
 import { heroThemeBackground, personaThemeClasses } from "@/lib/persona-theme";
 import { ProductVideo } from "@/components/pages/ProductVideo";
 
@@ -197,14 +197,6 @@ export function SolutionPage({
               >
                 {navigation.cta.label}
                 <ArrowRight size={18} />
-              </Link>
-            ) : null}
-            {content.slug === "lifestyle" ? (
-              <Link
-                href={pricing.compareLink.href}
-                className="mt-4 block w-fit text-sm font-medium text-foreground/70 transition-colors hover:text-foreground"
-              >
-                {pricing.compareLink.label}
               </Link>
             ) : null}
           </div>

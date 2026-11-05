@@ -2229,8 +2229,8 @@ export const navigation = {
 } as const;
 
 export const compare = {
-  metaTitle: "Each user spends on average $181 on these subscriptions — Queta AI",
-  title: "Each user spends on average $181 on these subscriptions.\nQueta Companion - $33.25/month",
+  metaTitle: "Average User spends $181/month on subscriptions — Queta AI",
+  title: "Average User spends $181/month on subscriptions.\nQueta Companion solution- $33.25 / month",
   columns: {
     agent: "Queta Lifestyle agent",
     app: "Comparable app",
@@ -2340,8 +2340,8 @@ export const compare = {
   ],
   totalLabel: "Total",
   totalCost: "$181.35/mo",
-  calloutLead: "Queta Companion - ",
-  calloutPrice: "$33.25/month",
+  calloutLead: "Queta Companion solution- ",
+  calloutPrice: "$33.25 / month",
 } as const;
 
 export const publicRoutes = [
