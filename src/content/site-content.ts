@@ -176,7 +176,7 @@ export const pricing = {
       "Simple, transparent pricing built around your persona. No hidden fees, just your edge.",
   },
   compareLink: { label: "Compare Pricing", href: "/compare" },
-  launchBanner: "Launch pricing. Save on your first year through Nov 30.",
+  launchBanner: "Launch pricing. Save on your first year through Nov 22.",
   launchBadge: "Launch offer",
   tiers: [
     {
@@ -184,7 +184,7 @@ export const pricing = {
       launchAmount: "$279",
       regularAmount: "$399",
       launchMonthly: "$23.25",
-      offer: "First year when you sign up by Nov 30, 2026. Renews at $399/year.",
+      offer: "First year when you sign up by Nov 22, 2026. Renews at $399/year.",
       description:
         "For individuals ready to reclaim their time and get things done with Queta Companion.",
       features: [
@@ -211,7 +211,7 @@ export const pricing = {
       launchAmount: "$449",
       regularAmount: "$549",
       launchMonthly: "$37.42",
-      offer: "First year when you sign up by Nov 30, 2026. Renews at $549/year.",
+      offer: "First year when you sign up by Nov 22, 2026. Renews at $549/year.",
       description:
         "For active traders who need near real-time intelligence and automated execution.",
       features: [
@@ -230,7 +230,7 @@ export const pricing = {
       launchAmount: "$569",
       regularAmount: "$669",
       launchMonthly: "$47.42",
-      offer: "First year when you sign up by Nov 30, 2026. Renews at $669/year.",
+      offer: "First year when you sign up by Nov 22, 2026. Renews at $669/year.",
       description:
         "For real estate professionals automating client and workflow tasks.",
       features: [
@@ -2229,8 +2229,8 @@ export const navigation = {
 } as const;
 
 export const compare = {
-  metaTitle: "What an average user spends per month on services — Queta AI",
-  title: "What an average user spends per month on services",
+  metaTitle: "Each user spends on average $181 on these subscriptions — Queta AI",
+  title: "Each user spends on average $181 on these subscriptions.\nQueta Companion - $33.25/month",
   columns: {
     agent: "Queta Lifestyle agent",
     app: "Comparable app",
@@ -2340,8 +2340,8 @@ export const compare = {
   ],
   totalLabel: "Total",
   totalCost: "$181.35/mo",
-  calloutLead: "Queta Lifestyle - ",
-  calloutPrice: "$29.08 / month",
+  calloutLead: "Queta Companion - ",
+  calloutPrice: "$33.25/month",
 } as const;
 
 export const publicRoutes = [
