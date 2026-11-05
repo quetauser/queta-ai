@@ -36,7 +36,7 @@ export function ComparePageView() {
   return (
     <section className="pt-20 pb-8">
       <div className="max-w-5xl mx-auto px-4 sm:px-6">
-        <h1 className="font-heading text-2xl md:text-3xl font-bold tracking-tight text-foreground leading-tight mb-4">
+        <h1 className="font-heading text-2xl md:text-3xl font-bold tracking-tight text-foreground leading-tight mb-4 whitespace-pre-line">
           {compare.title}
         </h1>
         <div className="overflow-x-auto rounded-2xl border border-border bg-white">

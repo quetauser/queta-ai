@@ -49,9 +49,17 @@ export function PricingPageView() {
                     <span className="mb-1.5 text-sm text-muted-foreground">/year</span>
                   </p>
                   <p className="mt-3 inline-flex rounded-full border border-violet-200 bg-violet-50 px-3 py-1 text-sm font-medium text-primary">
-                    Just {tier.launchMonthly}/mo, billed yearly
+                    Just {tier.launchMonthly}/mo, billed annually
                   </p>
                   <p className="mt-2 text-xs text-muted-foreground leading-relaxed">{tier.offer}</p>
+                  {tier.interestKey === "get-started-lifestyle-user" ? (
+                    <Link
+                      href={pricing.compareLink.href}
+                      className="mt-3 inline-flex rounded-full border border-violet-200 bg-violet-50 px-3 py-1 text-xs font-semibold text-primary transition-colors hover:bg-violet-100"
+                    >
+                      {pricing.compareLink.label}
+                    </Link>
+                  ) : null}
                   <p className="mt-4 text-base md:text-lg text-foreground/75 leading-relaxed">{tier.description}</p>
                 </div>
                 <ul className="p-8 flex flex-col gap-3 flex-1">
@@ -73,14 +81,6 @@ export function PricingPageView() {
               </div>
             ))}
           </div>
-          <p className="mt-8 text-center">
-            <Link
-              href={pricing.compareLink.href}
-              className="text-sm font-medium text-foreground/70 transition-colors hover:text-foreground"
-            >
-              {pricing.compareLink.label}
-            </Link>
-          </p>
         </div>
       </section>
 
