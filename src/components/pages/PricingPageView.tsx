@@ -49,7 +49,7 @@ export function PricingPageView() {
                     <span className="mb-1.5 text-sm text-muted-foreground">/year</span>
                   </p>
                   <p className="mt-3 inline-flex rounded-full border border-violet-200 bg-violet-50 px-3 py-1 text-sm font-medium text-primary">
-                    Just {tier.launchMonthly}/mo, billed yearly
+                    Just {tier.launchMonthly}/mo, billed annually
                   </p>
                   <p className="mt-2 text-xs text-muted-foreground leading-relaxed">{tier.offer}</p>
                   {tier.interestKey === "get-started-lifestyle-user" ? (
