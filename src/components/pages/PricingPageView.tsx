@@ -55,7 +55,7 @@ export function PricingPageView() {
                   {tier.interestKey === "get-started-lifestyle-user" ? (
                     <Link
                       href={pricing.compareLink.href}
-                      className="mt-3 inline-flex rounded-full border border-border bg-white px-3 py-1 text-xs font-medium text-foreground/80 transition-colors hover:border-foreground/30 hover:text-foreground"
+                      className="mt-3 inline-flex rounded-full border border-violet-200 bg-violet-50 px-3 py-1 text-xs font-semibold text-primary transition-colors hover:bg-violet-100"
                     >
                       {pricing.compareLink.label}
                     </Link>
