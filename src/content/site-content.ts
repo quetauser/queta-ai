@@ -711,6 +711,12 @@ const traderSolution: SolutionPageContent = {
       tagline: "No more staring at charts. Your agent does the watching.",
     },
     {
+      title: "Paper Trading",
+      description:
+        "Test your strategies with simulated trades on real market data, no capital at risk. Refine entries, exits, and position sizing until the approach performs to your liking, then move it to your live brokerage account with confidence.",
+      tagline: "Prove the plan on paper before it risks real money.",
+    },
+    {
       title: "Portfolio Summary Reports",
       description:
         "Get a clear daily or weekly snapshot of your positions, P&L, exposure, and performance — formatted for fast review.",
@@ -732,12 +738,6 @@ const traderSolution: SolutionPageContent = {
       title: "Stock Analyst commentary",
       description: "Near real-time updates for stock upgrade and downgrade.",
       tagline: "Your agent keeps you informed on what stock analysts are saying.",
-    },
-    {
-      title: "Paper Trading",
-      description:
-        "Test your strategies with simulated trades on real market data, no capital at risk. Refine entries, exits, and position sizing until the approach performs to your liking, then move it to your live brokerage account with confidence.",
-      tagline: "Prove the plan on paper before it risks real money.",
     },
   ],
   scenarios: [

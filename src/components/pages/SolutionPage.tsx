@@ -230,21 +230,11 @@ export function SolutionPage({
           {content.featureGroups ? (
             <FeatureGroups groups={content.featureGroups} />
           ) : (
-            <div
-              className={
-                content.slug === "trader"
-                  ? "flex flex-wrap justify-center gap-6"
-                  : "grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3"
-              }
-            >
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {content.features.map((feature) => (
                 <div
                   key={feature.title}
-                  className={`flex flex-col rounded-2xl border border-border p-7 bg-white shadow-sm ${
-                    content.slug === "trader"
-                      ? "w-full md:w-[calc(50%-0.75rem)] lg:w-[calc(33.333%-1rem)]"
-                      : "h-full"
-                  }`}
+                  className="flex h-full flex-col rounded-2xl border border-border p-7 bg-white shadow-sm"
                 >
                   <h3 className="text-xl font-bold text-foreground mb-3">{feature.title}</h3>
                   <p className="text-sm text-muted-foreground leading-relaxed mb-3">
