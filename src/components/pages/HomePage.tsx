@@ -139,13 +139,12 @@ export function HomePage() {
         </div>
         <div className="max-w-7xl mx-auto px-6 relative">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-            <div>
+            <div className="@container">
               <p className="text-xs font-semibold uppercase tracking-widest text-violet-400 mb-4">
                 {home.statsSection.eyebrow}
               </p>
-              <h2 className="font-heading text-5xl md:text-6xl font-bold text-white leading-tight mb-6">
-                {home.statsSection.title}
-                <br />
+              <h2 className="font-heading hyphens-none break-normal font-bold text-white leading-[1.15] mb-6 text-[1.85rem] sm:text-[2.15rem] md:text-[2.5rem] lg:text-[clamp(1.45rem,5.05cqw,1.9rem)]">
+                {home.statsSection.title}{" "}
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-400 to-blue-400">
                   {home.statsSection.titleHighlight}
                 </span>

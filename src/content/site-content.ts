@@ -111,7 +111,7 @@ export const home = {
     title: "Work is about to get",
     titleHighlight: "radically different.",
     description:
-      "Queta AI agents don't just assist — they act. Autonomously handling the tasks that drain your time, so you operate at a level that wasn't possible before.",
+      "Queta AI agents, powered by Grok Bot, don't just assist — they act. Autonomously handling the tasks that drain your time, so you operate at a level that wasn't possible before.",
     stats: [
       { value: "10x", label: "Faster task completion" },
       { value: "80%", label: "Reduction in manual overhead" },
