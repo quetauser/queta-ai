@@ -357,13 +357,19 @@ export const contact = {
 export const subscribe = {
   metaTitle: "Subscribe — Queta AI",
   heading: "Thank you for your interest in Queta AI solutions",
+  steps: {
+    details: "1. Your details",
+    products: "2. Products of interest",
+    review: "3. Review & accept",
+    submit: "4. Subscribe",
+  },
   productsLegend: "Products",
   productsRequired: "Select at least one product.",
   fields: {
     firstName: { label: "First Name", placeholder: "First name" },
     lastName: { label: "Last Name", placeholder: "Last name" },
     email: { label: "Email", placeholder: "you@example.com" },
-    phone: { label: "Phone number", placeholder: "Phone number" },
+    phone: { label: "Phone number (optional)", placeholder: "Phone number" },
   },
   errors: {
     firstName: "Enter your first name.",
@@ -375,7 +381,9 @@ export const subscribe = {
   decline: "Decline",
   readDisclaimer:
     "Read the Terms of Use, Privacy Policy, End User License Agreement, AI and Legal Disclosure",
-  scrollHint: "Scroll to the end to accept",
+  scrollHint: "Scroll to the end to continue",
+  reachedEnd: "You've reached the end",
+  stillNeeded: "Still needed:",
   disclaimerNeeded: "Accept the Queta Disclaimer to subscribe.",
   disclaimerDeclined: "You declined the Queta Disclaimer. Accept it to subscribe.",
   submitLabel: "Subscribe",

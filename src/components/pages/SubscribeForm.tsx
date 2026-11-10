@@ -1,6 +1,6 @@
 "use client";
 
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, ChevronDown, CircleCheck } from "lucide-react";
 import { FormEvent, UIEvent, useEffect, useRef, useState } from "react";
 import { navigation, subscribe } from "@/content/site-content";
 import { QuetaDisclaimerSections } from "@/components/pages/QuetaDisclaimer";
@@ -19,6 +19,7 @@ export function SubscribeForm() {
   const [disclaimerChoice, setDisclaimerChoice] = useState<PolicyChoice>(null);
   const [disclaimerOpen, setDisclaimerOpen] = useState(false);
   const [scrolledToEnd, setScrolledToEnd] = useState(false);
+  const [readPercent, setReadPercent] = useState(0);
   const [honey, setHoney] = useState("");
   const [sending, setSending] = useState(false);
   const [sendError, setSendError] = useState(false);
@@ -32,6 +33,13 @@ export function SubscribeForm() {
   const emailValid = EMAIL_PATTERN.test(email.trim());
   const disclaimerAccepted = disclaimerChoice === "accept";
   const canSubscribe = productSelected && firstNameValid && lastNameValid && emailValid && disclaimerAccepted;
+  const missingRequirements = [
+    !firstNameValid ? "first name" : null,
+    !lastNameValid ? "last name" : null,
+    !emailValid ? "a valid email" : null,
+    !productSelected ? "at least one product" : null,
+    !disclaimerAccepted ? (scrolledToEnd ? "Accept" : "reading the disclaimer to the end, then Accept") : null,
+  ].filter((item): item is string => item !== null);
 
   function chooseDisclaimer(choice: Exclude<PolicyChoice, null>) {
     if (choice === "accept" && !scrolledToEnd) {
@@ -48,21 +56,25 @@ export function SubscribeForm() {
     setDisclaimerOpen((open) => !open);
   }
 
-  function markScrolled(element: HTMLDivElement) {
-    if (element.scrollTop + element.clientHeight >= element.scrollHeight - 24) {
+  function updateScroll(element: HTMLDivElement) {
+    const maxScroll = element.scrollHeight - element.clientHeight;
+    const atEnd = maxScroll <= 24 || element.scrollTop + element.clientHeight >= element.scrollHeight - 24;
+    const percent = maxScroll <= 0 ? 100 : Math.min(100, Math.round((element.scrollTop / maxScroll) * 100));
+    setReadPercent(atEnd ? 100 : percent);
+    if (atEnd) {
       setScrolledToEnd(true);
     }
   }
 
   function onDisclaimerScroll(event: UIEvent<HTMLDivElement>) {
-    markScrolled(event.currentTarget);
+    updateScroll(event.currentTarget);
   }
 
   useEffect(() => {
     if (!disclaimerOpen || !disclaimerRef.current) {
       return;
     }
-    markScrolled(disclaimerRef.current);
+    updateScroll(disclaimerRef.current);
   }, [disclaimerOpen]);
 
   async function onSubmit(event: FormEvent<HTMLFormElement>) {
@@ -124,36 +136,14 @@ export function SubscribeForm() {
                 className="absolute h-0 w-0 overflow-hidden opacity-0"
                 aria-hidden
               />
-              <div className="grid grid-cols-1 gap-4 md:grid-cols-2 md:items-start">
-              <fieldset className="flex flex-col gap-2">
-                <legend className="text-sm font-semibold text-foreground">{subscribe.productsLegend}</legend>
-                {navigation.solutions.map((item) => (
-                  <label key={item.href} className="flex items-center gap-2 text-sm text-foreground">
-                    <input
-                      type="checkbox"
-                      name="products"
-                      value={item.href}
-                      checked={Boolean(products[item.href])}
-                      onChange={(event) => {
-                        setProducts((current) => ({ ...current, [item.href]: event.target.checked }));
-                        setConfirmed(false);
-                      }}
-                      className="size-4 accent-primary"
-                    />
-                    {item.label}
-                  </label>
-                ))}
-                {productSelected ? null : (
-                  <p className="text-sm text-red-700" role="alert">
-                    {subscribe.productsRequired}
-                  </p>
-                )}
-              </fieldset>
-
-              <div className="grid grid-cols-1 gap-3 md:grid-cols-2">
+              <div className="grid grid-cols-1 gap-6 md:grid-cols-2 md:items-start">
+              <fieldset className="order-1 flex flex-col gap-3">
+                <legend className="text-sm font-semibold text-foreground">{subscribe.steps.details}</legend>
+                <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
                 <Field
                   id="first-name"
                   label={subscribe.fields.firstName.label}
+                  required
                   placeholder={subscribe.fields.firstName.placeholder}
                   value={firstName}
                   autoComplete="given-name"
@@ -167,6 +157,7 @@ export function SubscribeForm() {
                 <Field
                   id="last-name"
                   label={subscribe.fields.lastName.label}
+                  required
                   placeholder={subscribe.fields.lastName.placeholder}
                   value={lastName}
                   autoComplete="family-name"
@@ -180,6 +171,7 @@ export function SubscribeForm() {
                 <Field
                   id="email"
                   label={subscribe.fields.email.label}
+                  required
                   placeholder={subscribe.fields.email.placeholder}
                   value={email}
                   type="email"
@@ -211,50 +203,107 @@ export function SubscribeForm() {
                     setConfirmed(false);
                   }}
                 />
-              </div>
+                </div>
+              </fieldset>
+              <fieldset className="order-2 flex flex-col gap-2">
+                <legend className="text-sm font-semibold text-foreground">
+                  {subscribe.steps.products}
+                  <span className="text-red-700" aria-hidden> *</span>
+                </legend>
+                {navigation.solutions.map((item) => (
+                  <label key={item.href} className="flex items-center gap-2 text-sm text-foreground">
+                    <input
+                      type="checkbox"
+                      name="products"
+                      value={item.href}
+                      checked={Boolean(products[item.href])}
+                      onChange={(event) => {
+                        setProducts((current) => ({ ...current, [item.href]: event.target.checked }));
+                        setConfirmed(false);
+                      }}
+                      className="size-4 accent-primary focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+                    />
+                    {item.label}
+                  </label>
+                ))}
+                {productSelected ? null : (
+                  <p className="text-sm text-red-700" role="alert">
+                    {subscribe.productsRequired}
+                  </p>
+                )}
+              </fieldset>
               </div>
 
               <div className="flex flex-col gap-3">
-                <div className="flex flex-wrap items-center justify-between gap-3">
-                  <div className="flex flex-col items-start gap-1">
-                    <button
-                      type="button"
-                      onClick={readDisclaimer}
-                      className="text-left text-sm font-semibold text-primary underline"
-                      aria-expanded={disclaimerOpen}
-                    >
-                      {subscribe.readDisclaimer}
-                    </button>
-                  </div>
-                  <div className="flex gap-4">
-                    <Choice
-                      name="disclaimer"
-                      label={subscribe.accept}
-                      checked={disclaimerChoice === "accept"}
-                      disabled={!scrolledToEnd}
-                      onChange={() => chooseDisclaimer("accept")}
-                    />
-                    <Choice
-                      name="disclaimer"
-                      label={subscribe.decline}
-                      checked={disclaimerChoice === "decline"}
-                      disabled={!disclaimerOpen}
-                      onChange={() => chooseDisclaimer("decline")}
-                    />
-                  </div>
-                </div>
-                {disclaimerOpen && !scrolledToEnd ? (
-                  <p className="text-xs text-muted-foreground">{subscribe.scrollHint}</p>
-                ) : null}
+                <h2 className="text-sm font-semibold text-foreground">{subscribe.steps.review}</h2>
+                <button
+                  type="button"
+                  onClick={readDisclaimer}
+                  className="w-fit text-left text-sm font-semibold text-primary underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+                  aria-expanded={disclaimerOpen}
+                  aria-controls="disclaimer-panel"
+                >
+                  {subscribe.readDisclaimer}
+                </button>
                 {disclaimerOpen ? (
-                  <div
-                    ref={disclaimerRef}
-                    onScroll={onDisclaimerScroll}
-                    className="max-h-96 overflow-y-auto rounded-xl border border-border bg-slate-50 p-4"
-                  >
-                    <QuetaDisclaimerSections />
+                  <div>
+                    <div className="mb-2 flex items-center gap-3">
+                      <div
+                        className="h-1 flex-1 overflow-hidden rounded-full bg-slate-200"
+                        role="progressbar"
+                        aria-valuemin={0}
+                        aria-valuemax={100}
+                        aria-valuenow={readPercent}
+                        aria-label="Disclaimer read progress"
+                      >
+                        <div className="h-full rounded-full bg-primary" style={{ width: `${readPercent}%` }} />
+                      </div>
+                      <span className="text-xs text-muted-foreground">{readPercent}% read</span>
+                    </div>
+                    <div className="relative">
+                      <div
+                        id="disclaimer-panel"
+                        ref={disclaimerRef}
+                        tabIndex={0}
+                        onScroll={onDisclaimerScroll}
+                        className="max-h-96 overflow-y-auto rounded-xl border border-border bg-slate-50 p-4 pb-16 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+                        aria-label="Queta Disclaimer"
+                      >
+                        <QuetaDisclaimerSections />
+                      </div>
+                      <div className="pointer-events-none absolute inset-x-0 bottom-0 rounded-b-xl border-t border-border bg-gradient-to-t from-slate-50 via-slate-50 to-transparent px-4 py-2">
+                        {scrolledToEnd ? (
+                          <p className="flex items-center justify-center gap-2 text-sm font-semibold text-emerald-700" role="status">
+                            <CircleCheck size={16} aria-hidden />
+                            {subscribe.reachedEnd}
+                          </p>
+                        ) : (
+                          <p id="disclaimer-scroll-hint" className="flex items-center justify-center gap-2 text-sm font-medium text-foreground">
+                            <ChevronDown size={16} aria-hidden />
+                            {subscribe.scrollHint}
+                          </p>
+                        )}
+                      </div>
+                    </div>
                   </div>
                 ) : null}
+                <div className="flex gap-4">
+                  <Choice
+                    name="disclaimer"
+                    label={subscribe.accept}
+                    checked={disclaimerChoice === "accept"}
+                    disabled={!scrolledToEnd}
+                    describedBy={disclaimerOpen && !scrolledToEnd ? "disclaimer-scroll-hint" : undefined}
+                    onChange={() => chooseDisclaimer("accept")}
+                  />
+                  <Choice
+                    name="disclaimer"
+                    label={subscribe.decline}
+                    checked={disclaimerChoice === "decline"}
+                    disabled={!disclaimerOpen}
+                    onChange={() => chooseDisclaimer("decline")}
+                  />
+                </div>
                 {disclaimerAccepted ? null : (
                   <p className="text-sm text-red-700 bg-red-50 border border-red-200 rounded-xl px-4 py-3" role="alert">
                     {disclaimerChoice === "decline" ? subscribe.disclaimerDeclined : subscribe.disclaimerNeeded}
@@ -268,15 +317,22 @@ export function SubscribeForm() {
                 </p>
               ) : null}
 
-              <div className="flex justify-center">
+              <div className="flex flex-col items-center gap-2">
+                <h2 className="text-sm font-semibold text-foreground">{subscribe.steps.submit}</h2>
                 <button
                   type="submit"
                   disabled={!canSubscribe || sending}
-                  className="group inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full bg-primary text-primary-foreground font-semibold text-base hover:opacity-90 transition-all shadow-lg shadow-violet-200 hover:shadow-violet-300 hover:shadow-xl animate-glow-pulse disabled:cursor-not-allowed disabled:opacity-60 disabled:hover:shadow-lg"
+                  aria-describedby={canSubscribe ? undefined : "subscribe-still-needed"}
+                  className="group inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full bg-primary text-primary-foreground font-semibold text-base hover:opacity-90 transition-all shadow-lg shadow-violet-200 hover:shadow-violet-300 hover:shadow-xl animate-glow-pulse focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary disabled:cursor-not-allowed disabled:opacity-60 disabled:hover:shadow-lg"
                 >
                   {sending ? subscribe.sendingLabel : subscribe.submitLabel}
                   <ArrowRight size={18} className="transition-transform group-hover:translate-x-1" />
                 </button>
+                {canSubscribe ? null : (
+                  <p id="subscribe-still-needed" className="text-center text-sm text-muted-foreground">
+                    {subscribe.stillNeeded} {missingRequirements.join(", ")}.
+                  </p>
+                )}
               </div>
 
               {confirmed ? (
@@ -298,6 +354,7 @@ export function SubscribeForm() {
 function Field({
   id,
   label,
+  required = false,
   placeholder,
   value,
   type = "text",
@@ -308,6 +365,7 @@ function Field({
 }: {
   id: string;
   label: string;
+  required?: boolean;
   placeholder: string;
   value: string;
   type?: string;
@@ -320,19 +378,22 @@ function Field({
     <div className="flex flex-col gap-1.5">
       <label htmlFor={id} className="text-sm font-semibold text-foreground">
         {label}
+        {required ? <span className="text-red-700" aria-hidden> *</span> : null}
       </label>
       <input
         id={id}
         name={id}
         type={type}
+        required={required}
         value={value}
         placeholder={placeholder}
         autoComplete={autoComplete}
+        aria-required={required || undefined}
         aria-invalid={error ? true : undefined}
         aria-describedby={error ? `${id}-error` : undefined}
         onBlur={onBlur}
         onChange={(event) => onChange(event.target.value)}
-        className="w-full px-3 py-2 rounded-xl border border-border bg-background text-foreground text-sm focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition-all"
+        className="w-full px-3 py-2 rounded-xl border border-border bg-background text-foreground text-sm focus:outline-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary focus:ring-2 focus:ring-primary/30 focus:border-primary transition-all"
       />
       {error ? (
         <p id={`${id}-error`} className="text-xs text-red-700">
@@ -348,23 +409,26 @@ function Choice({
   label,
   checked,
   disabled,
+  describedBy,
   onChange,
 }: {
   name: string;
   label: string;
   checked: boolean;
   disabled?: boolean;
+  describedBy?: string;
   onChange: () => void;
 }) {
   return (
-    <label className={`flex items-center gap-2 text-sm text-foreground ${disabled ? "opacity-50" : ""}`}>
+    <label className={`flex items-center gap-2 text-sm text-foreground ${disabled ? "cursor-not-allowed opacity-50" : ""}`}>
       <input
         type="checkbox"
         name={`${name}-${label}`}
         checked={checked}
         disabled={disabled}
+        aria-describedby={describedBy}
         onChange={onChange}
-        className="size-4 accent-primary disabled:cursor-not-allowed"
+        className="size-4 accent-primary focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary disabled:cursor-not-allowed"
       />
       {label}
     </label>
