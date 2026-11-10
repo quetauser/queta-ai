@@ -35,6 +35,7 @@ export function SiteHeaderClient({
 }: SiteHeaderClientProps) {
   const pathname = usePathname();
   const showDemoCta = pathname !== "/contact";
+  const headerLinks = navigation.links.filter((item) => item.href !== "/about");
   const [mobileOpen, setMobileOpen] = useState(false);
   const [solutionsOpen, setSolutionsOpen] = useState(false);
   const [legalOpen, setLegalOpen] = useState(false);
@@ -95,7 +96,7 @@ export function SiteHeaderClient({
               </div>
             ) : null}
           </div>
-          {navigation.links.map((item) => (
+          {headerLinks.map((item) => (
             <Link
               key={item.href}
               href={item.href}
@@ -193,7 +194,7 @@ export function SiteHeaderClient({
               </Link>
             ))}
           </div>
-          {navigation.links.map((item) => (
+          {headerLinks.map((item) => (
             <Link
               key={item.href}
               href={item.href}
