@@ -108,21 +108,6 @@ export function PricingPageView() {
           </div>
         </div>
       </section>
-
-      <section className="py-16 bg-white text-center">
-        <div className="max-w-2xl mx-auto px-6">
-          <h2 className="font-heading text-3xl md:text-4xl font-bold text-foreground mb-4">
-            {pricing.bottomCta.title}
-          </h2>
-          <p className="text-muted-foreground mb-8">{pricing.bottomCta.description}</p>
-          <Link
-            href={contactPageHref(pricing.bottomCta.interestKey)}
-            className="inline-flex px-8 py-4 rounded-full bg-primary text-primary-foreground font-semibold hover:opacity-90 transition-opacity"
-          >
-            {pricing.bottomCta.buttonLabel}
-          </Link>
-        </div>
-      </section>
     </>
   );
 }

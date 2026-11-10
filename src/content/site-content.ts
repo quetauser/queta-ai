@@ -191,10 +191,9 @@ export const pricing = {
         "Subscription Manager",
         "Shopper",
         "Travel Agent",
-        "Chef",
+        "Health & Nutrition Coach",
         "Spending Coach",
         "Privacy Guardian",
-        "Health Coach",
         "Student Guide",
         "Inbox Agent",
         "Career Coach",
@@ -253,12 +252,6 @@ export const pricing = {
       { value: "24/7", label: "Always on for you" },
     ],
     body: "We're founders, traders, and operators who spent years drowning in repetitive tasks. We built Queta AI because we needed it ourselves — and we knew others did too.",
-  },
-  bottomCta: {
-    title: "Ready to get your edge?",
-    description: "Join the waitlist and be first to access your AI persona.",
-    buttonLabel: "Join the waitlist",
-    interestKey: "waitlist",
   },
 } as const;
 
@@ -787,10 +780,10 @@ const lifestyleSolution: SolutionPageContent = {
       tagline: "The trip is compared and planned before you pack.",
     },
     {
-      title: "Chef",
+      title: "Health & Nutrition Coach",
       description:
-        "Helps you plan the week's meals around dietary restrictions, coordinates with your family on preferences, finalizes the menu and ingredients, builds the grocery list, and places the order with Walmart, Instacart, and other stores.",
-      tagline: "Dinner is decided, and the list is ready.",
+        "Helps you plan the week's meals around dietary restrictions, coordinates with your family on preferences, finalizes the menu and ingredients, builds the grocery list, and places the order with Walmart, Instacart, and other stores. It offers friendly nudges and coaching for your health and wellness. It reminds you about medications and annual check-ups, provides daily yoga and meditation videos, connects to Oura, and guides you toward a healthy lifestyle.",
+      tagline: "Dinner is decided, and the list is ready. The small daily habits, prompted before they slip.",
     },
     {
       title: "Spending Coach",
@@ -803,12 +796,6 @@ const lifestyleSolution: SolutionPageContent = {
       description:
         "Gets your personal and contact information removed from data brokers and people-search sites, and keeps it removed.",
       tagline: "Your details stay off the lists that sell them.",
-    },
-    {
-      title: "Health Coach",
-      description:
-        "Offers friendly nudges and coaching for your health and wellness. Reminds you about medications and annual check-ups, provides daily yoga and meditation videos, connects to Oura, and guides you toward a healthy lifestyle.",
-      tagline: "The small daily habits, prompted before they slip.",
     },
     {
       title: "Student Guide",
