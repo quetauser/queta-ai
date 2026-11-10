@@ -191,13 +191,11 @@ export const pricing = {
         "Subscription Manager",
         "Shopper",
         "Travel Agent",
-        "Chef",
+        "Health & Nutrition Coach",
         "Spending Coach",
         "Privacy Guardian",
-        "Health Coach",
         "Student Guide",
         "Inbox Agent",
-        "Retirement Planner",
         "Career Coach",
         "Home Maintenance Advisor",
         "Stock Analyst",
@@ -221,6 +219,7 @@ export const pricing = {
         "Earnings Calendar Agent",
         "News Sentiment Analyzer",
         "Trade Journal Automation",
+        "Paper Trading",
       ],
       cta: "Get Started",
       interestKey: "get-started-trader",
@@ -254,12 +253,6 @@ export const pricing = {
       { value: "24/7", label: "Always on for you" },
     ],
     body: "We're founders, traders, and operators who spent years drowning in repetitive tasks. We built Queta AI because we needed it ourselves — and we knew others did too.",
-  },
-  bottomCta: {
-    title: "Ready to get your edge?",
-    description: "Join the waitlist and be first to access your AI persona.",
-    buttonLabel: "Join the waitlist",
-    interestKey: "waitlist",
   },
 } as const;
 
@@ -718,6 +711,12 @@ const traderSolution: SolutionPageContent = {
       tagline: "No more staring at charts. Your agent does the watching.",
     },
     {
+      title: "Paper Trading",
+      description:
+        "Test your strategies with simulated trades on real market data, no capital at risk. Refine entries, exits, and position sizing until the approach performs to your liking, then move it to your live brokerage account with confidence.",
+      tagline: "Prove the plan on paper before it risks real money.",
+    },
+    {
       title: "Portfolio Summary Reports",
       description:
         "Get a clear daily or weekly snapshot of your positions, P&L, exposure, and performance — formatted for fast review.",
@@ -788,10 +787,10 @@ const lifestyleSolution: SolutionPageContent = {
       tagline: "The trip is compared and planned before you pack.",
     },
     {
-      title: "Chef",
+      title: "Health & Nutrition Coach",
       description:
-        "Helps you plan the week's meals around dietary restrictions, coordinates with your family on preferences, finalizes the menu and ingredients, builds the grocery list, and places the order with Walmart, Instacart, and other stores.",
-      tagline: "Dinner is decided, and the list is ready.",
+        "Helps you plan the week's meals around dietary restrictions, coordinates with your family on preferences, finalizes the menu and ingredients, builds the grocery list, and places the order with Walmart, Instacart, and other stores. It offers friendly nudges and coaching for your health and wellness. It reminds you about medications and annual check-ups, provides daily yoga and meditation videos, connects to Oura, and guides you toward a healthy lifestyle.",
+      tagline: "Dinner is decided, and the list is ready. The small daily habits, prompted before they slip.",
     },
     {
       title: "Spending Coach",
@@ -806,12 +805,6 @@ const lifestyleSolution: SolutionPageContent = {
       tagline: "Your details stay off the lists that sell them.",
     },
     {
-      title: "Health Coach",
-      description:
-        "Offers friendly nudges and coaching for your health and wellness. Reminds you about medications and annual check-ups, provides daily yoga and meditation videos, connects to Oura, and guides you toward a healthy lifestyle.",
-      tagline: "The small daily habits, prompted before they slip.",
-    },
-    {
       title: "Student Guide",
       description:
         "Helps you and your household understand complex topics with short generated videos, from kids' homework to advanced topics for a career. It also guides families through college applications, building the college list and tracking deadlines and application status. Student Guide connects to Genesis so school and application information stays current without manual re-entry.",
@@ -822,12 +815,6 @@ const lifestyleSolution: SolutionPageContent = {
       description:
         "Watches Outlook and Gmail, sends a daily digest of what needs a reply or action, helps draft and send responses as needed, and turns bills and deadlines into to-dos.",
       tagline: "The messages that need you, before the day gets away.",
-    },
-    {
-      title: "Retirement Planner",
-      description:
-        "Models whether and how you can retire early on your real numbers, with a base case and a conservative case.",
-      tagline: "The same plan, run both ways, so the choice is yours.",
     },
     {
       title: "Career Coach",
