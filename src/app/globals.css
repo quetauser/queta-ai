@@ -53,3 +53,9 @@ body {
 .animate-glow-pulse {
   animation: glowPulse 2.5s ease-in-out infinite;
 }
+
+@media (prefers-reduced-motion: reduce) {
+  .subscribe-submit {
+    animation: none;
+  }
+}

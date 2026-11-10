@@ -15,7 +15,10 @@ export function SubscribeForm() {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
+  const [confirmEmail, setConfirmEmail] = useState("");
   const [phone, setPhone] = useState("");
+  const [productsTouched, setProductsTouched] = useState(false);
+  const [submitReached, setSubmitReached] = useState(false);
   const [disclaimerChoice, setDisclaimerChoice] = useState<PolicyChoice>(null);
   const [disclaimerOpen, setDisclaimerOpen] = useState(false);
   const [scrolledToEnd, setScrolledToEnd] = useState(false);
@@ -31,12 +34,16 @@ export function SubscribeForm() {
   const firstNameValid = firstName.trim().length > 0;
   const lastNameValid = lastName.trim().length > 0;
   const emailValid = EMAIL_PATTERN.test(email.trim());
+  const emailsMatch = confirmEmail.trim().length > 0 && confirmEmail.trim() === email.trim();
   const disclaimerAccepted = disclaimerChoice === "accept";
-  const canSubscribe = productSelected && firstNameValid && lastNameValid && emailValid && disclaimerAccepted;
+  const canSubscribe = productSelected && firstNameValid && lastNameValid && emailValid && emailsMatch && disclaimerAccepted;
+  const showProductError = !productSelected && (productsTouched || submitReached);
+  const showDisclaimerError = !disclaimerAccepted && (disclaimerChoice === "decline" || submitReached);
   const missingRequirements = [
     !firstNameValid ? "first name" : null,
     !lastNameValid ? "last name" : null,
     !emailValid ? "a valid email" : null,
+    !emailsMatch ? "a matching confirm email" : null,
     !productSelected ? "at least one product" : null,
     !disclaimerAccepted ? (scrolledToEnd ? "Accept" : "reading the disclaimer to the end, then Accept") : null,
   ].filter((item): item is string => item !== null);
@@ -79,6 +86,8 @@ export function SubscribeForm() {
 
   async function onSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
+    setSubmitReached(true);
+    setProductsTouched(true);
     if (!canSubscribe || sending) {
       return;
     }
@@ -192,6 +201,21 @@ export function SubscribeForm() {
                   }}
                 />
                 <Field
+                  id="confirm-email"
+                  label={subscribe.fields.confirmEmail.label}
+                  required
+                  placeholder={subscribe.fields.confirmEmail.placeholder}
+                  value={confirmEmail}
+                  type="email"
+                  autoComplete="email"
+                  error={touched.confirmEmail && !emailsMatch ? subscribe.errors.emailMatch : undefined}
+                  onBlur={() => setTouched((current) => ({ ...current, confirmEmail: true }))}
+                  onChange={(value) => {
+                    setConfirmEmail(value);
+                    setConfirmed(false);
+                  }}
+                />
+                <Field
                   id="phone"
                   label={subscribe.fields.phone.label}
                   placeholder={subscribe.fields.phone.placeholder}
@@ -205,7 +229,14 @@ export function SubscribeForm() {
                 />
                 </div>
               </fieldset>
-              <fieldset className="order-2 flex flex-col gap-2">
+              <fieldset
+                className="order-2 flex flex-col gap-2"
+                onBlur={(event) => {
+                  if (!event.currentTarget.contains(event.relatedTarget)) {
+                    setProductsTouched(true);
+                  }
+                }}
+              >
                 <legend className="text-sm font-semibold text-foreground">
                   {subscribe.steps.products}
                   <span className="text-red-700" aria-hidden> *</span>
@@ -219,6 +250,7 @@ export function SubscribeForm() {
                       checked={Boolean(products[item.href])}
                       onChange={(event) => {
                         setProducts((current) => ({ ...current, [item.href]: event.target.checked }));
+                        setProductsTouched(true);
                         setConfirmed(false);
                       }}
                       className="size-4 accent-primary focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
@@ -226,11 +258,11 @@ export function SubscribeForm() {
                     {item.label}
                   </label>
                 ))}
-                {productSelected ? null : (
+                {showProductError ? (
                   <p className="text-sm text-red-700" role="alert">
                     {subscribe.productsRequired}
                   </p>
-                )}
+                ) : null}
               </fieldset>
               </div>
 
@@ -304,11 +336,11 @@ export function SubscribeForm() {
                     onChange={() => chooseDisclaimer("decline")}
                   />
                 </div>
-                {disclaimerAccepted ? null : (
+                {showDisclaimerError ? (
                   <p className="text-sm text-red-700 bg-red-50 border border-red-200 rounded-xl px-4 py-3" role="alert">
                     {disclaimerChoice === "decline" ? subscribe.disclaimerDeclined : subscribe.disclaimerNeeded}
                   </p>
-                )}
+                ) : null}
               </div>
 
               {sendError ? (
@@ -321,12 +353,14 @@ export function SubscribeForm() {
                 <h2 className="text-sm font-semibold text-foreground">{subscribe.steps.submit}</h2>
                 <button
                   type="submit"
-                  disabled={!canSubscribe || sending}
+                  disabled={sending}
+                  aria-disabled={!canSubscribe || sending}
                   aria-describedby={canSubscribe ? undefined : "subscribe-still-needed"}
-                  className="group inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full bg-primary text-primary-foreground font-semibold text-base hover:opacity-90 transition-all shadow-lg shadow-violet-200 hover:shadow-violet-300 hover:shadow-xl animate-glow-pulse focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary disabled:cursor-not-allowed disabled:opacity-60 disabled:hover:shadow-lg"
+                  onFocus={() => setSubmitReached(true)}
+                  className={`group inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full bg-primary text-primary-foreground font-semibold text-base hover:opacity-90 transition-all shadow-lg shadow-violet-200 hover:shadow-violet-300 hover:shadow-xl subscribe-submit animate-glow-pulse focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary ${!canSubscribe || sending ? "cursor-not-allowed opacity-60 hover:shadow-lg" : ""}`}
                 >
                   {sending ? subscribe.sendingLabel : subscribe.submitLabel}
-                  <ArrowRight size={18} className="transition-transform group-hover:translate-x-1" />
+                  <ArrowRight size={18} className="transition-transform motion-safe:group-hover:translate-x-1" />
                 </button>
                 {canSubscribe ? null : (
                   <p id="subscribe-still-needed" className="text-center text-sm text-muted-foreground">
