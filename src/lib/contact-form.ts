@@ -2,6 +2,8 @@ export const FORM_SUBMIT_AJAX_URL = "https://formsubmit.co/ajax/info@queta.ai";
 
 export const SUBSCRIBE_FORM_SUBMIT_AJAX_URL = "https://formsubmit.co/ajax/subscribe@queta.ai";
 
+export const SUBSCRIBE_FORM_SUBMIT_URL = "https://formsubmit.co/subscribe@queta.ai";
+
 export const CONTACT_EMAIL_SUBJECT_BASE = "New Queta AI contact";
 
 const INTEREST_LABELS: Record<string, string> = {
@@ -45,6 +47,20 @@ export type FormSubmitPayload = {
   _honey: string;
 };
 
+function formSubmitReportedFailure(data: unknown): string | null {
+  if (!data || typeof data !== "object" || !("success" in data)) {
+    return null;
+  }
+  const success = data.success;
+  if (success !== false && success !== "false") {
+    return null;
+  }
+  if ("message" in data && typeof data.message === "string" && data.message.trim()) {
+    return data.message;
+  }
+  return "FormSubmit reported failure";
+}
+
 export async function postFormSubmit(
   url: string,
   payload: Record<string, unknown>,
@@ -57,14 +73,21 @@ export async function postFormSubmit(
     },
     body: JSON.stringify(payload),
   });
-
-  if (!response.ok) {
-    throw new Error(`FormSubmit responded with ${response.status}`);
+  const text = await response.text().catch(() => "");
+  let data: unknown = null;
+  if (text) {
+    try {
+      data = JSON.parse(text);
+    } catch {
+      data = null;
+    }
   }
-
-  const data: unknown = await response.json().catch(() => null);
-  if (data && typeof data === "object" && "success" in data && data.success === false) {
-    throw new Error("FormSubmit reported failure");
+  const reported = formSubmitReportedFailure(data);
+  if (!response.ok) {
+    throw new Error(reported ?? (text || `FormSubmit responded with ${response.status}`));
+  }
+  if (reported) {
+    throw new Error(reported);
   }
 }
 

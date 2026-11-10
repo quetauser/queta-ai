@@ -390,7 +390,9 @@ export const subscribe = {
   disclaimerDeclined: "You declined the Queta Disclaimer. Accept it to subscribe.",
   submitLabel: "Subscribe",
   sendingLabel: "Sending…",
-  sendError: "Something went wrong while sending your request. Please try again in a moment.",
+  sendErrorLead: "We couldn't send your request. Email ",
+  sendErrorEmail: "subscribe@queta.ai",
+  sendErrorTail: " and we will take it from there.",
   confirmationLead:
     "You will receive an email from Queta team with Next Steps and Getting Started Guide. Please check your Spam/Junk folder if you do not receive an email within 24 hours. Feel free to contact us on ",
   confirmationEmail: "info@queta.ai",

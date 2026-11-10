@@ -4,7 +4,25 @@ import { ArrowRight, ChevronDown, CircleCheck } from "lucide-react";
 import { FormEvent, UIEvent, useEffect, useRef, useState } from "react";
 import { navigation, subscribe } from "@/content/site-content";
 import { QuetaDisclaimerSections } from "@/components/pages/QuetaDisclaimer";
-import { SUBSCRIBE_FORM_SUBMIT_AJAX_URL, postFormSubmit } from "@/lib/contact-form";
+import { SUBSCRIBE_FORM_SUBMIT_AJAX_URL, SUBSCRIBE_FORM_SUBMIT_URL, postFormSubmit } from "@/lib/contact-form";
+
+const fieldErrorClassName = "text-[14px] text-red-700";
+const alertErrorClassName = "text-[16px] text-red-700";
+
+function postSubscribeForm(fields: Record<string, string>) {
+  const form = document.createElement("form");
+  form.method = "post";
+  form.action = SUBSCRIBE_FORM_SUBMIT_URL;
+  for (const [name, value] of Object.entries(fields)) {
+    const input = document.createElement("input");
+    input.type = "hidden";
+    input.name = name;
+    input.value = value;
+    form.append(input);
+  }
+  document.body.append(form);
+  form.submit();
+}
 
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
@@ -84,10 +102,18 @@ export function SubscribeForm() {
     updateScroll(disclaimerRef.current);
   }, [disclaimerOpen]);
 
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    if (params.get("submitted") === "1") {
+      setConfirmed(true);
+    }
+  }, []);
+
   async function onSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     setSubmitReached(true);
     setProductsTouched(true);
+    setTouched({ firstName: true, lastName: true, email: true, confirmEmail: true });
     if (!canSubscribe || sending) {
       return;
     }
@@ -97,28 +123,57 @@ export function SubscribeForm() {
     setSending(true);
     setSendError(false);
     const acceptedAtUtc = new Date().toISOString();
+    const fields = {
+      products: navigation.solutions
+        .filter((item) => products[item.href])
+        .map((item) => item.label)
+        .join(", "),
+      first_name: firstName.trim(),
+      last_name: lastName.trim(),
+      email: email.trim(),
+      phone: phone.trim(),
+      acknowledgment: `The subscriber confirmed they read and accepted the Terms of Use, Privacy Policy, End User License Agreement, and AI and Legal Disclosure. Accepted at ${acceptedAtUtc} UTC.`,
+      _replyto: email.trim(),
+      _subject: `New Queta AI subscription: ${firstName.trim()} ${lastName.trim()}`,
+      _template: "table",
+      _captcha: false,
+      _honey: honey,
+    };
     try {
-      await postFormSubmit(SUBSCRIBE_FORM_SUBMIT_AJAX_URL, {
-        products: navigation.solutions
-          .filter((item) => products[item.href])
-          .map((item) => item.label)
-          .join(", "),
-        first_name: firstName.trim(),
-        last_name: lastName.trim(),
-        email: email.trim(),
-        phone: phone.trim(),
-        acknowledgment: `The subscriber confirmed they read and accepted the Terms of Use, Privacy Policy, End User License Agreement, and AI and Legal Disclosure. Accepted at ${acceptedAtUtc} UTC.`,
-        _replyto: email.trim(),
-        _subject: `New Queta AI subscription: ${firstName.trim()} ${lastName.trim()}`,
-        _template: "table",
-        _captcha: false,
-        _honey: honey,
-      });
+      await postFormSubmit(SUBSCRIBE_FORM_SUBMIT_AJAX_URL, fields);
       setConfirmed(true);
-    } catch {
-      setSendError(true);
-    } finally {
       setSending(false);
+    } catch (error) {
+      const blockedBeforeResponse = error instanceof TypeError;
+      if (blockedBeforeResponse) {
+        try {
+          postSubscribeForm({
+            products: fields.products,
+            first_name: fields.first_name,
+            last_name: fields.last_name,
+            email: fields.email,
+            phone: fields.phone,
+            acknowledgment: fields.acknowledgment,
+            _replyto: fields._replyto,
+            _subject: fields._subject,
+            _template: fields._template,
+            _captcha: "false",
+            _honey: fields._honey,
+            _next: `${window.location.origin}/subscribe?submitted=1`,
+          });
+          window.setTimeout(() => {
+            setSending(false);
+            setSendError(true);
+          }, 2500);
+          return;
+        } catch {
+          setSending(false);
+          setSendError(true);
+          return;
+        }
+      }
+      setSending(false);
+      setSendError(true);
     }
   }
 
@@ -156,7 +211,7 @@ export function SubscribeForm() {
                   placeholder={subscribe.fields.firstName.placeholder}
                   value={firstName}
                   autoComplete="given-name"
-                  error={touched.firstName && !firstNameValid ? subscribe.errors.firstName : undefined}
+                  error={(touched.firstName || submitReached) && !firstNameValid ? subscribe.errors.firstName : undefined}
                   onBlur={() => setTouched((current) => ({ ...current, firstName: true }))}
                   onChange={(value) => {
                     setFirstName(value);
@@ -170,7 +225,7 @@ export function SubscribeForm() {
                   placeholder={subscribe.fields.lastName.placeholder}
                   value={lastName}
                   autoComplete="family-name"
-                  error={touched.lastName && !lastNameValid ? subscribe.errors.lastName : undefined}
+                  error={(touched.lastName || submitReached) && !lastNameValid ? subscribe.errors.lastName : undefined}
                   onBlur={() => setTouched((current) => ({ ...current, lastName: true }))}
                   onChange={(value) => {
                     setLastName(value);
@@ -186,7 +241,7 @@ export function SubscribeForm() {
                   type="email"
                   autoComplete="email"
                   error={
-                    touched.email
+                    touched.email || submitReached
                       ? email.trim()
                         ? emailValid
                           ? undefined
@@ -208,7 +263,7 @@ export function SubscribeForm() {
                   value={confirmEmail}
                   type="email"
                   autoComplete="email"
-                  error={touched.confirmEmail && !emailsMatch ? subscribe.errors.emailMatch : undefined}
+                  error={(touched.confirmEmail || submitReached) && !emailsMatch ? subscribe.errors.emailMatch : undefined}
                   onBlur={() => setTouched((current) => ({ ...current, confirmEmail: true }))}
                   onChange={(value) => {
                     setConfirmEmail(value);
@@ -259,7 +314,7 @@ export function SubscribeForm() {
                   </label>
                 ))}
                 {showProductError ? (
-                  <p className="text-sm text-red-700" role="alert">
+                  <p className={alertErrorClassName} role="alert">
                     {subscribe.productsRequired}
                   </p>
                 ) : null}
@@ -337,7 +392,7 @@ export function SubscribeForm() {
                   />
                 </div>
                 {showDisclaimerError ? (
-                  <p className="text-sm text-red-700 bg-red-50 border border-red-200 rounded-xl px-4 py-3" role="alert">
+                  <p className={`${alertErrorClassName} bg-red-50 border border-red-200 rounded-xl px-4 py-3`} role="alert">
                     {disclaimerChoice === "decline" ? subscribe.disclaimerDeclined : subscribe.disclaimerNeeded}
                   </p>
                 ) : null}
@@ -345,7 +400,11 @@ export function SubscribeForm() {
 
               {sendError ? (
                 <p className="text-sm text-red-700 bg-red-50 border border-red-200 rounded-xl px-4 py-3" role="alert">
-                  {subscribe.sendError}
+                  {subscribe.sendErrorLead}
+                  <a href={`mailto:${subscribe.sendErrorEmail}`} className="underline">
+                    {subscribe.sendErrorEmail}
+                  </a>
+                  {subscribe.sendErrorTail}
                 </p>
               ) : null}
 
@@ -430,7 +489,7 @@ function Field({
         className="w-full px-3 py-2 rounded-xl border border-border bg-background text-foreground text-sm focus:outline-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary focus:ring-2 focus:ring-primary/30 focus:border-primary transition-all"
       />
       {error ? (
-        <p id={`${id}-error`} className="text-xs text-red-700">
+        <p id={`${id}-error`} className={fieldErrorClassName}>
           {error}
         </p>
       ) : null}
