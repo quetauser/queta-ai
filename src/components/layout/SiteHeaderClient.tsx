@@ -14,7 +14,6 @@ interface Navigation {
   solutions: readonly NavItem[];
   links: readonly NavItem[];
   legal: { label: string; links: readonly NavItem[] };
-  feedback: NavItem;
   faq: NavItem;
   cta: NavItem;
 }
@@ -36,6 +35,7 @@ export function SiteHeaderClient({
 }: SiteHeaderClientProps) {
   const pathname = usePathname();
   const showDemoCta = pathname !== "/contact";
+  const headerLinks = navigation.links.filter((item) => item.href !== "/about");
   const [mobileOpen, setMobileOpen] = useState(false);
   const [solutionsOpen, setSolutionsOpen] = useState(false);
   const [legalOpen, setLegalOpen] = useState(false);
@@ -96,7 +96,7 @@ export function SiteHeaderClient({
               </div>
             ) : null}
           </div>
-          {navigation.links.map((item) => (
+          {headerLinks.map((item) => (
             <Link
               key={item.href}
               href={item.href}
@@ -157,12 +157,6 @@ export function SiteHeaderClient({
           >
             {navigation.faq.label}
           </Link>
-          <Link
-            href={navigation.feedback.href}
-            className="whitespace-nowrap text-sm font-medium text-foreground/70 transition-colors hover:text-foreground"
-          >
-            {navigation.feedback.label}
-          </Link>
           {showDemoCta ? (
             <Link
               href={navigation.cta.href}
@@ -200,7 +194,7 @@ export function SiteHeaderClient({
               </Link>
             ))}
           </div>
-          {navigation.links.map((item) => (
+          {headerLinks.map((item) => (
             <Link
               key={item.href}
               href={item.href}
@@ -231,13 +225,6 @@ export function SiteHeaderClient({
             onClick={() => setMobileOpen(false)}
           >
             {navigation.faq.label}
-          </Link>
-          <Link
-            href={navigation.feedback.href}
-            className="block text-sm font-medium text-foreground/80"
-            onClick={() => setMobileOpen(false)}
-          >
-            {navigation.feedback.label}
           </Link>
           {showDemoCta ? (
             <Link

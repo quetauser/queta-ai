@@ -412,6 +412,15 @@ export const faq = {
             label: "Migrate from ChatGPT to Grok Bot",
           },
         },
+        {
+          question: "How do I migrate from Claude to Grok Bot while preserving my memories and data?",
+          answer: "Below is the step by step guide to migrate from Claude to Grok Bot",
+          video: {
+            src: "/videos/migrate-claude.mp4",
+            poster: "/videos/migrate-claude-poster.jpg",
+            label: "Migrate from Claude to Grok Bot",
+          },
+        },
       ],
     },
     {
