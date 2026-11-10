@@ -4,6 +4,7 @@ import { ArrowRight } from "lucide-react";
 import { FormEvent, UIEvent, useEffect, useRef, useState } from "react";
 import { navigation, subscribe } from "@/content/site-content";
 import { QuetaDisclaimerSections } from "@/components/pages/QuetaDisclaimer";
+import { SUBSCRIBE_FORM_SUBMIT_AJAX_URL, postFormSubmit } from "@/lib/contact-form";
 
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
@@ -69,25 +70,29 @@ export function SubscribeForm() {
     if (!canSubscribe || sending) {
       return;
     }
+    if (honey) {
+      return;
+    }
     setSending(true);
     setSendError(false);
+    const acceptedAtUtc = new Date().toISOString();
     try {
-      const response = await fetch("/api/subscribe", {
-        method: "POST",
-        headers: { "Content-Type": "application/json", Accept: "application/json" },
-        body: JSON.stringify({
-          honey,
-          products: navigation.solutions.filter((item) => products[item.href]).map((item) => item.href),
-          firstName,
-          lastName,
-          email,
-          phone,
-          accepted: true,
-        }),
+      await postFormSubmit(SUBSCRIBE_FORM_SUBMIT_AJAX_URL, {
+        products: navigation.solutions
+          .filter((item) => products[item.href])
+          .map((item) => item.label)
+          .join(", "),
+        first_name: firstName.trim(),
+        last_name: lastName.trim(),
+        email: email.trim(),
+        phone: phone.trim(),
+        acknowledgment: `The subscriber confirmed they read and accepted the Terms of Use, Privacy Policy, End User License Agreement, and AI and Legal Disclosure. Accepted at ${acceptedAtUtc} UTC.`,
+        _replyto: email.trim(),
+        _subject: `New Queta AI subscription: ${firstName.trim()} ${lastName.trim()}`,
+        _template: "table",
+        _captcha: false,
+        _honey: honey,
       });
-      if (!response.ok) {
-        throw new Error("Unable to send");
-      }
       setConfirmed(true);
     } catch {
       setSendError(true);
@@ -111,7 +116,7 @@ export function SubscribeForm() {
             <form className="relative flex flex-col gap-4" onSubmit={onSubmit} noValidate>
               <input
                 type="text"
-                name="company_website"
+                name="_honey"
                 value={honey}
                 onChange={(event) => setHoney(event.target.value)}
                 tabIndex={-1}
