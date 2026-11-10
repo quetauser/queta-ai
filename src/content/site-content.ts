@@ -354,6 +354,34 @@ export const contact = {
   },
 } as const;
 
+export const subscribe = {
+  metaTitle: "Subscribe — Queta AI",
+  heading: "Thank you for your interest in Queta AI solutions",
+  productsLegend: "Products",
+  productsRequired: "Select at least one product.",
+  fields: {
+    firstName: { label: "First Name", placeholder: "First name" },
+    lastName: { label: "Last Name", placeholder: "Last name" },
+    email: { label: "Email", placeholder: "you@example.com" },
+    phone: { label: "Phone number", placeholder: "Phone number" },
+  },
+  errors: {
+    firstName: "Enter your first name.",
+    lastName: "Enter your last name.",
+    email: "Enter your email.",
+    emailFormat: "Enter an email address like you@example.com.",
+  },
+  policiesLegend: "Policies",
+  openFullPage: "Open full page",
+  accept: "Accept",
+  decline: "Decline",
+  policyNeeded: "Accept every policy to subscribe.",
+  declinedLead: "Declined:",
+  unansweredLead: "Not yet accepted:",
+  submitLabel: "Subscribe",
+  confirmation: "Thanks. This is a placeholder confirmation. Nothing has been submitted.",
+} as const;
+
 export const feedback = {
   metaTitle: "Feedback — Queta AI",
   headline: "We love to hear from our customers.",
@@ -2338,6 +2366,7 @@ export const publicRoutes = [
   "/pricing",
   "/about",
   "/contact",
+  "/subscribe",
   "/compare",
   "/feedback",
   "/faq",
@@ -2348,6 +2377,7 @@ export const publicRoutes = [
 ] as const;
 
 export const replicaOnlyRoutes = [
+  "/subscribe",
   "/compare",
   "/feedback",
   "/faq",

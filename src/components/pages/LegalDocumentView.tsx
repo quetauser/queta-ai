@@ -62,6 +62,16 @@ function LegalBlockView({ block }: { block: LegalBlock }) {
   );
 }
 
+export function LegalDocumentBody({ document }: { document: LegalDocument }) {
+  return (
+    <div className="space-y-6">
+      {document.blocks.map((block, index) => (
+        <LegalBlockView key={index} block={block} />
+      ))}
+    </div>
+  );
+}
+
 export function LegalDocumentView({ document }: { document: LegalDocument }) {
   return (
     <>
@@ -85,10 +95,8 @@ export function LegalDocumentView({ document }: { document: LegalDocument }) {
         </div>
       </section>
       <section className="py-12 bg-white">
-        <div className="max-w-3xl mx-auto px-6 space-y-6">
-          {document.blocks.map((block, index) => (
-            <LegalBlockView key={index} block={block} />
-          ))}
+        <div className="max-w-3xl mx-auto px-6">
+          <LegalDocumentBody document={document} />
         </div>
       </section>
     </>
