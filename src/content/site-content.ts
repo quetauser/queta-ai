@@ -369,6 +369,7 @@ export const subscribe = {
     firstName: { label: "First Name", placeholder: "First name" },
     lastName: { label: "Last Name", placeholder: "Last name" },
     email: { label: "Email", placeholder: "you@example.com" },
+    confirmEmail: { label: "Confirm email", placeholder: "you@example.com" },
     phone: { label: "Phone number (optional)", placeholder: "Phone number" },
   },
   errors: {
@@ -376,6 +377,7 @@ export const subscribe = {
     lastName: "Enter your last name.",
     email: "Enter your email.",
     emailFormat: "Enter an email address like you@example.com.",
+    emailMatch: "Emails don't match.",
   },
   accept: "Accept",
   decline: "Decline",
