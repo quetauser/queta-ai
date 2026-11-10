@@ -1,6 +1,7 @@
 "use client";
 
 import { ArrowRight, ChevronDown, CircleCheck } from "lucide-react";
+import Link from "next/link";
 import { FormEvent, UIEvent, useEffect, useRef, useState } from "react";
 import { navigation, subscribe } from "@/content/site-content";
 import { QuetaDisclaimerSections } from "@/components/pages/QuetaDisclaimer";
@@ -8,6 +9,49 @@ import { SUBSCRIBE_FORM_SUBMIT_AJAX_URL, SUBSCRIBE_FORM_SUBMIT_URL, postFormSubm
 
 const fieldErrorClassName = "text-[14px] text-red-700";
 const alertErrorClassName = "text-[16px] text-red-700";
+
+const SUBMISSION_KEY = "queta.subscribe.submission";
+
+type StoredSubmission = {
+  email: string;
+  submittedAt: string;
+};
+
+function readSubmission(): StoredSubmission | null {
+  try {
+    const raw = window.localStorage.getItem(SUBMISSION_KEY);
+    if (!raw) {
+      return null;
+    }
+    const parsed: unknown = JSON.parse(raw);
+    if (!parsed || typeof parsed !== "object" || !("email" in parsed) || !("submittedAt" in parsed)) {
+      return null;
+    }
+    if (typeof parsed.email !== "string" || typeof parsed.submittedAt !== "string" || !parsed.email) {
+      return null;
+    }
+    return { email: parsed.email, submittedAt: parsed.submittedAt };
+  } catch {
+    return null;
+  }
+}
+
+function rememberSubmission(email: string) {
+  const record: StoredSubmission = {
+    email: email.trim().toLowerCase(),
+    submittedAt: new Date().toISOString(),
+  };
+  window.localStorage.setItem(SUBMISSION_KEY, JSON.stringify(record));
+}
+
+function clearSubmission() {
+  window.localStorage.removeItem(SUBMISSION_KEY);
+}
+
+function submissionMatches(email: string) {
+  const stored = readSubmission();
+  return stored !== null && stored.email === email.trim().toLowerCase();
+}
 
 function postSubscribeForm(fields: Record<string, string>) {
   const form = document.createElement("form");
@@ -45,8 +89,12 @@ export function SubscribeForm() {
   const [sending, setSending] = useState(false);
   const [sendError, setSendError] = useState(false);
   const disclaimerRef = useRef<HTMLDivElement>(null);
+  const confirmationRef = useRef<HTMLHeadingElement>(null);
+  const submitGuard = useRef(false);
+  const formPosted = useRef(false);
   const [touched, setTouched] = useState<Record<string, boolean>>({});
   const [confirmed, setConfirmed] = useState(false);
+  const [storageChecked, setStorageChecked] = useState(false);
 
   const productSelected = navigation.solutions.some((item) => products[item.href]);
   const firstNameValid = firstName.trim().length > 0;
@@ -103,14 +151,43 @@ export function SubscribeForm() {
   }, [disclaimerOpen]);
 
   useEffect(() => {
-    const params = new URLSearchParams(window.location.search);
-    if (params.get("submitted") === "1") {
-      setConfirmed(true);
+    function showStoredConfirmation() {
+      const params = new URLSearchParams(window.location.search);
+      if (readSubmission() || params.get("submitted") === "1") {
+        setConfirmed(true);
+      }
     }
+    showStoredConfirmation();
+    setStorageChecked(true);
+    window.addEventListener("pageshow", showStoredConfirmation);
+    return () => window.removeEventListener("pageshow", showStoredConfirmation);
   }, []);
+
+  useEffect(() => {
+    if (confirmed) {
+      confirmationRef.current?.focus();
+    }
+  }, [confirmed]);
+
+  function startOver() {
+    clearSubmission();
+    submitGuard.current = false;
+    formPosted.current = false;
+    setSending(false);
+    setSendError(false);
+    setConfirmed(false);
+    const url = new URL(window.location.href);
+    if (url.searchParams.has("submitted")) {
+      url.searchParams.delete("submitted");
+      window.history.replaceState(null, "", `${url.pathname}${url.search}`);
+    }
+  }
 
   async function onSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
+    if (submitGuard.current || formPosted.current) {
+      return;
+    }
     setSubmitReached(true);
     setProductsTouched(true);
     setTouched({ firstName: true, lastName: true, email: true, confirmEmail: true });
@@ -120,6 +197,11 @@ export function SubscribeForm() {
     if (honey) {
       return;
     }
+    if (submissionMatches(email)) {
+      setConfirmed(true);
+      return;
+    }
+    submitGuard.current = true;
     setSending(true);
     setSendError(false);
     const acceptedAtUtc = new Date().toISOString();
@@ -141,12 +223,15 @@ export function SubscribeForm() {
     };
     try {
       await postFormSubmit(SUBSCRIBE_FORM_SUBMIT_AJAX_URL, fields);
+      rememberSubmission(fields.email);
       setConfirmed(true);
       setSending(false);
     } catch (error) {
       const blockedBeforeResponse = error instanceof TypeError;
-      if (blockedBeforeResponse) {
+      if (blockedBeforeResponse && !formPosted.current) {
         try {
+          formPosted.current = true;
+          rememberSubmission(fields.email);
           postSubscribeForm({
             products: fields.products,
             first_name: fields.first_name,
@@ -162,19 +247,66 @@ export function SubscribeForm() {
             _next: `${window.location.origin}/subscribe?submitted=1`,
           });
           window.setTimeout(() => {
+            clearSubmission();
+            formPosted.current = false;
+            submitGuard.current = false;
             setSending(false);
             setSendError(true);
           }, 2500);
           return;
         } catch {
+          formPosted.current = false;
+          submitGuard.current = false;
+          clearSubmission();
           setSending(false);
           setSendError(true);
           return;
         }
       }
+      submitGuard.current = false;
       setSending(false);
       setSendError(true);
     }
+  }
+
+  if (!storageChecked) {
+    return <section className="min-h-[70vh]" aria-hidden />;
+  }
+
+  if (confirmed) {
+    return (
+      <section
+        className="flex min-h-[calc(100vh-4rem)] items-center justify-center bg-gradient-to-br from-violet-50 via-white to-slate-50 px-6 py-16"
+        aria-live="polite"
+      >
+        <div className="mx-auto flex max-w-2xl flex-col items-center text-center">
+          <CircleCheck className="size-16 text-emerald-600" aria-hidden />
+          <h1
+            ref={confirmationRef}
+            tabIndex={-1}
+            className="mt-6 font-heading text-2xl font-bold leading-relaxed text-foreground outline-none sm:text-3xl"
+          >
+            {subscribe.confirmationLead}
+            <a href={`mailto:${subscribe.confirmationEmail}`} className="text-primary underline">
+              {subscribe.confirmationEmail}
+            </a>
+          </h1>
+          <Link
+            href="/"
+            className="mt-8 inline-flex items-center justify-center rounded-full bg-primary px-8 py-4 text-base font-semibold text-primary-foreground shadow-lg shadow-violet-200 hover:opacity-90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+          >
+            {subscribe.backHome}
+          </Link>
+          <button
+            type="button"
+            onClick={startOver}
+            className="mt-4 text-sm text-muted-foreground underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+          >
+            {subscribe.startOver}
+          </button>
+        </div>
+      </section>
+    );
   }
 
   return (
@@ -428,14 +560,6 @@ export function SubscribeForm() {
                 )}
               </div>
 
-              {confirmed ? (
-                <p className="text-center text-lg font-bold leading-relaxed text-foreground" role="status">
-                  {subscribe.confirmationLead}
-                  <a href={`mailto:${subscribe.confirmationEmail}`} className="text-primary underline">
-                    {subscribe.confirmationEmail}
-                  </a>
-                </p>
-              ) : null}
             </form>
           </div>
         </div>
