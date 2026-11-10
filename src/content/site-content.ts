@@ -371,13 +371,12 @@ export const subscribe = {
     email: "Enter your email.",
     emailFormat: "Enter an email address like you@example.com.",
   },
-  policiesLegend: "Policies",
-  openFullPage: "Open full page",
   accept: "Accept",
   decline: "Decline",
-  policyNeeded: "Accept every policy to subscribe.",
-  declinedLead: "Declined:",
-  unansweredLead: "Not yet accepted:",
+  readDisclaimer: "Read the Queta Disclaimer",
+  openDisclaimer: "Open in new tab",
+  disclaimerNeeded: "Accept the Queta Disclaimer to subscribe.",
+  disclaimerDeclined: "You declined the Queta Disclaimer. Accept it to subscribe.",
   submitLabel: "Subscribe",
   nextSteps:
     "Queta AI will email you with next steps within 24 hours. If you don't see our message, please check your junk or spam folder.",
@@ -2369,6 +2368,7 @@ export const publicRoutes = [
   "/about",
   "/contact",
   "/subscribe",
+  "/queta-disclaimer",
   "/compare",
   "/feedback",
   "/faq",
@@ -2380,6 +2380,7 @@ export const publicRoutes = [
 
 export const replicaOnlyRoutes = [
   "/subscribe",
+  "/queta-disclaimer",
   "/compare",
   "/feedback",
   "/faq",

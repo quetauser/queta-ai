@@ -1,17 +1,12 @@
 "use client";
 
 import { FormEvent, useState } from "react";
-import { legalDocuments, navigation, subscribe } from "@/content/site-content";
-import type { LegalDocument } from "@/content/site-content";
-import { LegalDocumentBody } from "@/components/pages/LegalDocumentView";
+import { navigation, subscribe } from "@/content/site-content";
+import { QuetaDisclaimerSections } from "@/components/pages/QuetaDisclaimer";
 
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 type PolicyChoice = "accept" | "decline" | null;
-
-const initialChoices = Object.fromEntries(
-  legalDocuments.map((document) => [document.href, null]),
-) as Record<LegalDocument["href"], PolicyChoice>;
 
 export function SubscribeForm() {
   const [products, setProducts] = useState<Record<string, boolean>>({});
@@ -19,7 +14,9 @@ export function SubscribeForm() {
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
-  const [choices, setChoices] = useState(initialChoices);
+  const [disclaimerChoice, setDisclaimerChoice] = useState<PolicyChoice>(null);
+  const [disclaimerRead, setDisclaimerRead] = useState(false);
+  const [disclaimerOpen, setDisclaimerOpen] = useState(false);
   const [touched, setTouched] = useState<Record<string, boolean>>({});
   const [confirmed, setConfirmed] = useState(false);
 
@@ -27,18 +24,20 @@ export function SubscribeForm() {
   const firstNameValid = firstName.trim().length > 0;
   const lastNameValid = lastName.trim().length > 0;
   const emailValid = EMAIL_PATTERN.test(email.trim());
-  const policiesAccepted = legalDocuments.every((document) => choices[document.href] === "accept");
-  const canSubscribe = productSelected && firstNameValid && lastNameValid && emailValid && policiesAccepted;
+  const disclaimerAccepted = disclaimerChoice === "accept";
+  const canSubscribe = productSelected && firstNameValid && lastNameValid && emailValid && disclaimerAccepted;
 
-  const declined = legalDocuments.filter((document) => choices[document.href] === "decline");
-  const unanswered = legalDocuments.filter((document) => choices[document.href] === null);
-
-  function choose(href: LegalDocument["href"], choice: Exclude<PolicyChoice, null>) {
-    setChoices((current) => ({
-      ...current,
-      [href]: current[href] === choice ? null : choice,
-    }));
+  function chooseDisclaimer(choice: Exclude<PolicyChoice, null>) {
+    if (!disclaimerRead) {
+      return;
+    }
+    setDisclaimerChoice((current) => (current === choice ? null : choice));
     setConfirmed(false);
+  }
+
+  function readDisclaimer() {
+    setDisclaimerRead(true);
+    setDisclaimerOpen((open) => !open);
   }
 
   function onSubmit(event: FormEvent<HTMLFormElement>) {
@@ -89,7 +88,7 @@ export function SubscribeForm() {
                 )}
               </fieldset>
 
-              <div className="flex flex-col gap-3">
+              <div className="grid grid-cols-1 gap-3 md:grid-cols-2">
                 <Field
                   id="first-name"
                   label={subscribe.fields.firstName.label}
@@ -153,58 +152,54 @@ export function SubscribeForm() {
               </div>
               </div>
 
-              <fieldset className="flex flex-col gap-3">
-                <legend className="text-sm font-semibold text-foreground">{subscribe.policiesLegend}</legend>
-                <div className="grid grid-cols-1 gap-3 md:grid-cols-2">
-                {legalDocuments.map((document) => (
-                  <div key={document.href} className="rounded-2xl border border-border">
-                    <details>
-                      <summary className="cursor-pointer list-none px-4 py-3 font-semibold text-foreground [&::-webkit-details-marker]:hidden">
-                        {document.navLabel}
-                      </summary>
-                      <div className="px-4 pb-4">
-                        <div className="max-h-64 overflow-y-auto rounded-xl border border-border bg-slate-50 p-4">
-                          <LegalDocumentBody document={document} />
-                        </div>
-                      </div>
-                    </details>
-                    <div className="flex flex-wrap items-center justify-between gap-3 border-t border-border px-4 py-3">
-                      <a
-                        href={document.href}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-sm font-semibold text-primary underline"
-                      >
-                        {subscribe.openFullPage}
-                      </a>
-                      <div className="flex gap-4">
-                        <Choice
-                          name={document.href}
-                          label={subscribe.accept}
-                          checked={choices[document.href] === "accept"}
-                          onChange={() => choose(document.href, "accept")}
-                        />
-                        <Choice
-                          name={document.href}
-                          label={subscribe.decline}
-                          checked={choices[document.href] === "decline"}
-                          onChange={() => choose(document.href, "decline")}
-                        />
-                      </div>
-                    </div>
+              <div className="flex flex-col gap-3">
+                <div className="flex flex-wrap items-center justify-between gap-3">
+                  <div className="flex flex-col items-start gap-1">
+                    <button
+                      type="button"
+                      onClick={readDisclaimer}
+                      className="text-sm font-semibold text-primary underline"
+                      aria-expanded={disclaimerOpen}
+                    >
+                      {subscribe.readDisclaimer}
+                    </button>
+                    <a
+                      href="/queta-disclaimer"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-xs font-medium text-primary underline"
+                    >
+                      {subscribe.openDisclaimer}
+                    </a>
                   </div>
-                ))}
+                  <div className="flex gap-4">
+                    <Choice
+                      name="disclaimer"
+                      label={subscribe.accept}
+                      checked={disclaimerChoice === "accept"}
+                      disabled={!disclaimerRead}
+                      onChange={() => chooseDisclaimer("accept")}
+                    />
+                    <Choice
+                      name="disclaimer"
+                      label={subscribe.decline}
+                      checked={disclaimerChoice === "decline"}
+                      disabled={!disclaimerRead}
+                      onChange={() => chooseDisclaimer("decline")}
+                    />
+                  </div>
                 </div>
-                {policiesAccepted ? null : (
+                {disclaimerOpen ? (
+                  <div className="max-h-96 overflow-y-auto rounded-xl border border-border bg-slate-50 p-4">
+                    <QuetaDisclaimerSections />
+                  </div>
+                ) : null}
+                {disclaimerAccepted ? null : (
                   <p className="text-sm text-red-700 bg-red-50 border border-red-200 rounded-xl px-4 py-3" role="alert">
-                    {subscribe.policyNeeded}{" "}
-                    {declined.length > 0 ? `${subscribe.declinedLead} ${declined.map((document) => document.navLabel).join(", ")}.` : null}{" "}
-                    {unanswered.length > 0
-                      ? `${subscribe.unansweredLead} ${unanswered.map((document) => document.navLabel).join(", ")}.`
-                      : null}
+                    {disclaimerChoice === "decline" ? subscribe.disclaimerDeclined : subscribe.disclaimerNeeded}
                   </p>
                 )}
-              </fieldset>
+              </div>
 
               <p className="text-sm text-muted-foreground leading-relaxed">{subscribe.nextSteps}</p>
 
@@ -281,16 +276,25 @@ function Choice({
   name,
   label,
   checked,
+  disabled,
   onChange,
 }: {
   name: string;
   label: string;
   checked: boolean;
+  disabled?: boolean;
   onChange: () => void;
 }) {
   return (
-    <label className="flex items-center gap-2 text-sm text-foreground">
-      <input type="checkbox" name={`${name}-${label}`} checked={checked} onChange={onChange} className="size-4 accent-primary" />
+    <label className={`flex items-center gap-2 text-sm text-foreground ${disabled ? "opacity-50" : ""}`}>
+      <input
+        type="checkbox"
+        name={`${name}-${label}`}
+        checked={checked}
+        disabled={disabled}
+        onChange={onChange}
+        className="size-4 accent-primary disabled:cursor-not-allowed"
+      />
       {label}
     </label>
   );
