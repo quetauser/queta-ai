@@ -1,7 +1,7 @@
 "use client";
 
 import { ArrowRight } from "lucide-react";
-import { FormEvent, useState } from "react";
+import { FormEvent, UIEvent, useEffect, useRef, useState } from "react";
 import { navigation, subscribe } from "@/content/site-content";
 import { QuetaDisclaimerSections } from "@/components/pages/QuetaDisclaimer";
 
@@ -16,8 +16,12 @@ export function SubscribeForm() {
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
   const [disclaimerChoice, setDisclaimerChoice] = useState<PolicyChoice>(null);
-  const [disclaimerRead, setDisclaimerRead] = useState(false);
   const [disclaimerOpen, setDisclaimerOpen] = useState(false);
+  const [scrolledToEnd, setScrolledToEnd] = useState(false);
+  const [honey, setHoney] = useState("");
+  const [sending, setSending] = useState(false);
+  const [sendError, setSendError] = useState(false);
+  const disclaimerRef = useRef<HTMLDivElement>(null);
   const [touched, setTouched] = useState<Record<string, boolean>>({});
   const [confirmed, setConfirmed] = useState(false);
 
@@ -29,7 +33,10 @@ export function SubscribeForm() {
   const canSubscribe = productSelected && firstNameValid && lastNameValid && emailValid && disclaimerAccepted;
 
   function chooseDisclaimer(choice: Exclude<PolicyChoice, null>) {
-    if (!disclaimerRead) {
+    if (choice === "accept" && !scrolledToEnd) {
+      return;
+    }
+    if (choice === "decline" && !disclaimerOpen) {
       return;
     }
     setDisclaimerChoice((current) => (current === choice ? null : choice));
@@ -37,17 +44,56 @@ export function SubscribeForm() {
   }
 
   function readDisclaimer() {
-    setDisclaimerRead(true);
     setDisclaimerOpen((open) => !open);
   }
 
-  function onSubmit(event: FormEvent<HTMLFormElement>) {
-    event.preventDefault();
-    if (!canSubscribe) {
+  function markScrolled(element: HTMLDivElement) {
+    if (element.scrollTop + element.clientHeight >= element.scrollHeight - 24) {
+      setScrolledToEnd(true);
+    }
+  }
+
+  function onDisclaimerScroll(event: UIEvent<HTMLDivElement>) {
+    markScrolled(event.currentTarget);
+  }
+
+  useEffect(() => {
+    if (!disclaimerOpen || !disclaimerRef.current) {
       return;
     }
-    // TODO: The subscribe action will be defined later. This does not submit to a backend or send email.
-    setConfirmed(true);
+    markScrolled(disclaimerRef.current);
+  }, [disclaimerOpen]);
+
+  async function onSubmit(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    if (!canSubscribe || sending) {
+      return;
+    }
+    setSending(true);
+    setSendError(false);
+    try {
+      const response = await fetch("/api/subscribe", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify({
+          honey,
+          products: navigation.solutions.filter((item) => products[item.href]).map((item) => item.href),
+          firstName,
+          lastName,
+          email,
+          phone,
+          accepted: true,
+        }),
+      });
+      if (!response.ok) {
+        throw new Error("Unable to send");
+      }
+      setConfirmed(true);
+    } catch {
+      setSendError(true);
+    } finally {
+      setSending(false);
+    }
   }
 
   return (
@@ -62,7 +108,17 @@ export function SubscribeForm() {
       <section className="pb-8">
         <div className="max-w-5xl mx-auto px-6">
           <div className="bg-white rounded-3xl border border-border shadow-xl shadow-violet-100 p-5 md:p-6">
-            <form className="flex flex-col gap-4" onSubmit={onSubmit} noValidate>
+            <form className="relative flex flex-col gap-4" onSubmit={onSubmit} noValidate>
+              <input
+                type="text"
+                name="company_website"
+                value={honey}
+                onChange={(event) => setHoney(event.target.value)}
+                tabIndex={-1}
+                autoComplete="off"
+                className="absolute h-0 w-0 overflow-hidden opacity-0"
+                aria-hidden
+              />
               <div className="grid grid-cols-1 gap-4 md:grid-cols-2 md:items-start">
               <fieldset className="flex flex-col gap-2">
                 <legend className="text-sm font-semibold text-foreground">{subscribe.productsLegend}</legend>
@@ -159,39 +215,38 @@ export function SubscribeForm() {
                     <button
                       type="button"
                       onClick={readDisclaimer}
-                      className="text-sm font-semibold text-primary underline"
+                      className="text-left text-sm font-semibold text-primary underline"
                       aria-expanded={disclaimerOpen}
                     >
                       {subscribe.readDisclaimer}
                     </button>
-                    <a
-                      href="/queta-disclaimer"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-xs font-medium text-primary underline"
-                    >
-                      {subscribe.openDisclaimer}
-                    </a>
                   </div>
                   <div className="flex gap-4">
                     <Choice
                       name="disclaimer"
                       label={subscribe.accept}
                       checked={disclaimerChoice === "accept"}
-                      disabled={!disclaimerRead}
+                      disabled={!scrolledToEnd}
                       onChange={() => chooseDisclaimer("accept")}
                     />
                     <Choice
                       name="disclaimer"
                       label={subscribe.decline}
                       checked={disclaimerChoice === "decline"}
-                      disabled={!disclaimerRead}
+                      disabled={!disclaimerOpen}
                       onChange={() => chooseDisclaimer("decline")}
                     />
                   </div>
                 </div>
+                {disclaimerOpen && !scrolledToEnd ? (
+                  <p className="text-xs text-muted-foreground">{subscribe.scrollHint}</p>
+                ) : null}
                 {disclaimerOpen ? (
-                  <div className="max-h-96 overflow-y-auto rounded-xl border border-border bg-slate-50 p-4">
+                  <div
+                    ref={disclaimerRef}
+                    onScroll={onDisclaimerScroll}
+                    className="max-h-96 overflow-y-auto rounded-xl border border-border bg-slate-50 p-4"
+                  >
                     <QuetaDisclaimerSections />
                   </div>
                 ) : null}
@@ -202,13 +257,19 @@ export function SubscribeForm() {
                 )}
               </div>
 
+              {sendError ? (
+                <p className="text-sm text-red-700 bg-red-50 border border-red-200 rounded-xl px-4 py-3" role="alert">
+                  {subscribe.sendError}
+                </p>
+              ) : null}
+
               <div className="flex justify-center">
                 <button
                   type="submit"
-                  disabled={!canSubscribe}
+                  disabled={!canSubscribe || sending}
                   className="group inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full bg-primary text-primary-foreground font-semibold text-base hover:opacity-90 transition-all shadow-lg shadow-violet-200 hover:shadow-violet-300 hover:shadow-xl animate-glow-pulse disabled:cursor-not-allowed disabled:opacity-60 disabled:hover:shadow-lg"
                 >
-                  {subscribe.submitLabel}
+                  {sending ? subscribe.sendingLabel : subscribe.submitLabel}
                   <ArrowRight size={18} className="transition-transform group-hover:translate-x-1" />
                 </button>
               </div>
@@ -219,7 +280,6 @@ export function SubscribeForm() {
                   <a href={`mailto:${subscribe.confirmationEmail}`} className="text-primary underline">
                     {subscribe.confirmationEmail}
                   </a>
-                  .
                 </p>
               ) : null}
             </form>

@@ -31,7 +31,9 @@ export function SiteHeaderClient({
   closeIcon,
   chevronIcon,
 }: SiteHeaderClientProps) {
-  const headerLinks = navigation.links.filter((item) => item.href !== "/about");
+  const headerLinks = navigation.links.filter(
+    (item) => item.href !== "/about" && item.href !== "/contact",
+  );
   const [mobileOpen, setMobileOpen] = useState(false);
   const [solutionsOpen, setSolutionsOpen] = useState(false);
 
@@ -91,7 +93,7 @@ export function SiteHeaderClient({
             {navigation.faq.label}
           </Link>
           <Link
-            href="/subscribe"
+            href={navigation.cta.href}
             className="whitespace-nowrap px-5 py-2 rounded-full text-sm font-semibold bg-primary text-primary-foreground hover:opacity-90 transition-opacity"
           >
             {navigation.cta.label}
@@ -143,7 +145,7 @@ export function SiteHeaderClient({
             {navigation.faq.label}
           </Link>
           <Link
-            href="/subscribe"
+            href={navigation.cta.href}
             className="inline-flex px-5 py-2 rounded-full text-sm font-semibold bg-primary text-primary-foreground"
             onClick={() => setMobileOpen(false)}
           >

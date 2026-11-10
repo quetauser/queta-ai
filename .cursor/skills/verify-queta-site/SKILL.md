@@ -54,7 +54,6 @@ Routes that exist on queta.ai (must return 200 on the replica and the original):
 Replica-only routes (must return 200 on the replica). Do not request these from https://www.queta.ai. Legal documents are not published there, and `/compare` exists only on this replica:
 
 - `/compare`
-- `/feedback`
 - `/faq`
 - `/terms-of-use`
 - `/privacy-policy`

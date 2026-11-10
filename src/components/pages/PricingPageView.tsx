@@ -1,7 +1,6 @@
 import Link from "next/link";
 import { Check } from "lucide-react";
 import { pricing } from "@/content/site-content";
-import { contactPageHref } from "@/lib/contact-form";
 
 export function PricingPageView() {
   return (
@@ -72,7 +71,7 @@ export function PricingPageView() {
                 </ul>
                 <div className="p-8 pt-0">
                   <Link
-                    href={contactPageHref(tier.interestKey)}
+                    href="/subscribe"
                     className="block w-full text-center py-3 rounded-xl bg-primary text-primary-foreground font-semibold text-sm hover:opacity-90 transition-opacity"
                   >
                     {tier.cta}
