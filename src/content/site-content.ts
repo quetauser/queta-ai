@@ -197,7 +197,6 @@ export const pricing = {
         "Health Coach",
         "Student Guide",
         "Inbox Agent",
-        "Retirement Planner",
         "Career Coach",
         "Home Maintenance Advisor",
         "Stock Analyst",
@@ -822,12 +821,6 @@ const lifestyleSolution: SolutionPageContent = {
       description:
         "Watches Outlook and Gmail, sends a daily digest of what needs a reply or action, helps draft and send responses as needed, and turns bills and deadlines into to-dos.",
       tagline: "The messages that need you, before the day gets away.",
-    },
-    {
-      title: "Retirement Planner",
-      description:
-        "Models whether and how you can retire early on your real numbers, with a base case and a conservative case.",
-      tagline: "The same plan, run both ways, so the choice is yours.",
     },
     {
       title: "Career Coach",
