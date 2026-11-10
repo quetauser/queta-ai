@@ -1,5 +1,6 @@
 "use client";
 
+import { ArrowRight } from "lucide-react";
 import { FormEvent, useState } from "react";
 import { navigation, subscribe } from "@/content/site-content";
 import { QuetaDisclaimerSections } from "@/components/pages/QuetaDisclaimer";
@@ -201,21 +202,26 @@ export function SubscribeForm() {
                 )}
               </div>
 
-              <p className="text-sm text-muted-foreground leading-relaxed">{subscribe.nextSteps}</p>
+              <div className="flex justify-center">
+                <button
+                  type="submit"
+                  disabled={!canSubscribe}
+                  className="group inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full bg-primary text-primary-foreground font-semibold text-base hover:opacity-90 transition-all shadow-lg shadow-violet-200 hover:shadow-violet-300 hover:shadow-xl animate-glow-pulse disabled:cursor-not-allowed disabled:opacity-60 disabled:hover:shadow-lg"
+                >
+                  {subscribe.submitLabel}
+                  <ArrowRight size={18} className="transition-transform group-hover:translate-x-1" />
+                </button>
+              </div>
 
               {confirmed ? (
-                <p className="text-sm text-emerald-700 bg-emerald-50 border border-emerald-200 rounded-xl px-4 py-3" role="status">
-                  {subscribe.confirmation}
+                <p className="text-center text-lg font-bold leading-relaxed text-foreground" role="status">
+                  {subscribe.confirmationLead}
+                  <a href={`mailto:${subscribe.confirmationEmail}`} className="text-primary underline">
+                    {subscribe.confirmationEmail}
+                  </a>
+                  .
                 </p>
               ) : null}
-
-              <button
-                type="submit"
-                disabled={!canSubscribe}
-                className="w-full py-3.5 rounded-xl bg-primary text-primary-foreground font-semibold text-sm hover:opacity-90 transition-opacity shadow-lg shadow-violet-200 disabled:opacity-60 disabled:cursor-not-allowed"
-              >
-                {subscribe.submitLabel}
-              </button>
             </form>
           </div>
         </div>

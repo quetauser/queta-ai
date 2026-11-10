@@ -378,9 +378,9 @@ export const subscribe = {
   disclaimerNeeded: "Accept the Queta Disclaimer to subscribe.",
   disclaimerDeclined: "You declined the Queta Disclaimer. Accept it to subscribe.",
   submitLabel: "Subscribe",
-  nextSteps:
-    "Queta AI will email you with next steps within 24 hours. If you don't see our message, please check your junk or spam folder.",
-  confirmation: "Thanks. This is a placeholder confirmation. Nothing has been submitted.",
+  confirmationLead:
+    "You will receive an email from the Queta team with Next Steps and a Getting Started Guide. Please check your Spam/Junk folder if you do not receive an email within 24 hours. Feel free to contact us at ",
+  confirmationEmail: "info@queta.ai",
 } as const;
 
 export const feedback = {
