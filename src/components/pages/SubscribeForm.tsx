@@ -357,7 +357,7 @@ export function SubscribeForm() {
                   aria-disabled={!canSubscribe || sending}
                   aria-describedby={canSubscribe ? undefined : "subscribe-still-needed"}
                   onFocus={() => setSubmitReached(true)}
-                  className={`group inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full bg-primary text-primary-foreground font-semibold text-base hover:opacity-90 transition-all shadow-lg shadow-violet-200 hover:shadow-violet-300 hover:shadow-xl motion-safe:animate-glow-pulse focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary ${!canSubscribe || sending ? "cursor-not-allowed opacity-60 hover:shadow-lg" : ""}`}
+                  className={`group inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full bg-primary text-primary-foreground font-semibold text-base hover:opacity-90 transition-all shadow-lg shadow-violet-200 hover:shadow-violet-300 hover:shadow-xl subscribe-submit animate-glow-pulse focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary ${!canSubscribe || sending ? "cursor-not-allowed opacity-60 hover:shadow-lg" : ""}`}
                 >
                   {sending ? subscribe.sendingLabel : subscribe.submitLabel}
                   <ArrowRight size={18} className="transition-transform motion-safe:group-hover:translate-x-1" />
