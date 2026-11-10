@@ -414,8 +414,7 @@ export const faq = {
         },
         {
           question: "How do I migrate from Claude to Grok Bot while preserving my memories and data?",
-          answer:
-            "You can bring what Claude already knows about you into Grok Bot so you do not have to start from scratch. In Claude, ask it to list everything it remembers about you, including your preferences, projects, and standing instructions, as plain sentences, and copy the answer. For a full chat history, Claude's account settings offer a data export. In Grok Bot, open the Import memory setting and paste that text so it becomes shared memory your bots can use. You can also paste the list into a bot chat and say \"remember this.\" Then ask \"What do you know about me?\" and correct anything that's off. Claude Projects files and recurring tasks do not carry over on their own. Re-upload those files as bot files or send them in chat, and set the recurring tasks up again as routines in Grok Bot. The video below walks through each step.",
+          answer: "Below is the step by step guide to migrate from Claude to Grok Bot",
           video: {
             src: "/videos/migrate-claude.mp4",
             poster: "/videos/migrate-claude-poster.jpg",
