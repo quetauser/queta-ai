@@ -390,6 +390,8 @@ export const subscribe = {
   disclaimerDeclined: "You declined the Queta Disclaimer. Accept it to subscribe.",
   submitLabel: "Subscribe",
   sendingLabel: "Sending…",
+  backHome: "Back to home",
+  startOver: "Start over",
   sendErrorLead: "We couldn't send your request. Email ",
   sendErrorEmail: "subscribe@queta.ai",
   sendErrorTail: " and we will take it from there.",
