@@ -52,18 +52,19 @@ export function SubscribeForm() {
 
   return (
     <>
-      <section className="overflow-visible pt-28 pb-12 bg-gradient-to-br from-violet-50 via-white to-slate-50">
+      <section className="overflow-visible pt-20 pb-3 bg-gradient-to-br from-violet-50 via-white to-slate-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 text-center">
-          <h1 className="overflow-visible font-heading font-bold text-foreground mb-6 py-2 leading-normal text-2xl sm:text-3xl lg:text-4xl">
+          <h1 className="overflow-visible font-heading font-bold text-foreground leading-tight text-2xl sm:text-3xl">
             {subscribe.heading}
           </h1>
         </div>
       </section>
-      <section className="py-6">
-        <div className="max-w-3xl mx-auto px-6">
-          <div className="bg-white rounded-3xl border border-border shadow-xl shadow-violet-100 p-8 md:p-10">
-            <form className="flex flex-col gap-8" onSubmit={onSubmit} noValidate>
-              <fieldset className="flex flex-col gap-3">
+      <section className="pb-8">
+        <div className="max-w-5xl mx-auto px-6">
+          <div className="bg-white rounded-3xl border border-border shadow-xl shadow-violet-100 p-5 md:p-6">
+            <form className="flex flex-col gap-4" onSubmit={onSubmit} noValidate>
+              <div className="grid grid-cols-1 gap-4 md:grid-cols-2 md:items-start">
+              <fieldset className="flex flex-col gap-2">
                 <legend className="text-sm font-semibold text-foreground">{subscribe.productsLegend}</legend>
                 {navigation.solutions.map((item) => (
                   <label key={item.href} className="flex items-center gap-2 text-sm text-foreground">
@@ -88,7 +89,7 @@ export function SubscribeForm() {
                 )}
               </fieldset>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+              <div className="flex flex-col gap-3">
                 <Field
                   id="first-name"
                   label={subscribe.fields.firstName.label}
@@ -150,9 +151,11 @@ export function SubscribeForm() {
                   }}
                 />
               </div>
+              </div>
 
-              <fieldset className="flex flex-col gap-4">
+              <fieldset className="flex flex-col gap-3">
                 <legend className="text-sm font-semibold text-foreground">{subscribe.policiesLegend}</legend>
+                <div className="grid grid-cols-1 gap-3 md:grid-cols-2">
                 {legalDocuments.map((document) => (
                   <div key={document.href} className="rounded-2xl border border-border">
                     <details>
@@ -191,6 +194,7 @@ export function SubscribeForm() {
                     </div>
                   </div>
                 ))}
+                </div>
                 {policiesAccepted ? null : (
                   <p className="text-sm text-red-700 bg-red-50 border border-red-200 rounded-xl px-4 py-3" role="alert">
                     {subscribe.policyNeeded}{" "}
@@ -201,6 +205,8 @@ export function SubscribeForm() {
                   </p>
                 )}
               </fieldset>
+
+              <p className="text-sm text-muted-foreground leading-relaxed">{subscribe.nextSteps}</p>
 
               {confirmed ? (
                 <p className="text-sm text-emerald-700 bg-emerald-50 border border-emerald-200 rounded-xl px-4 py-3" role="status">
@@ -260,7 +266,7 @@ function Field({
         aria-describedby={error ? `${id}-error` : undefined}
         onBlur={onBlur}
         onChange={(event) => onChange(event.target.value)}
-        className="w-full px-4 py-3 rounded-xl border border-border bg-background text-foreground text-sm focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition-all"
+        className="w-full px-3 py-2 rounded-xl border border-border bg-background text-foreground text-sm focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition-all"
       />
       {error ? (
         <p id={`${id}-error`} className="text-xs text-red-700">

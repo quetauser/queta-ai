@@ -379,6 +379,8 @@ export const subscribe = {
   declinedLead: "Declined:",
   unansweredLead: "Not yet accepted:",
   submitLabel: "Subscribe",
+  nextSteps:
+    "Queta AI will email you with next steps within 24 hours. If you don't see our message, please check your junk or spam folder.",
   confirmation: "Thanks. This is a placeholder confirmation. Nothing has been submitted.",
 } as const;
 
