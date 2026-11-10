@@ -219,6 +219,7 @@ export const pricing = {
         "Earnings Calendar Agent",
         "News Sentiment Analyzer",
         "Trade Journal Automation",
+        "Paper Trading",
       ],
       cta: "Get Started",
       interestKey: "get-started-trader",
@@ -731,6 +732,12 @@ const traderSolution: SolutionPageContent = {
       title: "Stock Analyst commentary",
       description: "Near real-time updates for stock upgrade and downgrade.",
       tagline: "Your agent keeps you informed on what stock analysts are saying.",
+    },
+    {
+      title: "Paper Trading",
+      description:
+        "Test your strategies with simulated trades on real market data, no capital at risk. Refine entries, exits, and position sizing until the approach performs to your liking, then move it to your live brokerage account with confidence.",
+      tagline: "Prove the plan on paper before it risks real money.",
     },
   ],
   scenarios: [
