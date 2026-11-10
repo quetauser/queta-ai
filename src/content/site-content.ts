@@ -2216,8 +2216,8 @@ export const navigation = {
 } as const;
 
 export const compare = {
-  metaTitle: "Average User spends $181/month on subscriptions — Queta AI",
-  title: "Average User spends $181/month on subscriptions.\nQueta Companion solution- $33.25 / month",
+  metaTitle: "Average User spends $167/month on subscriptions — Queta AI",
+  title: "Average User spends $167/month on subscriptions.\nQueta Companion solution- $33.25 / month",
   columns: {
     agent: "Queta Lifestyle agent",
     app: "Comparable app",
@@ -2262,13 +2262,6 @@ export const compare = {
       cost: "$4.00",
       logo: "/logos/khanmigo.png",
       logoAlt: "Khanmigo logo",
-    },
-    {
-      agent: "Retirement Planner",
-      app: "Boldin PlannerPlus",
-      cost: "$14.00*",
-      logo: "/logos/boldin.png",
-      logoAlt: "Boldin logo",
     },
     {
       agent: "Spending Coach",
@@ -2326,7 +2319,7 @@ export const compare = {
     },
   ],
   totalLabel: "Total",
-  totalCost: "$181.35/mo",
+  totalCost: "$167.35/mo",
   calloutLead: "Queta Companion solution- ",
   calloutPrice: "$33.25 / month",
 } as const;
