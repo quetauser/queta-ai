@@ -1,6 +1,6 @@
 export const FORM_SUBMIT_AJAX_URL = "https://formsubmit.co/ajax/info@queta.ai";
 
-export const FEEDBACK_FORM_SUBMIT_AJAX_URL = "https://formsubmit.co/ajax/sushant@queta.ai";
+export const SUBSCRIBE_FORM_SUBMIT_AJAX_URL = "https://formsubmit.co/ajax/subscribe@queta.ai";
 
 export const CONTACT_EMAIL_SUBJECT_BASE = "New Queta AI contact";
 
@@ -72,46 +72,3 @@ export async function submitContactForm(payload: FormSubmitPayload): Promise<voi
   await postFormSubmit(FORM_SUBMIT_AJAX_URL, payload);
 }
 
-export type FeedbackFields = {
-  name: string;
-  email: string;
-  phone: string;
-  comments: string;
-};
-
-export type FeedbackField = "name" | "email" | "comments";
-
-export type FeedbackErrors = Partial<Record<FeedbackField, string>>;
-
-const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-export function validateFeedback(
-  fields: FeedbackFields,
-  messages: { name: string; email: string; emailFormat: string; comments: string },
-): FeedbackErrors {
-  const errors: FeedbackErrors = {};
-  if (!fields.name.trim()) {
-    errors.name = messages.name;
-  }
-  if (!fields.email.trim()) {
-    errors.email = messages.email;
-  } else if (!EMAIL_PATTERN.test(fields.email.trim())) {
-    errors.email = messages.emailFormat;
-  }
-  if (!fields.comments.trim()) {
-    errors.comments = messages.comments;
-  }
-  return errors;
-}
-
-export async function submitFeedbackForm(fields: FeedbackFields, honey: string): Promise<void> {
-  await postFormSubmit(FEEDBACK_FORM_SUBMIT_AJAX_URL, {
-    name: fields.name.trim(),
-    email: fields.email.trim(),
-    phone: fields.phone.trim(),
-    comments: fields.comments.trim(),
-    _subject: "New Queta AI feedback",
-    _captcha: false,
-    _honey: honey,
-  });
-}

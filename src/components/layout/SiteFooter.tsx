@@ -46,18 +46,10 @@ export function SiteFooter() {
                     href={item.href}
                     className="text-sm text-foreground/70 hover:text-foreground transition-colors"
                   >
-                    {item.href === navigation.cta.href ? navigation.cta.label : item.label}
+                    {item.label}
                   </Link>
                 </li>
               ))}
-              <li>
-                <Link
-                  href={navigation.feedback.href}
-                  className="text-sm text-foreground/70 hover:text-foreground transition-colors"
-                >
-                  {navigation.feedback.label}
-                </Link>
-              </li>
               <li>
                 <Link
                   href={navigation.faq.href}

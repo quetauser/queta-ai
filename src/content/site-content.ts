@@ -102,7 +102,7 @@ export const home = {
     title: "Queta Companion - Gets your Work Done !",
     description:
       "Queta AI solutions, powered by Grok Bot, are built around who you are — eliminating mundane tasks so you can focus on what actually matters.",
-    primaryCta: { label: "Subscribe", href: "/contact" },
+    primaryCta: { label: "Subscribe", href: "/subscribe" },
     secondaryCta: { label: "Explore Solutions", href: "#solutions" },
   },
   personaPoweredBy: "powered by Grok Bot",
@@ -354,29 +354,44 @@ export const contact = {
   },
 } as const;
 
-export const feedback = {
-  metaTitle: "Feedback — Queta AI",
-  headline: "We love to hear from our customers.",
-  description:
-    "Whether there is an issue or you would like to get a few more systems connected, just fill out the form below and the Queta team will get back to you.",
-  form: {
-    submitLabel: "Submit",
-    sendingLabel: "Sending…",
-    successMessage: "Thank you. We received your message and the Queta team will get back to you.",
-    errorMessage: "Something went wrong while sending your message. Please try again in a moment.",
-    errors: {
-      name: "Enter your name.",
-      email: "Enter your email.",
-      emailFormat: "Enter an email address like you@example.com.",
-      comments: "Enter a comment.",
-    },
-    fields: {
-      name: { label: "Name", placeholder: "Your full name" },
-      email: { label: "Email", placeholder: "you@example.com" },
-      phone: { label: "Phone number", placeholder: "Your phone number" },
-      comments: { label: "Comments", placeholder: "Tell us what is going on..." },
-    },
+export const subscribe = {
+  metaTitle: "Subscribe — Queta AI",
+  heading: "Thank you for your interest in Queta AI solutions",
+  steps: {
+    details: "1. Your details",
+    products: "2. Products of interest",
+    review: "3. Review & accept",
+    submit: "4. Subscribe",
   },
+  productsLegend: "Products",
+  productsRequired: "Select at least one product.",
+  fields: {
+    firstName: { label: "First Name", placeholder: "First name" },
+    lastName: { label: "Last Name", placeholder: "Last name" },
+    email: { label: "Email", placeholder: "you@example.com" },
+    phone: { label: "Phone number (optional)", placeholder: "Phone number" },
+  },
+  errors: {
+    firstName: "Enter your first name.",
+    lastName: "Enter your last name.",
+    email: "Enter your email.",
+    emailFormat: "Enter an email address like you@example.com.",
+  },
+  accept: "Accept",
+  decline: "Decline",
+  readDisclaimer:
+    "Read the Terms of Use, Privacy Policy, End User License Agreement, AI and Legal Disclosure",
+  scrollHint: "Scroll to the end to continue",
+  reachedEnd: "You've reached the end",
+  stillNeeded: "Still needed:",
+  disclaimerNeeded: "Accept the Queta Disclaimer to subscribe.",
+  disclaimerDeclined: "You declined the Queta Disclaimer. Accept it to subscribe.",
+  submitLabel: "Subscribe",
+  sendingLabel: "Sending…",
+  sendError: "Something went wrong while sending your request. Please try again in a moment.",
+  confirmationLead:
+    "You will receive an email from Queta team with Next Steps and Getting Started Guide. Please check your Spam/Junk folder if you do not receive an email within 24 hours. Feel free to contact us on ",
+  confirmationEmail: "info@queta.ai",
 } as const;
 
 export const faq = {
@@ -476,9 +491,8 @@ export const faq = {
         },
         {
           question: "Still have a question?",
-          answer: "Send a question from the Feedback page, or read the Privacy Policy.",
+          answer: "Read the Privacy Policy.",
           links: [
-            { label: "Feedback", href: "/feedback" },
             { label: "Privacy Policy", href: "/privacy-policy" },
           ],
         },
@@ -2210,7 +2224,7 @@ export const navigation = {
   links: [
     { label: "Pricing", href: "/pricing" },
     { label: "About", href: "/about" },
-    { label: "Contact", href: "/contact" },
+    { label: "Contact Us", href: "/contact" },
   ] as const,
   legal: {
     label: "Legal",
@@ -2219,9 +2233,8 @@ export const navigation = {
       href: document.href,
     })),
   },
-  feedback: { label: "Feedback", href: "/feedback" },
   faq: { label: "FAQ", href: "/faq" },
-  cta: { label: "Subscribe", href: "/contact" },
+  cta: { label: "Subscribe", href: "/subscribe" },
 } as const;
 
 export const compare = {
@@ -2338,8 +2351,9 @@ export const publicRoutes = [
   "/pricing",
   "/about",
   "/contact",
+  "/subscribe",
+  "/queta-disclaimer",
   "/compare",
-  "/feedback",
   "/faq",
   "/solutions/lifestyle",
   "/solutions/realtor",
@@ -2348,8 +2362,9 @@ export const publicRoutes = [
 ] as const;
 
 export const replicaOnlyRoutes = [
+  "/subscribe",
+  "/queta-disclaimer",
   "/compare",
-  "/feedback",
   "/faq",
   ...legalDocuments.map((document) => document.href),
 ] as const;

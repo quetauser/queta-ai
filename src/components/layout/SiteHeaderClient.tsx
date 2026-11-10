@@ -31,7 +31,9 @@ export function SiteHeaderClient({
   closeIcon,
   chevronIcon,
 }: SiteHeaderClientProps) {
-  const headerLinks = navigation.links.filter((item) => item.href !== "/about");
+  const headerLinks = navigation.links.filter(
+    (item) => item.href !== "/about" && item.href !== "/contact",
+  );
   const [mobileOpen, setMobileOpen] = useState(false);
   const [solutionsOpen, setSolutionsOpen] = useState(false);
 
