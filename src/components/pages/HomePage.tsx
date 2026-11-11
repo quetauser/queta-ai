@@ -79,7 +79,7 @@ export function HomePage() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
             {home.personaCards.map((persona) => {
               const theme = personaThemeClasses[persona.theme];
-              const cardClassName = `group relative flex h-full flex-col rounded-3xl border-2 p-8 cursor-pointer transition-all duration-300 lg:px-3 lg:py-8 ${theme.card}`;
+              const cardClassName = `group relative flex h-full flex-col rounded-3xl border-2 p-8 cursor-pointer motion-safe:transition-colors motion-safe:duration-300 motion-reduce:transition-none lg:px-3 lg:py-8 ${theme.card}`;
               const body = (
                 <>
                   <div
@@ -98,10 +98,10 @@ export function HomePage() {
                   <h3 className="text-2xl font-bold text-foreground mb-2 leading-tight">
                     {persona.headline}
                   </h3>
-                  <p className="text-sm text-muted-foreground leading-relaxed mb-6">
+                  <p className="text-sm text-muted-foreground leading-relaxed">
                     {persona.description}
                   </p>
-                  <ul className="flex flex-col gap-2 opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-300 md:max-h-0 md:group-hover:max-h-40 overflow-hidden">
+                  <ul className="mt-4 flex h-[5.75rem] flex-col gap-2 overflow-hidden opacity-100 motion-safe:transition-opacity motion-safe:duration-300 motion-reduce:transition-none md:opacity-0 md:group-hover:opacity-100 md:group-focus-within:opacity-100">
                     {persona.bullets.map((bullet) => (
                       <li
                         key={bullet}
@@ -114,29 +114,32 @@ export function HomePage() {
                   </ul>
                 </>
               );
+              const learnMore = (
+                <span
+                  className={`inline-flex items-center gap-1 text-xs font-semibold ${theme.text} motion-safe:transition-opacity motion-safe:duration-300 motion-reduce:transition-none md:opacity-0 md:group-hover:opacity-100 md:group-focus-within:opacity-100`}
+                >
+                  Learn more <ChevronRight size={14} />
+                </span>
+              );
               if (persona.slug === "trader") {
                 return (
                   <div key={persona.slug} className={cardClassName}>
-                    <Link href={persona.href} className="flex flex-1 flex-col">
+                    <Link href={persona.href} className="flex min-h-0 flex-1 flex-col">
                       {body}
-                      <span
-                        className={`mt-6 inline-flex items-center gap-1 text-xs font-semibold ${theme.text} md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-300`}
-                      >
-                        Learn more <ChevronRight size={14} />
-                      </span>
                     </Link>
-                    <TraderSampleOutputs variant="compact" />
+                    <div className="mt-auto flex shrink-0 items-center justify-between gap-3 pt-4">
+                      <Link href={persona.href} className="shrink-0">
+                        {learnMore}
+                      </Link>
+                      <TraderSampleOutputs variant="compact" />
+                    </div>
                   </div>
                 );
               }
               return (
                 <Link key={persona.slug} href={persona.href} className={cardClassName}>
                   {body}
-                  <span
-                    className={`mt-6 inline-flex items-center gap-1 text-xs font-semibold ${theme.text} md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-300`}
-                  >
-                    Learn more <ChevronRight size={14} />
-                  </span>
+                  <span className="mt-auto pt-4">{learnMore}</span>
                 </Link>
               );
             })}

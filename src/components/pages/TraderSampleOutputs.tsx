@@ -149,7 +149,7 @@ export function TraderSampleOutputs({ variant = "section" }: TraderSampleOutputs
       <>
         <button
           type="button"
-          className="mt-4 inline-flex max-w-full items-center gap-2 text-left text-xs font-semibold text-emerald-700 hover:underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+          className="inline-flex max-w-full shrink-0 cursor-pointer items-center gap-2 text-left text-xs font-semibold text-emerald-700 hover:underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
           onClick={() => open(0)}
         >
           <span className="flex shrink-0 items-center" aria-hidden>
