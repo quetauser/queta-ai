@@ -284,9 +284,13 @@ export function SubscribeForm() {
           <h1
             ref={confirmationRef}
             tabIndex={-1}
-            className="mt-6 font-heading text-2xl font-bold leading-relaxed text-foreground outline-none sm:text-3xl"
+            className="mt-6 font-heading text-xl font-normal leading-relaxed text-foreground outline-none sm:text-2xl"
           >
-            {subscribe.confirmationLead}
+            {subscribe.confirmationBefore}
+            <span className="font-bold">{subscribe.confirmationNextSteps}</span>
+            {subscribe.confirmationBetween}
+            <span className="font-bold">{subscribe.confirmationGuide}</span>
+            {subscribe.confirmationAfter}
             <a href={`mailto:${subscribe.confirmationEmail}`} className="text-primary underline">
               {subscribe.confirmationEmail}
             </a>
@@ -541,7 +545,6 @@ export function SubscribeForm() {
               ) : null}
 
               <div className="flex flex-col items-center gap-2">
-                <h2 className="text-sm font-semibold text-foreground">{subscribe.steps.submit}</h2>
                 <button
                   type="submit"
                   disabled={sending}

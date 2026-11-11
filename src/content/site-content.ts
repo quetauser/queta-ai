@@ -102,7 +102,7 @@ export const home = {
     title: "Queta Companion - Gets your Work Done !",
     description:
       "Queta AI solutions, powered by Grok Bot, are built around who you are — eliminating mundane tasks so you can focus on what actually matters.",
-    primaryCta: { label: "Subscribe", href: "/subscribe" },
+    primaryCta: { label: "Sign Up", href: "/subscribe" },
     secondaryCta: { label: "Explore Solutions", href: "#solutions" },
   },
   personaPoweredBy: "powered by Grok Bot",
@@ -361,7 +361,6 @@ export const subscribe = {
     details: "1. Your details",
     products: "2. Products of interest",
     review: "3. Review & accept",
-    submit: "4. Subscribe",
   },
   productsLegend: "Products",
   productsRequired: "Select at least one product.",
@@ -388,15 +387,19 @@ export const subscribe = {
   stillNeeded: "Still needed:",
   disclaimerNeeded: "Accept the Queta Disclaimer to subscribe.",
   disclaimerDeclined: "You declined the Queta Disclaimer. Accept it to subscribe.",
-  submitLabel: "Subscribe",
+  submitLabel: "Sign Up",
   sendingLabel: "Sending…",
   backHome: "Back to home",
   startOver: "Start over",
   sendErrorLead: "We couldn't send your request. Email ",
   sendErrorEmail: "subscribe@queta.ai",
   sendErrorTail: " and we will take it from there.",
-  confirmationLead:
-    "You will receive an email from Queta team with Next Steps and Getting Started Guide. Please check your Spam/Junk folder if you do not receive an email within 24 hours. Feel free to contact us on ",
+  confirmationBefore: "You will receive an email from Queta team with ",
+  confirmationNextSteps: "Next Steps",
+  confirmationBetween: " and ",
+  confirmationGuide: "Getting Started Guide",
+  confirmationAfter:
+    ". Please check your Spam/Junk folder if you do not receive an email within 24 hours. Feel free to contact us on ",
   confirmationEmail: "info@queta.ai",
 } as const;
 
@@ -2240,7 +2243,7 @@ export const navigation = {
     })),
   },
   faq: { label: "FAQ", href: "/faq" },
-  cta: { label: "Subscribe", href: "/subscribe" },
+  cta: { label: "Sign Up", href: "/subscribe" },
 } as const;
 
 export const compare = {
