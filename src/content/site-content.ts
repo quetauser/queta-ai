@@ -871,6 +871,82 @@ export const lifestyleSamples = {
   ],
 } as const;
 
+export const lifestylePageSamples = {
+  heading: "Sample outputs",
+  subtext: "Real examples of what your Queta Lifestyle companion sends you",
+  disclaimer: "Sample output for illustration. Not investment advice.",
+  lightboxNote: "Sample output with example data.",
+  openLabel: "See sample outputs",
+  closeLabel: "Close",
+  previousLabel: "Previous sample",
+  nextLabel: "Next sample",
+  items: [
+    {
+      src: "/images/lifestyle-samples/job-search-dashboard.webp",
+      width: 1024,
+      height: 741,
+      caption: "Job search dashboard",
+      alt: "Job search dashboard for the week of November 9 to 13, 2026, compared with an example $130k salary. It shows applications sent, interviews, a salary bar chart, a status donut, and a table of example roles.",
+    },
+    {
+      src: "/images/lifestyle-samples/student-dashboard.webp",
+      width: 1024,
+      height: 757,
+      caption: "Student dashboard: what needs action",
+      alt: "Student dashboard mock titled Needs action first, with an overdue algebra set, a field-trip permission slip due Monday, a November calendar, and a table of forms to sign.",
+    },
+    {
+      src: "/images/lifestyle-samples/student-assignments.webp",
+      width: 1024,
+      height: 781,
+      caption: "Student dashboard: assignments and grades",
+      alt: "Student assignments list with an algebra problem set marked missing, other work not turned in, marking-period averages, and attendance notes.",
+    },
+    {
+      src: "/images/lifestyle-samples/workout-plan.webp",
+      width: 846,
+      height: 1280,
+      caption: "Workout plan with exercise demos",
+      alt: "A 30-minute leg-day workout with warm-up notes, exercise pairs, demo video links, and illustrated cards for squats, deadlifts, lunges, hip thrusts, and stretches.",
+    },
+    {
+      src: "/images/trader-samples/meta-chart.webp",
+      width: 484,
+      height: 286,
+      caption: "Annotated stock chart",
+      alt: "Daily META price and volume chart titled double top confirmed, close 641.39 on November 10, 2026, with a 50-day average, a 200-day average, marked peaks, and a neckline.",
+    },
+    {
+      src: "/images/lifestyle-samples/month-snapshot.webp",
+      width: 929,
+      height: 1280,
+      caption: "Monthly money snapshot",
+      alt: "Example November 2026 money snapshot with income, spending by category, projected totals, savings, card limits, and flags that groceries and dining are above average.",
+    },
+    {
+      src: "/images/lifestyle-samples/privacy-guardian.webp",
+      width: 1116,
+      height: 1274,
+      caption: "Privacy Guardian: data broker removal",
+      alt: "An example of Privacy Guardian for a fictional person named Jordan, describing broker opt-out requests under California privacy law and weekly removal checks.",
+    },
+    {
+      src: "/images/lifestyle-samples/food-photo-nutrition.webp",
+      width: 1280,
+      height: 1060,
+      caption: "Food photo nutrition estimate",
+      alt: "A chat estimate for two samosas with chutney and ketchup, about 730 kcal, with a donut chart of carbs, fat, and protein next to a photo of the plate.",
+    },
+    {
+      src: "/images/lifestyle-samples/inbox-digest.webp",
+      width: 1130,
+      height: 1014,
+      caption: "Morning inbox digest",
+      alt: "An example 7am inbox digest for Tuesday November 10, with made-up messages that need action or a reply, an Amazon delivery, and a junk message.",
+    },
+  ],
+} as const;
+
 const lifestyleSolution: SolutionPageContent = {
   slug: "lifestyle",
   metaTitle: "Lifestyle User AI Agent — Queta AI",

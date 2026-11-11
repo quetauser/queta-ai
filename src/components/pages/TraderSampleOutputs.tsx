@@ -36,6 +36,7 @@ export function TraderSampleOutputs({
 }: TraderSampleOutputsProps) {
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
   const titleId = useId();
+  const sectionTitleId = useId();
   const dialogRef = useRef<HTMLDivElement>(null);
   const active = activeIndex === null ? null : samples.items[activeIndex];
   const isOpen = activeIndex !== null;
@@ -205,13 +206,14 @@ export function TraderSampleOutputs({
   }
 
   return (
-    <section className="bg-white pb-16" aria-labelledby="trader-sample-outputs">
+    <section className="bg-white pb-16" aria-labelledby={sectionTitleId}>
       <div className="mx-auto max-w-7xl px-6">
-        <h2 id="trader-sample-outputs" className="font-heading text-3xl font-bold tracking-tight text-foreground md:text-4xl">
+        <h2 id={sectionTitleId} className="font-heading text-3xl font-bold tracking-tight text-foreground md:text-4xl">
           {samples.heading}
         </h2>
         <p className="mt-2 max-w-2xl text-base text-muted-foreground">{samples.subtext}</p>
-        <div className="mt-8 flex snap-x snap-mandatory gap-4 overflow-x-auto pb-2 md:grid md:grid-cols-3 md:overflow-visible md:pb-0">
+        <div className="relative mt-8">
+        <div className={`flex snap-x snap-mandatory gap-4 overflow-x-auto pb-2 md:grid md:overflow-visible md:pb-0 ${samples.items.length > 3 ? "md:grid-cols-2 lg:grid-cols-3" : "md:grid-cols-3"}`}>
           {samples.items.map((item, index) => (
             <button
               key={item.src}
@@ -233,6 +235,13 @@ export function TraderSampleOutputs({
             </button>
           ))}
         </div>
+        {samples.items.length > 3 ? (
+          <div className="pointer-events-none absolute inset-y-0 right-0 w-12 bg-gradient-to-l from-white to-transparent md:hidden" aria-hidden />
+        ) : null}
+        </div>
+        {samples.items.length > 3 ? (
+          <p className="mt-2 text-xs text-muted-foreground md:hidden">Swipe to see more</p>
+        ) : null}
         <p className="mt-4 text-xs text-muted-foreground">{samples.disclaimer}</p>
       </div>
       {lightbox}

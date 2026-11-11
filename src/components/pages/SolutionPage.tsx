@@ -18,6 +18,7 @@ import { navigation } from "@/content/site-content";
 import { heroThemeBackground, personaThemeClasses } from "@/lib/persona-theme";
 import { ProductVideo } from "@/components/pages/ProductVideo";
 import { TraderSampleOutputs } from "@/components/pages/TraderSampleOutputs";
+import { lifestylePageSamples } from "@/content/site-content";
 
 const groupAccents: Record<string, { icon: LucideIcon; chip: string; bar: string; card: string }> = {
   "Buyer Side": {
@@ -250,6 +251,7 @@ export function SolutionPage({
       </section>
 
       {content.slug === "trader" ? <TraderSampleOutputs /> : null}
+      {content.slug === "lifestyle" ? <TraderSampleOutputs samples={lifestylePageSamples} /> : null}
 
       {guide ? (
         <>
