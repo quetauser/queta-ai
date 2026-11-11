@@ -94,7 +94,7 @@ export function PricingPageView() {
             </h2>
             <p className="text-slate-400 leading-relaxed">{pricing.why.body}</p>
           </div>
-          <div className="grid grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
             {pricing.why.stats.map((stat) => (
               <div
                 key={stat.label}

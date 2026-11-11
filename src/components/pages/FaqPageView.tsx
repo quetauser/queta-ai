@@ -98,8 +98,8 @@ export function FaqPageView() {
                     className="group border-b border-border last:border-b-0"
                     {...(groupIndex === 0 && itemIndex === 0 ? { open: true } : {})}
                   >
-                    <summary className="flex min-h-11 cursor-pointer list-none items-center justify-between gap-4 py-3 font-semibold text-foreground [&::-webkit-details-marker]:hidden">
-                      <span>{item.question}</span>
+                    <summary className="flex min-h-11 min-w-0 cursor-pointer list-none items-center justify-between gap-4 py-3 font-semibold text-foreground [&::-webkit-details-marker]:hidden">
+                      <span className="min-w-0 flex-1 break-words">{item.question}</span>
                       <ChevronDown
                         aria-hidden
                         className="size-4 shrink-0 text-muted-foreground transition-transform group-open:rotate-180"
