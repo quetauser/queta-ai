@@ -823,6 +823,54 @@ export const traderSamples = {
   ],
 } as const;
 
+export const lifestyleSamples = {
+  heading: "Sample outputs",
+  subtext: "Real examples of what Queta Lifestyle sends you",
+  disclaimer: "Sample output for illustration.",
+  lightboxNote: "Sample output with example data.",
+  openLabel: "See sample outputs",
+  closeLabel: "Close",
+  previousLabel: "Previous sample",
+  nextLabel: "Next sample",
+  items: [
+    {
+      src: "/images/lifestyle-samples/job-search-dashboard.webp",
+      width: 1024,
+      height: 741,
+      caption: "Job search dashboard",
+      alt: "Job search dashboard for the week of November 9 to 13, 2026, compared with an example $130k salary. It shows applications sent, interviews, a salary bar chart, a status donut, and a table of example roles.",
+    },
+    {
+      src: "/images/lifestyle-samples/workout-plan.webp",
+      width: 846,
+      height: 1280,
+      caption: "Workout plan with exercise demos",
+      alt: "A 30-minute leg-day workout with warm-up notes, exercise pairs, demo video links, and illustrated cards for squats, deadlifts, lunges, hip thrusts, and stretches.",
+    },
+    {
+      src: "/images/lifestyle-samples/subscription-finds.webp",
+      width: 1130,
+      height: 1160,
+      caption: "Subscription savings finds",
+      alt: "Example subscription findings that match card charges with email, including a duplicate streaming charge, a trial that became paid, a price increase, and an unused card perk.",
+    },
+    {
+      src: "/images/lifestyle-samples/month-snapshot.webp",
+      width: 929,
+      height: 1280,
+      caption: "Monthly money snapshot",
+      alt: "Example November 2026 money snapshot with income, spending by category, projected totals, savings, card limits, and flags that groceries and dining are above average.",
+    },
+    {
+      src: "/images/lifestyle-samples/student-dashboard.webp",
+      width: 1024,
+      height: 757,
+      caption: "Student school dashboard",
+      alt: "Student dashboard mock with an overdue algebra assignment, a field-trip form due Monday, a November calendar, and a table of forms to sign.",
+    },
+  ],
+} as const;
+
 const lifestyleSolution: SolutionPageContent = {
   slug: "lifestyle",
   metaTitle: "Lifestyle User AI Agent — Queta AI",

@@ -5,15 +5,39 @@ import { ChevronLeft, ChevronRight, X } from "lucide-react";
 import { useEffect, useId, useRef, useState } from "react";
 import { traderSamples } from "@/content/site-content";
 
-type TraderSampleOutputsProps = {
-  variant?: "section" | "compact";
+type SampleOutputSet = {
+  heading: string;
+  subtext: string;
+  disclaimer: string;
+  openLabel: string;
+  closeLabel: string;
+  previousLabel: string;
+  nextLabel: string;
+  lightboxNote?: string;
+  items: readonly {
+    src: string;
+    width: number;
+    height: number;
+    caption: string;
+    alt: string;
+  }[];
 };
 
-export function TraderSampleOutputs({ variant = "section" }: TraderSampleOutputsProps) {
+type TraderSampleOutputsProps = {
+  variant?: "section" | "compact";
+  samples?: SampleOutputSet;
+  linkClassName?: string;
+};
+
+export function TraderSampleOutputs({
+  variant = "section",
+  samples = traderSamples,
+  linkClassName = "text-emerald-700",
+}: TraderSampleOutputsProps) {
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
   const titleId = useId();
   const dialogRef = useRef<HTMLDivElement>(null);
-  const active = activeIndex === null ? null : traderSamples.items[activeIndex];
+  const active = activeIndex === null ? null : samples.items[activeIndex];
   const isOpen = activeIndex !== null;
 
   useEffect(() => {
@@ -34,13 +58,13 @@ export function TraderSampleOutputs({ variant = "section" }: TraderSampleOutputs
       }
       if (event.key === "ArrowRight") {
         event.preventDefault();
-        setActiveIndex((current) => (current === null ? current : (current + 1) % traderSamples.items.length));
+        setActiveIndex((current) => (current === null ? current : (current + 1) % samples.items.length));
         return;
       }
       if (event.key === "ArrowLeft") {
         event.preventDefault();
         setActiveIndex((current) =>
-          current === null ? current : (current - 1 + traderSamples.items.length) % traderSamples.items.length,
+          current === null ? current : (current - 1 + samples.items.length) % samples.items.length,
         );
         return;
       }
@@ -73,7 +97,7 @@ export function TraderSampleOutputs({ variant = "section" }: TraderSampleOutputs
       document.body.style.overflow = previousOverflow;
       previouslyFocused?.focus();
     };
-  }, [isOpen]);
+  }, [isOpen, samples.items.length]);
 
   function open(index: number) {
     setActiveIndex(index);
@@ -100,7 +124,7 @@ export function TraderSampleOutputs({ variant = "section" }: TraderSampleOutputs
           <button
             type="button"
             className="inline-flex h-9 w-9 items-center justify-center rounded-full text-foreground hover:bg-slate-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
-            aria-label={traderSamples.closeLabel}
+            aria-label={samples.closeLabel}
             onClick={() => setActiveIndex(null)}
           >
             <X size={18} aria-hidden />
@@ -110,10 +134,10 @@ export function TraderSampleOutputs({ variant = "section" }: TraderSampleOutputs
           <button
             type="button"
             className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-border bg-white text-foreground hover:bg-slate-50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
-            aria-label={traderSamples.previousLabel}
+            aria-label={samples.previousLabel}
             onClick={() =>
               setActiveIndex((current) =>
-                current === null ? current : (current - 1 + traderSamples.items.length) % traderSamples.items.length,
+                current === null ? current : (current - 1 + samples.items.length) % samples.items.length,
               )
             }
           >
@@ -132,14 +156,17 @@ export function TraderSampleOutputs({ variant = "section" }: TraderSampleOutputs
           <button
             type="button"
             className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-border bg-white text-foreground hover:bg-slate-50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
-            aria-label={traderSamples.nextLabel}
+            aria-label={samples.nextLabel}
             onClick={() =>
-              setActiveIndex((current) => (current === null ? current : (current + 1) % traderSamples.items.length))
+              setActiveIndex((current) => (current === null ? current : (current + 1) % samples.items.length))
             }
           >
             <ChevronRight size={18} aria-hidden />
           </button>
         </div>
+        {samples.lightboxNote ? (
+          <p className="px-4 pb-4 text-center text-xs text-muted-foreground">{samples.lightboxNote}</p>
+        ) : null}
       </div>
     </div>
   ) : null;
@@ -149,11 +176,11 @@ export function TraderSampleOutputs({ variant = "section" }: TraderSampleOutputs
       <>
         <button
           type="button"
-          className="inline-flex max-w-full shrink-0 cursor-pointer items-center gap-2 text-left text-xs font-semibold text-emerald-700 hover:underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+          className={`inline-flex max-w-full shrink-0 cursor-pointer items-center gap-2 text-left text-xs font-semibold hover:underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary ${linkClassName}`}
           onClick={() => open(0)}
         >
           <span className="flex shrink-0 items-center" aria-hidden>
-            {traderSamples.items.map((item, index) => (
+            {samples.items.slice(0, 3).map((item, index) => (
               <Image
                 key={item.src}
                 src={item.src}
@@ -164,8 +191,13 @@ export function TraderSampleOutputs({ variant = "section" }: TraderSampleOutputs
                 className={`h-8 w-8 rounded-md border-2 border-white object-cover object-top ${index === 0 ? "" : "-ml-2"}`}
               />
             ))}
+            {samples.items.length > 3 ? (
+              <span className="-ml-2 inline-flex h-8 min-w-8 items-center justify-center rounded-md border-2 border-white bg-white px-1 text-[10px] font-semibold leading-none text-foreground">
+                +{samples.items.length - 3}
+              </span>
+            ) : null}
           </span>
-          {traderSamples.openLabel}
+          {samples.openLabel}
         </button>
         {lightbox}
       </>
@@ -176,11 +208,11 @@ export function TraderSampleOutputs({ variant = "section" }: TraderSampleOutputs
     <section className="bg-white pb-16" aria-labelledby="trader-sample-outputs">
       <div className="mx-auto max-w-7xl px-6">
         <h2 id="trader-sample-outputs" className="font-heading text-3xl font-bold tracking-tight text-foreground md:text-4xl">
-          {traderSamples.heading}
+          {samples.heading}
         </h2>
-        <p className="mt-2 max-w-2xl text-base text-muted-foreground">{traderSamples.subtext}</p>
+        <p className="mt-2 max-w-2xl text-base text-muted-foreground">{samples.subtext}</p>
         <div className="mt-8 flex snap-x snap-mandatory gap-4 overflow-x-auto pb-2 md:grid md:grid-cols-3 md:overflow-visible md:pb-0">
-          {traderSamples.items.map((item, index) => (
+          {samples.items.map((item, index) => (
             <button
               key={item.src}
               type="button"
@@ -201,7 +233,7 @@ export function TraderSampleOutputs({ variant = "section" }: TraderSampleOutputs
             </button>
           ))}
         </div>
-        <p className="mt-4 text-xs text-muted-foreground">{traderSamples.disclaimer}</p>
+        <p className="mt-4 text-xs text-muted-foreground">{samples.disclaimer}</p>
       </div>
       {lightbox}
     </section>
