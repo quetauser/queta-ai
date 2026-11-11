@@ -485,7 +485,7 @@ export const faq = {
         {
           question: "How will I get my Queta solution?",
           answer:
-            "Once you subscribe, you will receive an email with a Getting Started guide and your solution package.",
+            "Once you sign up, you will receive an email with a Getting Started guide and your solution package.",
         },
         {
           question: "What platform do Queta AI solutions run on?",
