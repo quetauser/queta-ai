@@ -790,6 +790,39 @@ const traderSolution: SolutionPageContent = {
   ctaDescription: "Request a demo and see your Trader AI agent in action.",
 };
 
+export const traderSamples = {
+  heading: "Sample outputs",
+  subtext: "Real examples of what Queta Trader sends you",
+  disclaimer: "Sample output for illustration. Not investment advice.",
+  openLabel: "See sample outputs",
+  closeLabel: "Close",
+  previousLabel: "Previous sample",
+  nextLabel: "Next sample",
+  items: [
+    {
+      src: "/images/trader-samples/pattern-brief.webp",
+      width: 730,
+      height: 695,
+      caption: "Morning pattern brief",
+      alt: "Chat sample of a morning pattern brief. It lists a confirmed META double top, TSLA closing under its 200-day average, and other watchlist notes, with small chart thumbnails along the bottom.",
+    },
+    {
+      src: "/images/trader-samples/meta-chart.webp",
+      width: 484,
+      height: 286,
+      caption: "Annotated technical chart",
+      alt: "Daily META price and volume chart titled double top confirmed, close 641.39 on November 10, 2026, with a 50-day average, a 200-day average, marked peaks, and a neckline.",
+    },
+    {
+      src: "/images/trader-samples/portfolio-summary.webp",
+      width: 526,
+      height: 346,
+      caption: "Daily portfolio summary",
+      alt: "Portfolio summary card for November 10, 2026, with real and paper account values, cash balances, and small gains and losses.",
+    },
+  ],
+} as const;
+
 const lifestyleSolution: SolutionPageContent = {
   slug: "lifestyle",
   metaTitle: "Lifestyle User AI Agent — Queta AI",

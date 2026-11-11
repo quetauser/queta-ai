@@ -17,6 +17,7 @@ import type { SolutionFeature, SolutionFeatureGroup, SolutionPageContent } from 
 import { navigation } from "@/content/site-content";
 import { heroThemeBackground, personaThemeClasses } from "@/lib/persona-theme";
 import { ProductVideo } from "@/components/pages/ProductVideo";
+import { TraderSampleOutputs } from "@/components/pages/TraderSampleOutputs";
 
 const groupAccents: Record<string, { icon: LucideIcon; chip: string; bar: string; card: string }> = {
   "Buyer Side": {
@@ -247,6 +248,8 @@ export function SolutionPage({
           )}
         </div>
       </section>
+
+      {content.slug === "trader" ? <TraderSampleOutputs /> : null}
 
       {guide ? (
         <>
