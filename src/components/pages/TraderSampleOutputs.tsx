@@ -106,7 +106,7 @@ export function TraderSampleOutputs({
 
   const lightbox = active ? (
     <div
-      className="fixed inset-0 z-[80] flex items-center justify-center bg-slate-950/75 p-4"
+      className="fixed inset-0 z-[80] flex items-center justify-center bg-slate-950/75 px-4 pb-[max(1rem,env(safe-area-inset-bottom))] pt-[max(1rem,env(safe-area-inset-top))]"
       onClick={() => setActiveIndex(null)}
     >
       <div
@@ -115,7 +115,7 @@ export function TraderSampleOutputs({
         aria-modal="true"
         aria-labelledby={titleId}
         tabIndex={-1}
-        className="relative flex max-h-[90vh] w-full max-w-3xl flex-col overflow-hidden rounded-2xl bg-white shadow-2xl outline-none"
+        className="relative flex max-h-[100dvh] w-full max-w-3xl flex-col overflow-y-auto rounded-2xl bg-white shadow-2xl outline-none"
         onClick={(event) => event.stopPropagation()}
       >
         <div className="flex items-center justify-between gap-3 border-b border-border px-4 py-3">
@@ -151,7 +151,7 @@ export function TraderSampleOutputs({
               width={active.width}
               height={active.height}
               unoptimized
-              className="h-auto max-h-[70vh] w-auto max-w-full object-contain"
+              className="h-auto max-h-[calc(100dvh-9rem-env(safe-area-inset-top)-env(safe-area-inset-bottom))] w-auto max-w-full object-contain"
             />
           </div>
           <button
@@ -212,36 +212,29 @@ export function TraderSampleOutputs({
           {samples.heading}
         </h2>
         <p className="mt-2 max-w-2xl text-base text-muted-foreground">{samples.subtext}</p>
-        <div className="relative mt-8">
-        <div className={`flex snap-x snap-mandatory gap-4 overflow-x-auto pb-2 md:grid md:overflow-visible md:pb-0 ${samples.items.length > 3 ? "md:grid-cols-2 lg:grid-cols-3" : "md:grid-cols-3"}`}>
+        <div className={`mt-8 grid grid-cols-1 gap-4 ${samples.items.length > 3 ? "md:grid-cols-2 lg:grid-cols-3" : "md:grid-cols-3"}`}>
           {samples.items.map((item, index) => (
             <button
               key={item.src}
               type="button"
-              className="w-[82%] shrink-0 snap-start overflow-hidden rounded-2xl border border-border bg-white text-left shadow-sm hover:border-emerald-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary md:w-auto"
+              className="overflow-hidden rounded-2xl border border-border bg-white text-left shadow-sm hover:border-emerald-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
               onClick={() => open(index)}
             >
-              <span className="relative block h-48 w-full bg-slate-50">
+              <span className="block w-full bg-slate-50">
                 <Image
                   src={item.src}
                   alt={item.alt}
-                  fill
+                  width={item.width}
+                  height={item.height}
                   unoptimized
-                  sizes="(min-width: 768px) 30vw, 82vw"
-                  className="object-cover object-top"
+                  sizes="(min-width: 1024px) 30vw, (min-width: 768px) 45vw, 100vw"
+                  className="h-auto w-full object-contain"
                 />
               </span>
               <span className="block px-4 py-3 text-sm font-semibold text-foreground">{item.caption}</span>
             </button>
           ))}
         </div>
-        {samples.items.length > 3 ? (
-          <div className="pointer-events-none absolute inset-y-0 right-0 w-12 bg-gradient-to-l from-white to-transparent md:hidden" aria-hidden />
-        ) : null}
-        </div>
-        {samples.items.length > 3 ? (
-          <p className="mt-2 text-xs text-muted-foreground md:hidden">Swipe to see more</p>
-        ) : null}
         <p className="mt-4 text-xs text-muted-foreground">{samples.disclaimer}</p>
       </div>
       {lightbox}
