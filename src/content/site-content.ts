@@ -1,3 +1,9 @@
+import { formatLaunchMonthly, formatPricingAmount, launchPrices } from "@/content/launch-prices";
+
+const lifestylePrice = launchPrices["/solutions/lifestyle"];
+const traderPrice = launchPrices["/solutions/trader"];
+const realtorPrice = launchPrices["/solutions/realtor"];
+
 export type PersonaSlug = "lifestyle" | "realtor" | "trader";
 
 export type PersonaTheme = "violet" | "blue" | "emerald";
@@ -181,10 +187,10 @@ export const pricing = {
   tiers: [
     {
       name: "Queta Lifestyle",
-      launchAmount: "$279",
-      regularAmount: "$399",
-      launchMonthly: "$23.25",
-      offer: "First year when you sign up by Nov 25, 2026. Renews at $399/year.",
+      launchAmount: formatPricingAmount(lifestylePrice.firstYearCents),
+      regularAmount: formatPricingAmount(lifestylePrice.renewalCents),
+      launchMonthly: formatLaunchMonthly(lifestylePrice.firstYearCents),
+      offer: `First year when you sign up by Nov 25, 2026. Renews at ${formatPricingAmount(lifestylePrice.renewalCents)}/year.`,
       description:
         "For individuals ready to reclaim their time and get things done with Queta Companion.",
       features: [
@@ -206,10 +212,10 @@ export const pricing = {
     },
     {
       name: "Queta Trader",
-      launchAmount: "$449",
-      regularAmount: "$549",
-      launchMonthly: "$37.42",
-      offer: "First year when you sign up by Nov 25, 2026. Renews at $549/year.",
+      launchAmount: formatPricingAmount(traderPrice.firstYearCents),
+      regularAmount: formatPricingAmount(traderPrice.renewalCents),
+      launchMonthly: formatLaunchMonthly(traderPrice.firstYearCents),
+      offer: `First year when you sign up by Nov 25, 2026. Renews at ${formatPricingAmount(traderPrice.renewalCents)}/year.`,
       description:
         "For active traders who need near real-time intelligence and automated execution.",
       features: [
@@ -226,10 +232,10 @@ export const pricing = {
     },
     {
       name: "Queta Realtor",
-      launchAmount: "$569",
-      regularAmount: "$669",
-      launchMonthly: "$47.42",
-      offer: "First year when you sign up by Nov 25, 2026. Renews at $669/year.",
+      launchAmount: formatPricingAmount(realtorPrice.firstYearCents),
+      regularAmount: formatPricingAmount(realtorPrice.renewalCents),
+      launchMonthly: formatLaunchMonthly(realtorPrice.firstYearCents),
+      offer: `First year when you sign up by Nov 25, 2026. Renews at ${formatPricingAmount(realtorPrice.renewalCents)}/year.`,
       description:
         "For real estate professionals automating client and workflow tasks.",
       features: [

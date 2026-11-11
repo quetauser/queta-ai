@@ -1,6 +1,6 @@
 export const launchPrices = {
   "/solutions/lifestyle": { firstYearCents: 27900, renewalCents: 39900 },
-  "/solutions/trader": { firstYearCents: 44900, renewalCents: 56900 },
+  "/solutions/trader": { firstYearCents: 44900, renewalCents: 54900 },
   "/solutions/realtor": { firstYearCents: 56900, renewalCents: 66900 },
 } as const;
 
@@ -14,6 +14,20 @@ export function formatUsdFromCents(cents: number) {
   const dollars = Math.trunc(cents / 100);
   const fraction = String(Math.abs(cents % 100)).padStart(2, "0");
   return `$${dollars.toLocaleString("en-US")}.${fraction}`;
+}
+
+export function formatPricingAmount(cents: number) {
+  const dollars = Math.trunc(cents / 100);
+  const fraction = Math.abs(cents % 100);
+  const whole = `$${dollars.toLocaleString("en-US")}`;
+  if (fraction === 0) {
+    return whole;
+  }
+  return `${whole}.${String(fraction).padStart(2, "0")}`;
+}
+
+export function formatLaunchMonthly(firstYearCents: number) {
+  return formatPricingAmount(Math.round(firstYearCents / 12));
 }
 
 export function launchPriceSubmission(
