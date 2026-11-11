@@ -37,7 +37,7 @@ export function HomePage() {
               <span className="w-1.5 h-1.5 rounded-full bg-violet-500 animate-pulse" />
               {home.hero.badge}
             </div>
-            <h1 className="font-heading text-3xl sm:whitespace-nowrap sm:text-[1.65rem] md:text-[1.9rem] lg:text-[1.38rem] xl:text-[1.75rem] font-bold leading-tight tracking-tight text-foreground mb-6">
+            <h1 className="font-heading text-3xl font-bold leading-tight tracking-tight text-foreground mb-6 md:text-4xl">
               {home.hero.title}
             </h1>
             <p className="text-lg text-muted-foreground max-w-xl leading-relaxed mb-6">
@@ -86,12 +86,12 @@ export function HomePage() {
                     className={`absolute top-0 left-8 right-8 h-1 rounded-b-full bg-gradient-to-r lg:left-3 lg:right-3 ${theme.cardBorder} opacity-0 group-hover:opacity-100 transition-opacity duration-300`}
                   />
                   <div
-                    className={`mb-5 inline-flex w-fit max-w-full flex-wrap items-baseline rounded-full px-4 py-2 leading-tight lg:max-w-none lg:flex-nowrap lg:px-2.5 ${theme.badge}`}
+                    className={`mb-5 inline-flex w-fit max-w-full flex-wrap items-baseline rounded-full px-4 py-2 leading-tight lg:px-2.5 ${theme.badge}`}
                   >
-                    <span className="whitespace-nowrap text-[30px] font-semibold lg:text-[21px] xl:text-[30px]">
+                    <span className="text-2xl font-semibold">
                       {persona.label}
                     </span>
-                    <span className="ml-1 translate-y-[0.35em] whitespace-nowrap text-[10px] font-medium leading-none text-muted-foreground max-lg:ml-0 max-lg:mt-0.5 max-lg:basis-full max-lg:translate-y-0">
+                    <span className="ml-1 text-xs font-medium leading-none text-muted-foreground max-lg:ml-0 max-lg:mt-0.5 max-lg:basis-full">
                       {home.personaPoweredBy}
                     </span>
                   </div>
@@ -101,7 +101,7 @@ export function HomePage() {
                   <p className="text-sm text-muted-foreground leading-relaxed">
                     {persona.description}
                   </p>
-                  <ul className="mt-4 flex h-[5.75rem] flex-col gap-2 overflow-hidden opacity-100 motion-safe:transition-opacity motion-safe:duration-300 motion-reduce:transition-none md:opacity-0 md:group-hover:opacity-100 md:group-focus-within:opacity-100">
+                  <ul className="mt-4 flex flex-col gap-2 opacity-100 motion-safe:transition-opacity motion-safe:duration-300 motion-reduce:transition-none md:opacity-0 md:group-hover:opacity-100 md:group-focus-within:opacity-100">
                     {persona.bullets.map((bullet) => (
                       <li
                         key={bullet}
@@ -127,8 +127,8 @@ export function HomePage() {
                     <Link href={persona.href} className="flex min-h-0 flex-1 flex-col">
                       {body}
                     </Link>
-                    <div className="mt-auto flex shrink-0 items-center justify-between gap-3 pt-4">
-                      <Link href={persona.href} className="shrink-0">
+                    <div className="mt-auto flex min-w-0 flex-wrap items-center justify-between gap-3 pt-4">
+                      <Link href={persona.href} className="min-w-0">
                         {learnMore}
                       </Link>
                       {persona.slug === "lifestyle" ? (
@@ -172,7 +172,7 @@ export function HomePage() {
               <p className="text-xs font-semibold uppercase tracking-widest text-violet-400 mb-4">
                 {home.statsSection.eyebrow}
               </p>
-              <h2 className="font-heading hyphens-none break-normal font-bold text-white leading-[1.15] mb-6 text-[1.85rem] sm:text-[2.15rem] md:text-[2.5rem] lg:text-[clamp(1.45rem,5.05cqw,1.9rem)]">
+              <h2 className="mb-6 font-heading text-3xl font-bold leading-tight text-white md:text-4xl">
                 {home.statsSection.title}{" "}
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-400 to-blue-400">
                   {home.statsSection.titleHighlight}

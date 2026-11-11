@@ -122,7 +122,7 @@ export function ContactForm() {
                       type="text"
                       required
                       placeholder={contact.form.fields.name.placeholder}
-                      className="w-full px-4 py-3 rounded-xl border border-border bg-background text-foreground text-sm focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition-all"
+                      className="w-full px-4 py-3 rounded-xl border border-border bg-background text-foreground text-base focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition-all"
                     />
                   </div>
                   <div className="flex flex-col gap-1.5">
@@ -135,7 +135,7 @@ export function ContactForm() {
                       type="email"
                       required
                       placeholder={contact.form.fields.email.placeholder}
-                      className="w-full px-4 py-3 rounded-xl border border-border bg-background text-foreground text-sm focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition-all"
+                      className="w-full px-4 py-3 rounded-xl border border-border bg-background text-foreground text-base focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition-all"
                     />
                   </div>
                   <div className="flex flex-col gap-1.5">
@@ -148,7 +148,7 @@ export function ContactForm() {
                       type="tel"
                       required
                       placeholder={contact.form.fields.phone.placeholder}
-                      className="w-full px-4 py-3 rounded-xl border border-border bg-background text-foreground text-sm focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition-all"
+                      className="w-full px-4 py-3 rounded-xl border border-border bg-background text-foreground text-base focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition-all"
                     />
                   </div>
                   <div className="flex flex-col gap-1.5">
@@ -164,7 +164,7 @@ export function ContactForm() {
                       onChange={(event) => setInterest(event.target.value)}
                       placeholder={contact.form.fields.interest.placeholder}
                       readOnly={Boolean(prefilledInterest)}
-                      className="w-full px-4 py-3 rounded-xl border border-border bg-background text-foreground text-sm focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition-all read-only:opacity-90"
+                      className="w-full px-4 py-3 rounded-xl border border-border bg-background text-foreground text-base focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition-all read-only:opacity-90"
                     />
                   </div>
                   <div className="flex flex-col gap-1.5">
@@ -177,7 +177,7 @@ export function ContactForm() {
                       rows={5}
                       required
                       placeholder={contact.form.fields.comments.placeholder}
-                      className="w-full px-4 py-3 rounded-xl border border-border bg-background text-foreground text-sm focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition-all resize-none"
+                      className="w-full px-4 py-3 rounded-xl border border-border bg-background text-foreground text-base focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition-all resize-none"
                     />
                   </div>
                   <button

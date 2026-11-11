@@ -4,11 +4,12 @@ import { ArrowRight, ChevronDown, CircleCheck } from "lucide-react";
 import Link from "next/link";
 import { FormEvent, UIEvent, useEffect, useRef, useState } from "react";
 import { navigation, subscribe } from "@/content/site-content";
+import { formatUsdFromCents, isLaunchPriceHref, launchPriceSubmission, launchPrices } from "@/content/launch-prices";
 import { QuetaDisclaimerSections } from "@/components/pages/QuetaDisclaimer";
 import { SUBSCRIBE_FORM_SUBMIT_AJAX_URL, SUBSCRIBE_FORM_SUBMIT_URL, postFormSubmit } from "@/lib/contact-form";
 
-const fieldErrorClassName = "text-[14px] text-red-700";
-const alertErrorClassName = "text-[16px] text-red-700";
+const fieldErrorClassName = "text-sm text-red-700";
+const alertErrorClassName = "text-base text-red-700";
 
 const SUBMISSION_KEY = "queta.subscribe.submission";
 
@@ -97,6 +98,12 @@ export function SubscribeForm() {
   const [storageChecked, setStorageChecked] = useState(false);
 
   const productSelected = navigation.solutions.some((item) => products[item.href]);
+  const selectedProducts = navigation.solutions.flatMap((item) => {
+    if (!products[item.href] || !isLaunchPriceHref(item.href)) {
+      return [];
+    }
+    return [{ label: item.label, href: item.href, ...launchPrices[item.href] }];
+  });
   const firstNameValid = firstName.trim().length > 0;
   const lastNameValid = lastName.trim().length > 0;
   const emailValid = EMAIL_PATTERN.test(email.trim());
@@ -205,11 +212,12 @@ export function SubscribeForm() {
     setSending(true);
     setSendError(false);
     const acceptedAtUtc = new Date().toISOString();
+    const priceFields = launchPriceSubmission(selectedProducts);
     const fields = {
-      products: navigation.solutions
-        .filter((item) => products[item.href])
-        .map((item) => item.label)
-        .join(", "),
+      products: selectedProducts.map((item) => item.label).join(", "),
+      first_year_total: priceFields.first_year_total,
+      renewal_total: priceFields.renewal_total,
+      price_summary: priceFields.price_summary,
       first_name: firstName.trim(),
       last_name: lastName.trim(),
       email: email.trim(),
@@ -234,6 +242,9 @@ export function SubscribeForm() {
           rememberSubmission(fields.email);
           postSubscribeForm({
             products: fields.products,
+            first_year_total: fields.first_year_total,
+            renewal_total: fields.renewal_total,
+            price_summary: fields.price_summary,
             first_name: fields.first_name,
             last_name: fields.last_name,
             email: fields.email,
@@ -336,10 +347,8 @@ export function SubscribeForm() {
                 className="absolute h-0 w-0 overflow-hidden opacity-0"
                 aria-hidden
               />
-              <div className="grid grid-cols-1 gap-6 md:grid-cols-2 md:items-start">
-              <fieldset className="order-1 flex flex-col gap-3">
-                <legend className="text-sm font-semibold text-foreground">{subscribe.steps.details}</legend>
-                <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
+              <div className="flex flex-col gap-6">
+              <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
                 <Field
                   id="first-name"
                   label={subscribe.fields.firstName.label}
@@ -408,6 +417,7 @@ export function SubscribeForm() {
                 />
                 <Field
                   id="phone"
+                  className="sm:col-span-2"
                   label={subscribe.fields.phone.label}
                   placeholder={subscribe.fields.phone.placeholder}
                   value={phone}
@@ -419,21 +429,18 @@ export function SubscribeForm() {
                   }}
                 />
                 </div>
-              </fieldset>
               <fieldset
-                className="order-2 flex flex-col gap-2"
+                className="flex flex-col gap-3"
                 onBlur={(event) => {
                   if (!event.currentTarget.contains(event.relatedTarget)) {
                     setProductsTouched(true);
                   }
                 }}
               >
-                <legend className="text-sm font-semibold text-foreground">
-                  {subscribe.steps.products}
-                  <span className="text-red-700" aria-hidden> *</span>
-                </legend>
+                <legend className="sr-only">{subscribe.productsLegend}</legend>
+                <div className="grid grid-cols-1 gap-2 sm:grid-cols-3">
                 {navigation.solutions.map((item) => (
-                  <label key={item.href} className="flex items-center gap-2 text-sm text-foreground">
+                  <label key={item.href} className="flex min-h-11 items-center gap-3 text-sm text-foreground">
                     <input
                       type="checkbox"
                       name="products"
@@ -444,11 +451,13 @@ export function SubscribeForm() {
                         setProductsTouched(true);
                         setConfirmed(false);
                       }}
-                      className="size-4 accent-primary focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+                      className="size-5 shrink-0 accent-primary focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
                     />
                     {item.label}
                   </label>
                 ))}
+                </div>
+                <PriceSummary lines={selectedProducts} />
                 {showProductError ? (
                   <p className={alertErrorClassName} role="alert">
                     {subscribe.productsRequired}
@@ -458,7 +467,6 @@ export function SubscribeForm() {
               </div>
 
               <div className="flex flex-col gap-3">
-                <h2 className="text-sm font-semibold text-foreground">{subscribe.steps.review}</h2>
                 <button
                   type="button"
                   onClick={readDisclaimer}
@@ -571,8 +579,58 @@ export function SubscribeForm() {
   );
 }
 
+function PriceSummary({
+  lines,
+}: {
+  lines: readonly { label: string; firstYearCents: number; renewalCents: number }[];
+}) {
+  const firstYearCents = lines.reduce((sum, line) => sum + line.firstYearCents, 0);
+  const renewalCents = lines.reduce((sum, line) => sum + line.renewalCents, 0);
+
+  return (
+    <div className="@container mt-1 rounded-xl border border-border bg-slate-50 px-4 py-3" aria-live="polite" aria-atomic="true">
+      {lines.length === 0 ? (
+        <p className="text-sm text-muted-foreground">{subscribe.priceHint}</p>
+      ) : (
+        <>
+          <ul className="flex flex-col gap-3">
+            {lines.map((line) => (
+              <li
+                key={line.label}
+                className="flex flex-col gap-0.5 text-sm @min-[27rem]:flex-row @min-[27rem]:items-baseline @min-[27rem]:justify-between @min-[27rem]:gap-4"
+              >
+                <span className="font-medium text-foreground">{line.label}</span>
+                <span className="min-w-0 text-right tabular-nums text-muted-foreground">
+                  <span className="font-semibold text-foreground">{formatUsdFromCents(line.firstYearCents)}</span>
+                  {` ${subscribe.priceLineThen} `}
+                  <span className="font-semibold text-foreground">{formatUsdFromCents(line.renewalCents)}</span>
+                  {subscribe.pricePerYear}
+                </span>
+              </li>
+            ))}
+          </ul>
+          <div className="mt-3 border-t border-border pt-3">
+            <p className="flex items-baseline justify-between gap-4 text-sm font-semibold text-foreground">
+              <span>{subscribe.priceFirstYear}</span>
+              <span className="tabular-nums">{formatUsdFromCents(firstYearCents)}</span>
+            </p>
+            <p className="mt-1 flex items-baseline justify-between gap-4 text-sm text-muted-foreground">
+              <span>{subscribe.priceAfter}</span>
+              <span className="tabular-nums font-semibold text-foreground">
+                {formatUsdFromCents(renewalCents)}
+                {subscribe.pricePerYear}
+              </span>
+            </p>
+          </div>
+        </>
+      )}
+    </div>
+  );
+}
+
 function Field({
   id,
+  className = "",
   label,
   required = false,
   placeholder,
@@ -584,6 +642,7 @@ function Field({
   onChange,
 }: {
   id: string;
+  className?: string;
   label: string;
   required?: boolean;
   placeholder: string;
@@ -595,7 +654,7 @@ function Field({
   onChange: (value: string) => void;
 }) {
   return (
-    <div className="flex flex-col gap-1.5">
+    <div className={`flex flex-col gap-1.5 ${className}`}>
       <label htmlFor={id} className="text-sm font-semibold text-foreground">
         {label}
         {required ? <span className="text-red-700" aria-hidden> *</span> : null}
@@ -613,7 +672,7 @@ function Field({
         aria-describedby={error ? `${id}-error` : undefined}
         onBlur={onBlur}
         onChange={(event) => onChange(event.target.value)}
-        className="w-full px-3 py-2 rounded-xl border border-border bg-background text-foreground text-sm focus:outline-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary focus:ring-2 focus:ring-primary/30 focus:border-primary transition-all"
+        className="w-full px-3 py-2 rounded-xl border border-border bg-background text-foreground text-base focus:outline-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary focus:ring-2 focus:ring-primary/30 focus:border-primary transition-all"
       />
       {error ? (
         <p id={`${id}-error`} className={fieldErrorClassName}>

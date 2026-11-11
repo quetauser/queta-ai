@@ -6,9 +6,70 @@ function isExternal(href: string) {
   return /^https?:\/\//.test(href);
 }
 
+type FaqRun =
+  | { readonly kind: "text"; readonly text: string }
+  | { readonly kind: "link"; readonly label: string; readonly href: string };
+
+function FaqRuns({ runs }: { runs: readonly FaqRun[] }) {
+  return runs.map((run, index) =>
+    run.kind === "link" ? (
+      <a
+        key={index}
+        href={run.href}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="inline-block max-w-full break-words px-0.5 py-2.5 -my-2.5 align-baseline text-primary underline underline-offset-2"
+      >
+        {run.label}
+      </a>
+    ) : (
+      <span key={index}>{run.text}</span>
+    ),
+  );
+}
+
+function runsText(runs: readonly FaqRun[]) {
+  return runs.map((run) => (run.kind === "text" ? run.text : `${run.label} (${run.href})`)).join("");
+}
+
+function answerText(item: (typeof faq.groups)[number]["items"][number]) {
+  const parts: string[] = [];
+  if ("intro" in item) {
+    parts.push(runsText(item.intro));
+  }
+  if ("answer" in item) {
+    parts.push(item.answer);
+  }
+  if ("steps" in item) {
+    item.steps.forEach((step, index) => {
+      parts.push(`${index + 1}. ${runsText(step)}`);
+    });
+  }
+  if ("links" in item) {
+    parts.push(item.links.map((link) => `${link.label} (${link.href})`).join(" "));
+  }
+  return parts.join(" ");
+}
+
+const faqJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faq.groups.flatMap((group) =>
+    group.items.map((item) => ({
+      "@type": "Question",
+      name: item.question,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: answerText(item),
+      },
+    })),
+  ),
+};
+
 export function FaqPageView() {
   return (
     <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd).replace(/</g, "\\u003c") }} />
       <section className="pt-20 pb-6 bg-gradient-to-br from-violet-50 via-white to-slate-50">
         <div className="max-w-3xl mx-auto px-6 text-center">
           <h1 className="font-heading text-3xl md:text-4xl font-bold tracking-tight text-foreground leading-tight">
@@ -37,15 +98,29 @@ export function FaqPageView() {
                     className="group border-b border-border last:border-b-0"
                     {...(groupIndex === 0 && itemIndex === 0 ? { open: true } : {})}
                   >
-                    <summary className="flex cursor-pointer list-none items-center justify-between gap-4 py-4 font-semibold text-foreground [&::-webkit-details-marker]:hidden">
-                      <span>{item.question}</span>
+                    <summary className="flex min-h-11 min-w-0 cursor-pointer list-none items-center justify-between gap-4 py-3 font-semibold text-foreground [&::-webkit-details-marker]:hidden">
+                      <span className="min-w-0 flex-1 break-words">{item.question}</span>
                       <ChevronDown
                         aria-hidden
                         className="size-4 shrink-0 text-muted-foreground transition-transform group-open:rotate-180"
                       />
                     </summary>
-                    <div className="pb-4 text-sm leading-relaxed text-muted-foreground">
+                    <div className="pb-4 text-sm leading-6 text-muted-foreground">
+                      {"intro" in item ? (
+                        <p>
+                          <FaqRuns runs={item.intro} />
+                        </p>
+                      ) : null}
                       {"answer" in item ? <p>{item.answer}</p> : null}
+                      {"steps" in item ? (
+                        <ol className="mt-3 list-decimal space-y-4 pl-5">
+                          {item.steps.map((step, stepIndex) => (
+                            <li key={stepIndex}>
+                              <FaqRuns runs={step} />
+                            </li>
+                          ))}
+                        </ol>
+                      ) : null}
                       {"video" in item ? (
                         <ProductVideo
                           src={item.video.src}
@@ -64,7 +139,7 @@ export function FaqPageView() {
                                 {...(isExternal(link.href)
                                   ? { target: "_blank", rel: "noopener noreferrer" }
                                   : {})}
-                                className="text-primary underline break-words"
+                                className="inline-flex min-h-11 max-w-full items-center whitespace-normal text-primary underline break-words underline-offset-2"
                               >
                                 {link.label}
                               </a>

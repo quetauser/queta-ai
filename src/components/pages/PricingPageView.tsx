@@ -21,7 +21,7 @@ export function PricingPageView() {
           <p className="text-center text-sm font-medium text-primary mb-8">
             {pricing.launchBanner}
           </p>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch">
+          <div className="grid grid-cols-1 gap-6 items-stretch md:grid-cols-2 lg:grid-cols-3">
             {pricing.tiers.map((tier) => (
               <div
                 key={tier.name}
@@ -29,7 +29,7 @@ export function PricingPageView() {
               >
                 <div className="p-8 border-b border-border">
                   <div className="flex items-start justify-between gap-3 mb-3">
-                    <p className="text-xs font-bold uppercase tracking-widest text-muted-foreground">
+                    <p className="text-sm font-bold text-foreground">
                       {tier.name}
                     </p>
                     <p className="shrink-0 rounded-full border border-violet-200 bg-violet-50 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-widest text-primary">
@@ -50,7 +50,7 @@ export function PricingPageView() {
                   <p className="mt-3 inline-flex rounded-full border border-violet-200 bg-violet-50 px-3 py-1 text-sm font-medium text-primary">
                     Just {tier.launchMonthly}/mo, billed annually
                   </p>
-                  <p className="mt-2 text-xs text-muted-foreground leading-relaxed">{tier.offer}</p>
+                  <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{tier.offer}</p>
                   {tier.interestKey === "get-started-lifestyle-user" ? (
                     <Link
                       href={pricing.compareLink.href}
@@ -94,7 +94,7 @@ export function PricingPageView() {
             </h2>
             <p className="text-slate-400 leading-relaxed">{pricing.why.body}</p>
           </div>
-          <div className="grid grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
             {pricing.why.stats.map((stat) => (
               <div
                 key={stat.label}

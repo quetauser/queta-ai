@@ -1,3 +1,9 @@
+import { formatLaunchMonthly, formatPricingAmount, launchPrices } from "@/content/launch-prices";
+
+const lifestylePrice = launchPrices["/solutions/lifestyle"];
+const traderPrice = launchPrices["/solutions/trader"];
+const realtorPrice = launchPrices["/solutions/realtor"];
+
 export type PersonaSlug = "lifestyle" | "realtor" | "trader";
 
 export type PersonaTheme = "violet" | "blue" | "emerald";
@@ -176,15 +182,15 @@ export const pricing = {
       "Simple, transparent pricing built around your persona. No hidden fees, just your edge.",
   },
   compareLink: { label: "Compare Pricing", href: "/compare" },
-  launchBanner: "Launch pricing. Save on your first year through Nov 22.",
+  launchBanner: "Launch pricing. Save on your first year through Nov 25.",
   launchBadge: "Launch offer",
   tiers: [
     {
-      name: "Lifestyle User",
-      launchAmount: "$279",
-      regularAmount: "$399",
-      launchMonthly: "$23.25",
-      offer: "First year when you sign up by Nov 22, 2026. Renews at $399/year.",
+      name: "Queta Lifestyle",
+      launchAmount: formatPricingAmount(lifestylePrice.firstYearCents),
+      regularAmount: formatPricingAmount(lifestylePrice.renewalCents),
+      launchMonthly: formatLaunchMonthly(lifestylePrice.firstYearCents),
+      offer: `First year when you sign up by Nov 25, 2026. Renews at ${formatPricingAmount(lifestylePrice.renewalCents)}/year.`,
       description:
         "For individuals ready to reclaim their time and get things done with Queta Companion.",
       features: [
@@ -205,11 +211,11 @@ export const pricing = {
       interestKey: "get-started-lifestyle-user",
     },
     {
-      name: "Trader",
-      launchAmount: "$449",
-      regularAmount: "$549",
-      launchMonthly: "$37.42",
-      offer: "First year when you sign up by Nov 22, 2026. Renews at $549/year.",
+      name: "Queta Trader",
+      launchAmount: formatPricingAmount(traderPrice.firstYearCents),
+      regularAmount: formatPricingAmount(traderPrice.renewalCents),
+      launchMonthly: formatLaunchMonthly(traderPrice.firstYearCents),
+      offer: `First year when you sign up by Nov 25, 2026. Renews at ${formatPricingAmount(traderPrice.renewalCents)}/year.`,
       description:
         "For active traders who need near real-time intelligence and automated execution.",
       features: [
@@ -225,11 +231,11 @@ export const pricing = {
       interestKey: "get-started-trader",
     },
     {
-      name: "Realtor",
-      launchAmount: "$569",
-      regularAmount: "$669",
-      launchMonthly: "$47.42",
-      offer: "First year when you sign up by Nov 22, 2026. Renews at $669/year.",
+      name: "Queta Realtor",
+      launchAmount: formatPricingAmount(realtorPrice.firstYearCents),
+      regularAmount: formatPricingAmount(realtorPrice.renewalCents),
+      launchMonthly: formatLaunchMonthly(realtorPrice.firstYearCents),
+      offer: `First year when you sign up by Nov 25, 2026. Renews at ${formatPricingAmount(realtorPrice.renewalCents)}/year.`,
       description:
         "For real estate professionals automating client and workflow tasks.",
       features: [
@@ -357,13 +363,13 @@ export const contact = {
 export const subscribe = {
   metaTitle: "Subscribe — Queta AI",
   heading: "Thank you for your interest in Queta AI solutions",
-  steps: {
-    details: "1. Your details",
-    products: "2. Products of interest",
-    review: "3. Review & accept",
-  },
   productsLegend: "Products",
   productsRequired: "Select at least one product.",
+  priceHint: "Select a product to see your first-year and renewal total.",
+  priceFirstYear: "First year",
+  priceAfter: "After the first year",
+  priceLineThen: "first year, then",
+  pricePerYear: "/year",
   fields: {
     firstName: { label: "First Name", placeholder: "First name" },
     lastName: { label: "Last Name", placeholder: "Last name" },
@@ -403,6 +409,8 @@ export const subscribe = {
   confirmationEmail: "info@queta.ai",
 } as const;
 
+export const grokPlanRequirement = "the Premium plan or higher";
+
 export const faq = {
   metaTitle: "FAQ | Queta AI",
   headline: "Frequently Asked Questions",
@@ -417,9 +425,67 @@ export const faq = {
       title: "Getting Started",
       items: [
         {
+          question: "Do I need a Grok subscription to use Queta?",
+          intro: [
+            { kind: "text", text: "Yes. Queta runs on Grok Bot, which requires an active Grok subscription on " },
+            { kind: "text", text: grokPlanRequirement },
+            { kind: "text", text: "." },
+          ],
+          steps: [
+            [
+              { kind: "text", text: "If you do not have a subscription yet, sign up for a Grok subscription on " },
+              { kind: "text", text: grokPlanRequirement },
+              { kind: "text", text: " at the " },
+              { kind: "link", label: "Grok Bot plans page", href: "https://x.ai/bot" },
+              { kind: "text", text: "." },
+            ],
+            [
+              { kind: "text", text: "If you already have a Grok subscription, sign in at " },
+              { kind: "link", label: "grok.com", href: "https://grok.com" },
+              {
+                kind: "text",
+                text: ", open Settings, then Billing, and confirm you are on " + grokPlanRequirement + ". After you unify your accounts, plans are managed in the ",
+              },
+              { kind: "link", label: "Grok dashboard", href: "https://grok.com/dashboard" },
+              { kind: "text", text: "." },
+            ],
+            [
+              { kind: "text", text: "To unify your accounts, start at the " },
+              { kind: "link", label: "account unification page", href: "https://accounts.x.ai/unify" },
+              {
+                kind: "text",
+                text: ", or open grok.com, then Settings, then Billing, then Get started. Sign in to the exact Grok account you want to keep, and optionally the X and Cursor accounts you want to combine. Choose " + grokPlanRequirement + " and complete checkout. Unification is permanent. The ",
+              },
+              {
+                kind: "link",
+                label: "official account unification guide",
+                href: "https://docs.x.ai/x-subscription/unify-accounts",
+              },
+              { kind: "text", text: " walks through the same steps." },
+            ],
+            [
+              { kind: "text", text: "Download the Grok Bot desktop app for macOS, Windows, and Linux from the " },
+              { kind: "link", label: "Grok Bot desktop download", href: "https://cursor.com/download/bot" },
+              { kind: "text", text: ". Install the phone apps from the " },
+              {
+                kind: "link",
+                label: "App Store",
+                href: "https://apps.apple.com/us/app/grok-bot/id6794501026",
+              },
+              { kind: "text", text: " or " },
+              {
+                kind: "link",
+                label: "Google Play",
+                href: "https://play.google.com/store/apps/details?id=ai.x.grok.bot",
+              },
+              { kind: "text", text: "." },
+            ],
+          ],
+        },
+        {
           question: "How will I get my Queta solution?",
           answer:
-            "Once you subscribe, you will receive an email with a Getting Started guide and your solution package.",
+            "Once you sign up, you will receive an email with a Getting Started guide and your solution package.",
         },
         {
           question: "What platform do Queta AI solutions run on?",
