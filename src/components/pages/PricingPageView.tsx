@@ -21,7 +21,7 @@ export function PricingPageView() {
           <p className="text-center text-sm font-medium text-primary mb-8">
             {pricing.launchBanner}
           </p>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch">
+          <div className="grid grid-cols-1 gap-6 items-stretch md:grid-cols-2 lg:grid-cols-3">
             {pricing.tiers.map((tier) => (
               <div
                 key={tier.name}
@@ -50,7 +50,7 @@ export function PricingPageView() {
                   <p className="mt-3 inline-flex rounded-full border border-violet-200 bg-violet-50 px-3 py-1 text-sm font-medium text-primary">
                     Just {tier.launchMonthly}/mo, billed annually
                   </p>
-                  <p className="mt-2 text-xs text-muted-foreground leading-relaxed">{tier.offer}</p>
+                  <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{tier.offer}</p>
                   {tier.interestKey === "get-started-lifestyle-user" ? (
                     <Link
                       href={pricing.compareLink.href}

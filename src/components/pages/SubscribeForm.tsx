@@ -444,7 +444,7 @@ export function SubscribeForm() {
                   <span className="text-red-700" aria-hidden> *</span>
                 </legend>
                 {navigation.solutions.map((item) => (
-                  <label key={item.href} className="flex items-center gap-2 text-sm text-foreground">
+                  <label key={item.href} className="flex min-h-11 items-center gap-3 text-sm text-foreground">
                     <input
                       type="checkbox"
                       name="products"
@@ -455,7 +455,7 @@ export function SubscribeForm() {
                         setProductsTouched(true);
                         setConfirmed(false);
                       }}
-                      className="size-4 accent-primary focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+                      className="size-5 shrink-0 accent-primary focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
                     />
                     {item.label}
                   </label>
@@ -601,10 +601,10 @@ function PriceSummary({
             {lines.map((line) => (
               <li
                 key={line.label}
-                className="flex flex-col gap-0.5 text-sm @min-[22rem]:flex-row @min-[22rem]:items-baseline @min-[22rem]:justify-between @min-[22rem]:gap-4"
+                className="flex flex-col gap-0.5 text-sm @min-[27rem]:flex-row @min-[27rem]:items-baseline @min-[27rem]:justify-between @min-[27rem]:gap-4"
               >
                 <span className="font-medium text-foreground">{line.label}</span>
-                <span className="tabular-nums text-muted-foreground">
+                <span className="min-w-0 text-right tabular-nums text-muted-foreground">
                   <span className="font-semibold text-foreground">{formatUsdFromCents(line.firstYearCents)}</span>
                   {` ${subscribe.priceLineThen} `}
                   <span className="font-semibold text-foreground">{formatUsdFromCents(line.renewalCents)}</span>

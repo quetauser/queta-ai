@@ -18,7 +18,7 @@ function FaqRuns({ runs }: { runs: readonly FaqRun[] }) {
         href={run.href}
         target="_blank"
         rel="noopener noreferrer"
-        className="text-primary underline break-words"
+        className="inline-block max-w-full break-words px-0.5 py-2.5 -my-2.5 align-baseline text-primary underline underline-offset-2"
       >
         {run.label}
       </a>
@@ -98,14 +98,14 @@ export function FaqPageView() {
                     className="group border-b border-border last:border-b-0"
                     {...(groupIndex === 0 && itemIndex === 0 ? { open: true } : {})}
                   >
-                    <summary className="flex cursor-pointer list-none items-center justify-between gap-4 py-4 font-semibold text-foreground [&::-webkit-details-marker]:hidden">
+                    <summary className="flex min-h-11 cursor-pointer list-none items-center justify-between gap-4 py-3 font-semibold text-foreground [&::-webkit-details-marker]:hidden">
                       <span>{item.question}</span>
                       <ChevronDown
                         aria-hidden
                         className="size-4 shrink-0 text-muted-foreground transition-transform group-open:rotate-180"
                       />
                     </summary>
-                    <div className="pb-4 text-sm leading-relaxed text-muted-foreground">
+                    <div className="pb-4 text-sm leading-6 text-muted-foreground">
                       {"intro" in item ? (
                         <p>
                           <FaqRuns runs={item.intro} />
@@ -113,7 +113,7 @@ export function FaqPageView() {
                       ) : null}
                       {"answer" in item ? <p>{item.answer}</p> : null}
                       {"steps" in item ? (
-                        <ol className="mt-3 list-decimal space-y-2 pl-5">
+                        <ol className="mt-3 list-decimal space-y-4 pl-5">
                           {item.steps.map((step, stepIndex) => (
                             <li key={stepIndex}>
                               <FaqRuns runs={step} />
@@ -139,7 +139,7 @@ export function FaqPageView() {
                                 {...(isExternal(link.href)
                                   ? { target: "_blank", rel: "noopener noreferrer" }
                                   : {})}
-                                className="text-primary underline break-words"
+                                className="inline-flex min-h-11 max-w-full items-center whitespace-normal text-primary underline break-words underline-offset-2"
                               >
                                 {link.label}
                               </a>
