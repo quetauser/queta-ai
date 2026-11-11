@@ -324,16 +324,20 @@ export function SubscribeForm() {
       >
         <div className="mx-auto flex max-w-2xl flex-col items-center text-center">
           <CircleCheck className="size-16 text-emerald-600" aria-hidden />
+          <div className="mt-6 flex w-full max-w-xl flex-col items-center gap-[1em] text-base leading-relaxed text-foreground sm:text-lg">
           <h1
             ref={confirmationRef}
             tabIndex={-1}
-            className="mt-6 font-heading text-2xl font-bold leading-tight text-foreground outline-none sm:text-3xl"
+            className="font-heading text-2xl font-bold leading-tight outline-none sm:text-3xl"
           >
             {subscribe.confirmationHeading}
           </h1>
-          <p className="mt-4 max-w-xl text-base leading-relaxed text-foreground sm:text-lg">
+          <p>
             {subscribe.confirmationSent}
             <span className="font-bold">{subscribe.confirmationTeam}</span>
+            {subscribe.confirmationSentEnd}
+          </p>
+          <p>
             {subscribe.confirmationWithin}
             <span className="font-bold">{subscribe.confirmationWindow}</span>
             {subscribe.confirmationEmailLead}
@@ -342,13 +346,21 @@ export function SubscribeForm() {
             <span className="font-bold">{subscribe.confirmationGuide}</span>
             {subscribe.confirmationEnd}
           </p>
-          <p className="mt-4 max-w-xl text-base leading-relaxed text-foreground sm:text-lg">
+          <p>
+            {subscribe.confirmationSpam}
+            <span className="font-bold">{subscribe.confirmationSpamWord}</span>
+            {subscribe.confirmationSpamOr}
+            <span className="font-bold">{subscribe.confirmationJunk}</span>
+            {subscribe.confirmationSpamEnd}
+          </p>
+          <p>
             {subscribe.confirmationQuestion}
             <a href={`mailto:${subscribe.confirmationEmail}`} className="font-bold text-primary underline">
               {subscribe.confirmationEmail}
             </a>
             .
           </p>
+          </div>
           <Link
             href="/"
             className="mt-8 inline-flex items-center justify-center rounded-full bg-primary px-8 py-4 text-base font-semibold text-primary-foreground shadow-lg shadow-violet-200 hover:opacity-90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
