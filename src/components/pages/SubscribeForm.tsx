@@ -8,8 +8,8 @@ import { formatUsdFromCents, isLaunchPriceHref, launchPriceSubmission, launchPri
 import { QuetaDisclaimerSections } from "@/components/pages/QuetaDisclaimer";
 import { SUBSCRIBE_FORM_SUBMIT_AJAX_URL, SUBSCRIBE_FORM_SUBMIT_URL, postFormSubmit } from "@/lib/contact-form";
 
-const fieldErrorClassName = "text-[14px] text-red-700";
-const alertErrorClassName = "text-[16px] text-red-700";
+const fieldErrorClassName = "text-sm text-red-700";
+const alertErrorClassName = "text-base text-red-700";
 
 const SUBMISSION_KEY = "queta.subscribe.submission";
 
@@ -672,7 +672,7 @@ function Field({
         aria-describedby={error ? `${id}-error` : undefined}
         onBlur={onBlur}
         onChange={(event) => onChange(event.target.value)}
-        className="w-full px-3 py-2 rounded-xl border border-border bg-background text-foreground text-sm focus:outline-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary focus:ring-2 focus:ring-primary/30 focus:border-primary transition-all"
+        className="w-full px-3 py-2 rounded-xl border border-border bg-background text-foreground text-base focus:outline-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary focus:ring-2 focus:ring-primary/30 focus:border-primary transition-all"
       />
       {error ? (
         <p id={`${id}-error`} className={fieldErrorClassName}>

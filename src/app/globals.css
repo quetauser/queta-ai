@@ -13,6 +13,23 @@
   --font-heading: var(--font-space-grotesk);
 }
 
+@theme {
+  --text-lg: clamp(1.0625rem, 1rem + 0.3vw, 1.125rem);
+  --text-lg--line-height: 1.6;
+  --text-xl: clamp(1.125rem, 1.02rem + 0.45vw, 1.25rem);
+  --text-xl--line-height: 1.4;
+  --text-2xl: clamp(1.25rem, 1.05rem + 0.9vw, 1.5rem);
+  --text-2xl--line-height: 1.3;
+  --text-3xl: clamp(1.5rem, 1.15rem + 1.4vw, 1.875rem);
+  --text-3xl--line-height: 1.2;
+  --text-4xl: clamp(1.75rem, 1.2rem + 2vw, 2.25rem);
+  --text-4xl--line-height: 1.15;
+  --text-5xl: clamp(2rem, 1.25rem + 2.6vw, 3rem);
+  --text-5xl--line-height: 1.1;
+  --text-6xl: clamp(2.25rem, 1.3rem + 3.2vw, 3.75rem);
+  --text-6xl--line-height: 1.05;
+}
+
 :root {
   --background: 0 0% 100%;
   --foreground: 0 0% 4%;
@@ -26,10 +43,23 @@
   --ring: 269 100% 50%;
 }
 
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
 body {
   background: hsl(var(--background));
   color: hsl(var(--foreground));
   font-family: var(--font-inter), system-ui, sans-serif;
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+input,
+select,
+textarea {
+  font-size: max(1rem, 16px);
 }
 
 .font-heading {
@@ -57,5 +87,22 @@ body {
 @media (prefers-reduced-motion: reduce) {
   .subscribe-submit {
     animation: none;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+@media (prefers-contrast: more) {
+  :root {
+    --foreground: 0 0% 0%;
+    --muted-foreground: 0 0% 15%;
+    --border: 0 0% 20%;
   }
 }

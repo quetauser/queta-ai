@@ -177,7 +177,7 @@ export function TraderSampleOutputs({
       <>
         <button
           type="button"
-          className={`inline-flex max-w-full shrink-0 cursor-pointer items-center gap-2 text-left text-xs font-semibold hover:underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary ${linkClassName}`}
+          className={`inline-flex max-w-full min-w-0 cursor-pointer flex-wrap items-center gap-2 text-left text-xs font-semibold hover:underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary ${linkClassName}`}
           onClick={() => open(0)}
         >
           <span className="flex shrink-0 items-center" aria-hidden>
