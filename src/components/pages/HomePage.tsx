@@ -2,7 +2,7 @@ import Link from "next/link";
 import { ArrowRight, ChevronRight } from "lucide-react";
 import { ProductVideo } from "@/components/pages/ProductVideo";
 import { TraderSampleOutputs } from "@/components/pages/TraderSampleOutputs";
-import { home } from "@/content/site-content";
+import { home, lifestyleSamples } from "@/content/site-content";
 import { personaThemeClasses } from "@/lib/persona-theme";
 
 export function HomePage() {
@@ -121,7 +121,7 @@ export function HomePage() {
                   Learn more <ChevronRight size={14} />
                 </span>
               );
-              if (persona.slug === "trader") {
+              if (persona.slug === "trader" || persona.slug === "lifestyle") {
                 return (
                   <div key={persona.slug} className={cardClassName}>
                     <Link href={persona.href} className="flex min-h-0 flex-1 flex-col">
@@ -131,7 +131,15 @@ export function HomePage() {
                       <Link href={persona.href} className="shrink-0">
                         {learnMore}
                       </Link>
-                      <TraderSampleOutputs variant="compact" />
+                      {persona.slug === "lifestyle" ? (
+                        <TraderSampleOutputs
+                          variant="compact"
+                          samples={lifestyleSamples}
+                          linkClassName="text-violet-700"
+                        />
+                      ) : (
+                        <TraderSampleOutputs variant="compact" />
+                      )}
                     </div>
                   </div>
                 );
