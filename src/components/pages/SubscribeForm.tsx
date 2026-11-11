@@ -347,10 +347,8 @@ export function SubscribeForm() {
                 className="absolute h-0 w-0 overflow-hidden opacity-0"
                 aria-hidden
               />
-              <div className="grid grid-cols-1 gap-6 md:grid-cols-2 md:items-start">
-              <fieldset className="order-1 flex flex-col gap-3">
-                <legend className="text-sm font-semibold text-foreground">{subscribe.steps.details}</legend>
-                <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
+              <div className="flex flex-col gap-6">
+              <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
                 <Field
                   id="first-name"
                   label={subscribe.fields.firstName.label}
@@ -430,19 +428,16 @@ export function SubscribeForm() {
                   }}
                 />
                 </div>
-              </fieldset>
               <fieldset
-                className="order-2 flex flex-col gap-2"
+                className="flex flex-col gap-3"
                 onBlur={(event) => {
                   if (!event.currentTarget.contains(event.relatedTarget)) {
                     setProductsTouched(true);
                   }
                 }}
               >
-                <legend className="text-sm font-semibold text-foreground">
-                  {subscribe.steps.products}
-                  <span className="text-red-700" aria-hidden> *</span>
-                </legend>
+                <legend className="sr-only">{subscribe.productsLegend}</legend>
+                <div className="grid grid-cols-1 gap-2 sm:grid-cols-3">
                 {navigation.solutions.map((item) => (
                   <label key={item.href} className="flex min-h-11 items-center gap-3 text-sm text-foreground">
                     <input
@@ -460,6 +455,7 @@ export function SubscribeForm() {
                     {item.label}
                   </label>
                 ))}
+                </div>
                 <PriceSummary lines={selectedProducts} />
                 {showProductError ? (
                   <p className={alertErrorClassName} role="alert">
@@ -470,7 +466,6 @@ export function SubscribeForm() {
               </div>
 
               <div className="flex flex-col gap-3">
-                <h2 className="text-sm font-semibold text-foreground">{subscribe.steps.review}</h2>
                 <button
                   type="button"
                   onClick={readDisclaimer}

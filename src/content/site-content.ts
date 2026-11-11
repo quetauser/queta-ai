@@ -180,7 +180,7 @@ export const pricing = {
   launchBadge: "Launch offer",
   tiers: [
     {
-      name: "Lifestyle User",
+      name: "Queta Lifestyle",
       launchAmount: "$279",
       regularAmount: "$399",
       launchMonthly: "$23.25",
@@ -205,7 +205,7 @@ export const pricing = {
       interestKey: "get-started-lifestyle-user",
     },
     {
-      name: "Trader",
+      name: "Queta Trader",
       launchAmount: "$449",
       regularAmount: "$549",
       launchMonthly: "$37.42",
@@ -225,7 +225,7 @@ export const pricing = {
       interestKey: "get-started-trader",
     },
     {
-      name: "Realtor",
+      name: "Queta Realtor",
       launchAmount: "$569",
       regularAmount: "$669",
       launchMonthly: "$47.42",
@@ -357,11 +357,6 @@ export const contact = {
 export const subscribe = {
   metaTitle: "Subscribe — Queta AI",
   heading: "Thank you for your interest in Queta AI solutions",
-  steps: {
-    details: "1. Your details",
-    products: "2. Products of interest",
-    review: "3. Review & accept",
-  },
   productsLegend: "Products",
   productsRequired: "Select at least one product.",
   priceHint: "Select a product to see your first-year and renewal total.",
@@ -408,7 +403,7 @@ export const subscribe = {
   confirmationEmail: "info@queta.ai",
 } as const;
 
-export const grokPlanRequirement = "an active Grok subscription on the Premium plan or higher";
+export const grokPlanRequirement = "the Premium plan or higher";
 
 export const faq = {
   metaTitle: "FAQ | Queta AI",
@@ -426,13 +421,15 @@ export const faq = {
         {
           question: "Do I need a Grok subscription to use Queta?",
           intro: [
-            { kind: "text", text: "Yes. Queta runs on Grok Bot, which requires " },
+            { kind: "text", text: "Yes. Queta runs on Grok Bot, which requires an active Grok subscription on " },
             { kind: "text", text: grokPlanRequirement },
             { kind: "text", text: "." },
           ],
           steps: [
             [
-              { kind: "text", text: "If you do not have a subscription yet, sign up on the " },
+              { kind: "text", text: "If you do not have a subscription yet, sign up for a Grok subscription on " },
+              { kind: "text", text: grokPlanRequirement },
+              { kind: "text", text: " at the " },
               { kind: "link", label: "Grok Bot plans page", href: "https://x.ai/bot" },
               { kind: "text", text: "." },
             ],
@@ -441,7 +438,7 @@ export const faq = {
               { kind: "link", label: "grok.com", href: "https://grok.com" },
               {
                 kind: "text",
-                text: ", open Settings, then Billing, and confirm your plan. After you unify your accounts, plans are managed in the ",
+                text: ", open Settings, then Billing, and confirm you are on " + grokPlanRequirement + ". After you unify your accounts, plans are managed in the ",
               },
               { kind: "link", label: "Grok dashboard", href: "https://grok.com/dashboard" },
               { kind: "text", text: "." },
@@ -451,7 +448,7 @@ export const faq = {
               { kind: "link", label: "account unification page", href: "https://accounts.x.ai/unify" },
               {
                 kind: "text",
-                text: ", or open grok.com, then Settings, then Billing, then Get started. Sign in to the exact Grok account you want to keep, and optionally the X and Cursor accounts you want to combine. Choose a plan and complete checkout. Unification is permanent. The ",
+                text: ", or open grok.com, then Settings, then Billing, then Get started. Sign in to the exact Grok account you want to keep, and optionally the X and Cursor accounts you want to combine. Choose " + grokPlanRequirement + " and complete checkout. Unification is permanent. The ",
               },
               {
                 kind: "link",

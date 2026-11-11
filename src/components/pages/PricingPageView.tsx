@@ -29,7 +29,7 @@ export function PricingPageView() {
               >
                 <div className="p-8 border-b border-border">
                   <div className="flex items-start justify-between gap-3 mb-3">
-                    <p className="text-xs font-bold uppercase tracking-widest text-muted-foreground">
+                    <p className="text-sm font-bold text-foreground">
                       {tier.name}
                     </p>
                     <p className="shrink-0 rounded-full border border-violet-200 bg-violet-50 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-widest text-primary">
