@@ -2,6 +2,10 @@ import Image from "next/image";
 import Link from "next/link";
 import { navigation, site } from "@/content/site-content";
 
+const columnHeadingClassName = "mb-6 text-base font-bold uppercase tracking-widest text-foreground";
+const columnLinkClassName =
+  "text-sm text-foreground/70 underline-offset-2 transition-colors hover:text-foreground hover:underline";
+
 export function SiteFooter() {
   return (
     <footer className="bg-white border-t border-border">
@@ -19,7 +23,7 @@ export function SiteFooter() {
             </Link>
           </div>
           <div>
-            <h3 className="text-xs font-semibold uppercase tracking-widest text-muted-foreground mb-4">
+            <h3 className={columnHeadingClassName}>
               Solutions
             </h3>
             <ul className="flex flex-col gap-2.5">
@@ -27,7 +31,7 @@ export function SiteFooter() {
                 <li key={item.href}>
                   <Link
                     href={item.href}
-                    className="text-sm text-foreground/70 hover:text-foreground transition-colors"
+                    className={columnLinkClassName}
                   >
                     {item.label}
                   </Link>
@@ -36,7 +40,7 @@ export function SiteFooter() {
             </ul>
           </div>
           <div>
-            <h3 className="text-xs font-semibold uppercase tracking-widest text-muted-foreground mb-4">
+            <h3 className={columnHeadingClassName}>
               Company
             </h3>
             <ul className="flex flex-col gap-2.5">
@@ -44,7 +48,7 @@ export function SiteFooter() {
                 <li key={item.href}>
                   <Link
                     href={item.href}
-                    className="text-sm text-foreground/70 hover:text-foreground transition-colors"
+                    className={columnLinkClassName}
                   >
                     {item.label}
                   </Link>
@@ -53,7 +57,7 @@ export function SiteFooter() {
               <li>
                 <Link
                   href={navigation.faq.href}
-                  className="text-sm text-foreground/70 hover:text-foreground transition-colors"
+                  className={columnLinkClassName}
                 >
                   {navigation.faq.label}
                 </Link>
@@ -61,7 +65,7 @@ export function SiteFooter() {
             </ul>
           </div>
           <div>
-            <h3 className="text-xs font-semibold uppercase tracking-widest text-muted-foreground mb-4">
+            <h3 className={columnHeadingClassName}>
               {navigation.legal.label}
             </h3>
             <ul className="flex flex-col gap-2.5">
@@ -69,7 +73,7 @@ export function SiteFooter() {
                 <li key={item.href}>
                   <Link
                     href={item.href}
-                    className="text-sm text-foreground/70 hover:text-foreground transition-colors"
+                    className={columnLinkClassName}
                   >
                     {item.label}
                   </Link>
