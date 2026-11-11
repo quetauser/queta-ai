@@ -408,7 +408,7 @@ export const subscribe = {
   confirmationEmail: "info@queta.ai",
 } as const;
 
-export const grokPlanRequirement = "an active Grok subscription on a plan above Premium";
+export const grokPlanRequirement = "an active Grok subscription on the Premium plan or higher";
 
 export const faq = {
   metaTitle: "FAQ | Queta AI",
