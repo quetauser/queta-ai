@@ -417,6 +417,7 @@ export function SubscribeForm() {
                 />
                 <Field
                   id="phone"
+                  className="sm:col-span-2"
                   label={subscribe.fields.phone.label}
                   placeholder={subscribe.fields.phone.placeholder}
                   value={phone}
@@ -629,6 +630,7 @@ function PriceSummary({
 
 function Field({
   id,
+  className = "",
   label,
   required = false,
   placeholder,
@@ -640,6 +642,7 @@ function Field({
   onChange,
 }: {
   id: string;
+  className?: string;
   label: string;
   required?: boolean;
   placeholder: string;
@@ -651,7 +654,7 @@ function Field({
   onChange: (value: string) => void;
 }) {
   return (
-    <div className="flex flex-col gap-1.5">
+    <div className={`flex flex-col gap-1.5 ${className}`}>
       <label htmlFor={id} className="text-sm font-semibold text-foreground">
         {label}
         {required ? <span className="text-red-700" aria-hidden> *</span> : null}
