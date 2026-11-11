@@ -1,6 +1,6 @@
 "use client";
 
-import { ArrowRight, ChevronDown, CircleCheck } from "lucide-react";
+import { ArrowRight, ChevronDown, CircleCheck, Loader2 } from "lucide-react";
 import Link from "next/link";
 import { FormEvent, UIEvent, useEffect, useRef, useState } from "react";
 import { navigation, subscribe } from "@/content/site-content";
@@ -12,6 +12,7 @@ const fieldErrorClassName = "text-sm text-red-700";
 const alertErrorClassName = "text-base text-red-700";
 
 const SUBMISSION_KEY = "queta.subscribe.submission";
+const PENDING_KEY = "queta.subscribe.pending";
 
 type StoredSubmission = {
   email: string;
@@ -43,10 +44,22 @@ function rememberSubmission(email: string) {
     submittedAt: new Date().toISOString(),
   };
   window.localStorage.setItem(SUBMISSION_KEY, JSON.stringify(record));
+  window.sessionStorage.removeItem(PENDING_KEY);
+}
+
+function rememberPending(email: string) {
+  window.sessionStorage.setItem(PENDING_KEY, email.trim().toLowerCase());
+}
+
+function takePending() {
+  const email = window.sessionStorage.getItem(PENDING_KEY);
+  window.sessionStorage.removeItem(PENDING_KEY);
+  return email;
 }
 
 function clearSubmission() {
   window.localStorage.removeItem(SUBMISSION_KEY);
+  window.sessionStorage.removeItem(PENDING_KEY);
 }
 
 function submissionMatches(email: string) {
@@ -158,16 +171,35 @@ export function SubscribeForm() {
   }, [disclaimerOpen]);
 
   useEffect(() => {
-    function showStoredConfirmation() {
+    function syncFromNavigation() {
       const params = new URLSearchParams(window.location.search);
-      if (readSubmission() || params.get("submitted") === "1") {
+      if (params.get("submitted") === "1") {
+        const pending = takePending();
+        if (pending) {
+          rememberSubmission(pending);
+        }
+        setSendError(false);
+        setSending(false);
         setConfirmed(true);
+        return;
+      }
+      if (readSubmission()) {
+        setSending(false);
+        setConfirmed(true);
+        return;
+      }
+      if (takePending()) {
+        submitGuard.current = false;
+        formPosted.current = false;
+        setSending(false);
+        setConfirmed(false);
+        setSendError(true);
       }
     }
-    showStoredConfirmation();
+    syncFromNavigation();
     setStorageChecked(true);
-    window.addEventListener("pageshow", showStoredConfirmation);
-    return () => window.removeEventListener("pageshow", showStoredConfirmation);
+    window.addEventListener("pageshow", syncFromNavigation);
+    return () => window.removeEventListener("pageshow", syncFromNavigation);
   }, []);
 
   useEffect(() => {
@@ -239,7 +271,7 @@ export function SubscribeForm() {
       if (blockedBeforeResponse && !formPosted.current) {
         try {
           formPosted.current = true;
-          rememberSubmission(fields.email);
+          rememberPending(fields.email);
           postSubscribeForm({
             products: fields.products,
             first_year_total: fields.first_year_total,
@@ -258,7 +290,7 @@ export function SubscribeForm() {
             _next: `${window.location.origin}/subscribe?submitted=1`,
           });
           window.setTimeout(() => {
-            clearSubmission();
+            takePending();
             formPosted.current = false;
             submitGuard.current = false;
             setSending(false);
@@ -268,7 +300,7 @@ export function SubscribeForm() {
         } catch {
           formPosted.current = false;
           submitGuard.current = false;
-          clearSubmission();
+          takePending();
           setSending(false);
           setSendError(true);
           return;
@@ -295,17 +327,28 @@ export function SubscribeForm() {
           <h1
             ref={confirmationRef}
             tabIndex={-1}
-            className="mt-6 font-heading text-xl font-normal leading-relaxed text-foreground outline-none sm:text-2xl"
+            className="mt-6 font-heading text-2xl font-bold leading-tight text-foreground outline-none sm:text-3xl"
           >
-            {subscribe.confirmationBefore}
+            {subscribe.confirmationHeading}
+          </h1>
+          <p className="mt-4 max-w-xl text-base leading-relaxed text-foreground sm:text-lg">
+            {subscribe.confirmationSent}
+            <span className="font-bold">{subscribe.confirmationTeam}</span>
+            {subscribe.confirmationWithin}
+            <span className="font-bold">{subscribe.confirmationWindow}</span>
+            {subscribe.confirmationEmailLead}
             <span className="font-bold">{subscribe.confirmationNextSteps}</span>
             {subscribe.confirmationBetween}
             <span className="font-bold">{subscribe.confirmationGuide}</span>
-            {subscribe.confirmationAfter}
-            <a href={`mailto:${subscribe.confirmationEmail}`} className="text-primary underline">
+            {subscribe.confirmationEnd}
+          </p>
+          <p className="mt-4 max-w-xl text-base leading-relaxed text-foreground sm:text-lg">
+            {subscribe.confirmationQuestion}
+            <a href={`mailto:${subscribe.confirmationEmail}`} className="font-bold text-primary underline">
               {subscribe.confirmationEmail}
             </a>
-          </h1>
+            .
+          </p>
           <Link
             href="/"
             className="mt-8 inline-flex items-center justify-center rounded-full bg-primary px-8 py-4 text-base font-semibold text-primary-foreground shadow-lg shadow-violet-200 hover:opacity-90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
@@ -553,16 +596,28 @@ export function SubscribeForm() {
               ) : null}
 
               <div className="flex flex-col items-center gap-2">
+                <p className="sr-only" aria-live="polite">
+                  {sending ? subscribe.connectingLabel : ""}
+                </p>
                 <button
                   type="submit"
                   disabled={sending}
                   aria-disabled={!canSubscribe || sending}
+                  aria-busy={sending}
                   aria-describedby={canSubscribe ? undefined : "subscribe-still-needed"}
                   onFocus={() => setSubmitReached(true)}
-                  className={`group inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full bg-primary text-primary-foreground font-semibold text-base hover:opacity-90 transition-all shadow-lg shadow-violet-200 hover:shadow-violet-300 hover:shadow-xl subscribe-submit animate-glow-pulse focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary ${!canSubscribe || sending ? "cursor-not-allowed opacity-60 hover:shadow-lg" : ""}`}
+                  className={`group inline-flex items-center justify-center gap-2 rounded-full px-8 py-4 text-base font-semibold focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary ${sending ? "cursor-not-allowed bg-slate-300 text-slate-700 shadow-none pointer-events-none" : "bg-primary text-primary-foreground shadow-lg shadow-violet-200 transition-all hover:opacity-90 hover:shadow-violet-300 hover:shadow-xl subscribe-submit animate-glow-pulse"} ${!sending && !canSubscribe ? "cursor-not-allowed opacity-60 hover:shadow-lg" : ""}`}
                 >
-                  {sending ? subscribe.sendingLabel : subscribe.submitLabel}
-                  <ArrowRight size={18} className="transition-transform motion-safe:group-hover:translate-x-1" />
+                  <span className="inline-grid items-center justify-items-center">
+                    <span className={`col-start-1 row-start-1 inline-flex items-center gap-2 ${sending ? "invisible" : ""}`} aria-hidden={sending}>
+                      {subscribe.submitLabel}
+                      <ArrowRight size={18} className="transition-transform motion-safe:group-hover:translate-x-1" />
+                    </span>
+                    <span className={`col-start-1 row-start-1 inline-flex items-center gap-2 ${sending ? "" : "invisible"}`} aria-hidden={!sending}>
+                      <Loader2 size={18} className="animate-spin motion-reduce:animate-none" />
+                      {subscribe.connectingLabel}
+                    </span>
+                  </span>
                 </button>
                 {canSubscribe ? null : (
                   <p id="subscribe-still-needed" className="text-center text-sm text-muted-foreground">
